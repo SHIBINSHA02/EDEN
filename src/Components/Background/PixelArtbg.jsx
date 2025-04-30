@@ -5,7 +5,9 @@ const PixelArtBackground = ({
   density = 0.3, 
   fadeDuration = 3000,
   maxPlusSigns = 100,
-  initialPlusSigns = 40
+  initialPlusSigns = 40,
+  scatterCount = 15,  // Number of plus signs to scatter on touch
+  scatterSpeed = 2    // Base speed for scattering animation
 }) => {
   const canvasRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -45,11 +47,12 @@ const PixelArtBackground = ({
         y: Math.floor(Math.random() * maxY),
         type: Math.random() < 0.5 ? 'primary' : 'fade',
         startTime: performance.now() - Math.random() * fadeDuration,
+        velocityX: 0,
+        velocityY: 0,
       });
     }
     
     setPlusSigns(initialSigns);
-    console.log(`Added ${initialSigns.length} initial plus signs`);
   }, [dimensions, pixelSize, initialPlusSigns, fadeDuration]);
 
   // Handle rendering and animation
@@ -66,7 +69,7 @@ const PixelArtBackground = ({
     const drawPixel = (x, y, color, alpha = 1) => {
       ctx.fillStyle = color;
       ctx.globalAlpha = alpha;
-      ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+      ctx.fillRect(Math.round(x * pixelSize), Math.round(y * pixelSize), pixelSize, pixelSize);
       ctx.globalAlpha = 1;
     };
 
@@ -77,38 +80,57 @@ const PixelArtBackground = ({
 
     const drawPlusSign = (x, y, type, alpha) => {
       if (type === 'primary') {
-        drawPixel(x, y, '#a45f99', alpha);     // Center
-        drawPixel(x - 1, y, '#a15d97', alpha); // Left
-        drawPixel(x + 1, y, '#552e55', alpha); // Right
-        drawPixel(x, y - 1, '#7c4675', alpha); // Top
-        drawPixel(x, y + 1, '#1d0b23', alpha); // Bottom
+        drawPixel(x, y, '#7f4877', alpha);     // Center
+        drawPixel(x - 1, y, '#74426e', alpha); // Left
+        drawPixel(x + 1, y, '#61365d', alpha); // Right
+        drawPixel(x, y - 1, '#74426e', alpha); // Top
+        drawPixel(x, y + 1, '#61365d', alpha); // Bottom
       } else {
-        drawPixel(x, y, '#442344', alpha);     // Center
-        drawPixel(x - 1, y, '#1d0a24', alpha); // Left
-        drawPixel(x + 1, y, '#1d0a24', alpha); // Right
-        drawPixel(x, y - 1, '#1d0a24', alpha); // Top
-        drawPixel(x, y + 1, '#1d0a24', alpha); // Bottom
+        drawPixel(x, y, '#b77ec6', alpha);     // Center
+        drawPixel(x - 1, y, '#c471b5', alpha); // Left
+        drawPixel(x + 1, y, '#a05c95', alpha); // Right
+        drawPixel(x, y - 1, '#a05c95', alpha); // Top
+        drawPixel(x, y + 1, '#c471b5', alpha); // Bottom
       }
     };
 
     // Animation loop
     let animationId;
+    let lastFrameTime = performance.now();
+    
     const animate = () => {
       const currentTime = performance.now();
+      const deltaTime = (currentTime - lastFrameTime) / 16; // Normalize to ~60fps
+      lastFrameTime = currentTime;
       
-      // Filter out expired plus signs
-      const activeSigns = plusSigns.filter(sign => 
-        currentTime - sign.startTime < fadeDuration
+      // Update positions based on velocity and filter out expired plus signs
+      const updatedSigns = plusSigns.map(sign => {
+        // Update position based on velocity
+        return {
+          ...sign,
+          x: sign.x + sign.velocityX * deltaTime,
+          y: sign.y + sign.velocityY * deltaTime,
+          // Gradually slow down
+          velocityX: sign.velocityX * 0.98,
+          velocityY: sign.velocityY * 0.98
+        };
+      }).filter(sign => 
+        currentTime - sign.startTime < fadeDuration &&
+        sign.x >= 0 && 
+        sign.x < dimensions.width / pixelSize && 
+        sign.y >= 0 && 
+        sign.y < dimensions.height / pixelSize
       );
       
-      // Update the state if signs have expired
-      if (activeSigns.length < plusSigns.length) {
-        setPlusSigns(activeSigns);
+      // Update the state if signs have changed
+      if (updatedSigns.length !== plusSigns.length || 
+          updatedSigns.some((sign, i) => sign.x !== plusSigns[i].x || sign.y !== plusSigns[i].y)) {
+        setPlusSigns(updatedSigns);
       }
       
       // Draw the scene
       drawBackground();
-      plusSigns.forEach(sign => {
+      updatedSigns.forEach(sign => {
         const elapsed = currentTime - sign.startTime;
         const fadeProgress = Math.min(elapsed / fadeDuration, 1);
         const alpha = 1 - fadeProgress;
@@ -131,21 +153,33 @@ const PixelArtBackground = ({
       const clientX = event.type.startsWith('touch') ? event.touches[0].clientX : event.clientX;
       const clientY = event.type.startsWith('touch') ? event.touches[0].clientY : event.clientY;
       
-      const x = Math.floor((clientX - rect.left) / pixelSize);
-      const y = Math.floor((clientY - rect.top) / pixelSize);
+      const touchX = Math.floor((clientX - rect.left) / pixelSize);
+      const touchY = Math.floor((clientY - rect.top) / pixelSize);
       
-      const newSign = {
-        x, 
-        y,
-        type: Math.random() < 0.5 ? 'primary' : 'fade',
-        startTime: performance.now()
-      };
+      // Create scattering plus signs
+      const newSigns = [];
+      
+      for (let i = 0; i < scatterCount; i++) {
+        // Calculate random direction and speed
+        const angle = Math.random() * Math.PI * 2; // Random angle in radians
+        const speed = scatterSpeed * (0.5 + Math.random()); // Random speed variation
+        
+        newSigns.push({
+          x: touchX,
+          y: touchY,
+          type: Math.random() < 0.5 ? 'primary' : 'fade',
+          startTime: performance.now(),
+          velocityX: Math.cos(angle) * speed,
+          velocityY: Math.sin(angle) * speed,
+        });
+      }
       
       setPlusSigns(prev => {
-        if (prev.length >= maxPlusSigns) {
-          return [...prev.slice(1), newSign];
+        const combined = [...prev, ...newSigns];
+        if (combined.length > maxPlusSigns) {
+          return combined.slice(combined.length - maxPlusSigns);
         }
-        return [...prev, newSign];
+        return combined;
       });
     };
     
@@ -158,7 +192,7 @@ const PixelArtBackground = ({
       canvas.removeEventListener('click', handleInteraction);
       canvas.removeEventListener('touchstart', handleInteraction);
     };
-  }, [dimensions, pixelSize, fadeDuration, plusSigns]);
+  }, [dimensions, pixelSize, fadeDuration, plusSigns, scatterSpeed]);
 
   // Generate random plus signs periodically
   useEffect(() => {
@@ -174,11 +208,12 @@ const PixelArtBackground = ({
           x: Math.floor(Math.random() * maxX),
           y: Math.floor(Math.random() * maxY),
           type: Math.random() < 0.5 ? 'primary' : 'fade',
-          startTime: performance.now()
+          startTime: performance.now(),
+          velocityX: 0,
+          velocityY: 0,
         };
         
         setPlusSigns(prev => [...prev, newSign]);
-        console.log('Added random plus sign at', newSign.x, newSign.y);
       }
       
       // Schedule next generation with random interval

@@ -11,8 +11,8 @@ export const Home = ({ heroData }) => {
         pixelSize={2} 
         density={1.9} 
         fadeDuration={3000}
-        maxPlusSigns={100}
-        initialPlusSigns={50}
+        maxPlusSigns={70}
+        initialPlusSigns={40}
       />
       <div className="hero-section">
         <img src={heroImage.src} alt={heroImage.alt} className="hero-image" />
