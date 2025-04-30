@@ -9,10 +9,27 @@
     "hero": {
       "title": "EDEN 4.0",
       "subtitle": "Innovate • Collaborate • Transform",
-      "heroImage": {
-        "src": "/images/hero-dummy.png",
+      "image":{
+        "heroImage": {
+        "src": "/main.svg",
         "alt": "Hero section featured image"
       },
+      "cloud":[
+        {
+        "src": "/cloud3.svg",
+        "alt": "cloud3"
+        },
+        {
+          "src": "/cloud2.svg",
+          "alt": "cloud2"
+          },
+          {
+            "src": "/clod1.svg",
+            "alt": "cloud1"
+            }
+      ]
+      },
+      
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus ac lacus a imperdiet. Integer ac elementum nisi. Aliquam at interdum justo. Nunc nisl mi, semper feugiat maximus id, venenatis ac ante. Cras eu nulla ut diam vulputate fringilla. Phasellus enim dui, fringilla ac velit vel, imperdiet sollicitudin nunc. Morbi ac ultricies leo.",
       "buttonText": "Register Now!"
     },

@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: transparent; /* Ensure container is transparent */
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,20 +14,72 @@
   z-index: 2;
   text-align: center;
   color: white;
-  pointer-events: none; /* Allow clicks to pass through to canvas */
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr;
+  width: 100vw;
+  height: 100%;
+  gap: 0;
 }
 
-.hero-section img, 
-.hero-section h1, 
-.hero-section h2, 
+.hero-section img,
+.hero-section h1,
+.hero-section h2,
 .hero-section button {
-  pointer-events: auto; /* Restore interactivity for hero elements */
+  pointer-events: auto;
+}
+
+.hero-section > div {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-section h1,
+.hero-section h2 {
+  margin: 0;
+  padding: 0;
+  line-height: 1; /* Minimize vertical spacing */
+}
+
+.cloud-image1,
+.cloud-image2,
+.cloud-image3 {
+  grid-column: 3;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  display: block;
+  z-index: 3;
+}
+
+.cloud-image1 {
+  align-self: start;
+  margin-bottom: 10px;
+}
+
+.cloud-image2 {
+  align-self: center;
+}
+
+.cloud-image3 {
+  align-self: end;
+  margin-top: 10px;
 }
 
 .hero-image {
-  max-width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
   height: auto;
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  z-index: 1;
 }
 
 .register-button {

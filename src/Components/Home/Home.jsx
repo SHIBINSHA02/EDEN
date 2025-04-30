@@ -3,8 +3,9 @@ import './Home.css';
 import PixelArtBackground from '../Background/PixelArtbg';
 
 export const Home = ({ heroData }) => {
-  const { title, subtitle, heroImage, buttonText } = heroData;
-  
+  const { title, subtitle, image, buttonText } = heroData;
+  const { heroImage, cloud } = image;
+
   return (
     <div className="home-container">
       <PixelArtBackground 
@@ -15,11 +16,21 @@ export const Home = ({ heroData }) => {
         initialPlusSigns={40}
       />
       <div className="hero-section">
-        <img src={heroImage.src} alt={heroImage.alt} className="hero-image" />
-        <h1>{title}</h1>
-        <h2>{subtitle}</h2>
-        <button className="register-button">{buttonText}</button>
+        <div>
+          <h1>{title}</h1>
+          <h2>{subtitle}</h2>
+        </div>
+        {cloud.map((cloudItem, index) => (
+          <img
+            key={index}
+            src={cloudItem.src}
+            alt={cloudItem.alt}
+            className={`cloud-image${index + 1}`}
+          />
+        ))}
       </div>
+      <img src={heroImage.src} alt={heroImage.alt} className="hero-image" />
+      {/* <button className="register-button">{buttonText}</button> */}
     </div>
   );
 };
