@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import './App.css'
 import { Home } from './Components/Home/Home'
@@ -11,13 +11,24 @@ import { Sponsors } from './Components/Sponsors/Sponsors'
 import { Footer } from './Components/Footer/Footer'
 import { Judge } from './Components/Judge/Judge'
 import { Team } from './Components/Team/Team'
+import { Navbar } from './Components/Navbar/Navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch('/data.json')
+      .then(res => res.json())
+      .then(setData);
+  }, []);
+
+  if (!data) return <div className="loading">Loading...</div>;
 
   return (
     <>
-      <Home/>
+      <Navbar items={data.navbar} />
+      <Home heroData={data.hero} /> {/* Pass hero data to Home */}
       <About/>
       <Prize/>
       <Schedule/>
@@ -27,7 +38,6 @@ function App() {
       <Judge/>
       <Team/>
       <Footer/>
-
     </>
   )
 }

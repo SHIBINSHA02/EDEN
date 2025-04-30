@@ -1,0 +1,113 @@
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 0;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+  }
+  
+  .navbar ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    margin: 0;
+    list-style: none;
+    border: 2px solid #e1b7fc;
+    border-radius: 8px;
+    background: rgba(26, 10, 45, 0.5); /* Reduced opacity for desktop */
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 80%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar a {
+    color: #e1b7fc;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    letter-spacing: 0.05rem;
+    transition: background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+  
+  .navbar a:hover {
+    background: #b678e6;
+    color: #1a0a2d;
+    border-radius: 6px;
+  }
+  
+  .navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #e1b7fc;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .navbar ul {
+      display: none;
+      flex-direction: column;
+      width: auto;
+      background: rgba(26, 10, 45, 0.6); /* Reduced opacity for mobile */
+      border: none;
+      border-radius: 12px;
+      padding: 1rem 2%;
+      max-width: 90%;
+      max-height: 70vh;
+      overflow-y: auto;
+      position: absolute;
+      right: 1rem;
+      top: 60px;
+    }
+  
+    .navbar ul.active {
+      display: flex;
+    }
+  
+    .navbar li {
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .navbar a {
+      font-size: 1.1rem;
+      padding: 0.75rem;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .navbar-toggle {
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navbar {
+      padding: 1rem 0;
+    }
+  
+    .navbar a {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+  }

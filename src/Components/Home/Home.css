@@ -1,0 +1,45 @@
+.home-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent; /* Ensure container is transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-section {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  pointer-events: none; /* Allow clicks to pass through to canvas */
+}
+
+.hero-section img, 
+.hero-section h1, 
+.hero-section h2, 
+.hero-section button {
+  pointer-events: auto; /* Restore interactivity for hero elements */
+}
+
+.hero-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.register-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #a45f99;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background-color: #7c4675;
+}
