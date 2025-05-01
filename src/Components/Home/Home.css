@@ -35,7 +35,7 @@
 .center-title {
   position: absolute;
   top: 100%;
-  left: auto;
+  left: 33%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -215,4 +215,9 @@
 
 .center-title.loaded .title-image {
   visibility: visible !important;
+}
+
+/* Adjust the position of the title container slightly to the right */
+.center-title.right-adjust {
+  transform: translate(calc(-50% + 10px), -50%); /* Move right by 10px */
 }

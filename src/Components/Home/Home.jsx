@@ -169,7 +169,7 @@ export const Home = ({ heroData }) => {
               src={titleImage.src || "/placeholder.svg"} 
               alt={titleImage.alt} 
               className="title-image"
-              style={{ visibility: isLoaded ? 'visible' : 'hidden', opacity: isLoaded ? 1 : 0 }} // Control visibility and opacity
+              style={{ visibility: 'hidden', width: '50%', height: 'auto' }} // Start hidden, 50% width
               onLoad={(e) => {
                 console.log("Title image loaded with dimensions:", e.target.width, "x", e.target.height);
               }}
