@@ -1,74 +1,92 @@
+
 .navbar {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1.5rem 0;
-    background: transparent;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 20;
-  }
-  
-  .navbar ul {
-    display: flex;
-    gap: 1rem;
-    padding: 0.75rem 1.5rem;
-    margin: 0;
-    list-style: none;
-    border: 2px solid #e1b7fc;
-    border-radius: 8px;
-    background: rgba(26, 10, 45, 0.5); /* Reduced opacity for desktop */
-    backdrop-filter: blur(5px);
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 80%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar li {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar a {
-    color: #e1b7fc;
-    font-size: 1rem;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    font-family: inherit;
-    letter-spacing: 0.05rem;
-    transition: background 0.2s ease, color 0.2s ease;
-    white-space: nowrap;
-  }
-  
-  .navbar a:hover {
-    background: #b678e6;
-    color: #1a0a2d;
-    border-radius: 6px;
-  }
-  
-  .navbar-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #e1b7fc;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  /* Mobile styles */
-  @media (max-width: 768px) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+  background: rgba(255, 255, 255, 0); /* Fully transparent background */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  backdrop-filter: blur(10px); /* 10% blur effect */
+}
+
+.navbar ul {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  margin: 0;
+  list-style: none;
+  border: 2px solid #e1b7fc;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0); /* Fully transparent background */
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 80%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar li {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  color: #ffffff;
+  font-size: 2rem;
+  text-decoration: none;
+  padding: 0 1rem;
+  font-family: 'Minecraft', sans-serif; /* Use the Minecraft font */
+  font-weight: 500; /* Set the font weight to 500 */
+  letter-spacing: 0.05rem;
+  transition: color 0.2s ease; /* Smooth transition for color change */
+  white-space: nowrap;
+  position: relative; /* For the underline effect */
+}
+
+.navbar a:hover {
+  color: #b678e6; /* Change color on hover */
+}
+
+.navbar a::after {
+  content: ''; /* Create a pseudo-element for the underline */
+  display: block;
+  height: 2px; /* Thickness of the underline */
+  background: #b678e6; /* Color of the underline */
+  width: 0; /* Start with no width */
+  transition: width 0.3s ease; /* Smooth transition for the underline */
+  position: absolute;
+  left: 50%; /* Center the underline */
+  bottom: -5px; /* Position it below the text */
+  transform: translateX(-50%); /* Center the underline */
+}
+
+.navbar a:hover::after {
+  width: 100%; /* Expand the underline to full width on hover */
+}
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #e1b7fc;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
     .navbar ul {
       display: none;
       flex-direction: column;
       width: auto;
-      background: rgba(26, 10, 45, 0.6); /* Reduced opacity for mobile */
+      background: rgba(255, 255, 255, 0); /* Fully transparent background */
       border: none;
       border-radius: 12px;
-      padding: 1rem 2%;
+      padding: 0rem 2%;
       max-width: 90%;
       max-height: 70vh;
       overflow-y: auto;
@@ -87,7 +105,7 @@
     }
   
     .navbar a {
-      font-size: 1.1rem;
+      font-size: 1.9rem;
       padding: 0.75rem;
       width: 100%;
       text-align: center;
@@ -99,9 +117,9 @@
       right: 1rem;
       top: 1rem;
     }
-  }
+}
   
-  @media (max-width: 480px) {
+@media (max-width: 480px) {
     .navbar {
       padding: 1rem 0;
     }
@@ -110,4 +128,4 @@
       font-size: 0.9rem;
       padding: 0.5rem;
     }
-  }
+}

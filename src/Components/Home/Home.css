@@ -1,3 +1,4 @@
+/* Base styles for larger screens */
 .home-container {
   position: relative;
   width: 100vw;
@@ -5,93 +6,213 @@
   overflow: hidden;
   background: transparent;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.gridding {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  width: 100vw;
+  height: 100vh;
 }
 
 .hero-section {
   position: relative;
   z-index: 2;
-  text-align: center;
-  color: white;
-  pointer-events: none;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr 2fr;
-  width: 100vw;
-  height: 100%;
-  gap: 0;
-}
-
-.hero-section img,
-.hero-section h1,
-.hero-section h2,
-.hero-section button {
-  pointer-events: auto;
-}
-
-.hero-section > div {
-  grid-column: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  text-align: center;
+  overflow: visible; /* Allow content to be visible outside */
 }
 
-.hero-section h1,
-.hero-section h2 {
-  margin: 0;
-  padding: 0;
-  line-height: 1; /* Minimize vertical spacing */
+.center-title {
+  position: absolute;
+  top: 100%;
+  left: auto;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  width: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.center-title.loaded {
+  opacity: 1;
+}
+
+.title-image {
+  width: 50%; /* 50% of screen width as requested */
+  height: auto;
+  z-index: 4;
+  will-change: transform;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  transition: opacity 0.5s ease;
+}
+
+/* Add styles for the title background cloud */
+.title-background-cloud {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  z-index: 3; /* Below the title image (z-index: 4) */
+  top: 50%;
+  left: 50% + 200px;
+  
+  transform: translate(-50%, -50%) scale(0.3); /* Initially scaled down */
+  opacity: 0.6; /* Make it subtle */
+  pointer-events: none;
+  will-change: transform;
 }
 
 .cloud-image1,
 .cloud-image2,
 .cloud-image3 {
-  grid-column: 3;
-  width: 100%;
+  position: absolute;
+  width: 40%; /* Adjusted width */
   height: auto;
-  margin: 0;
-  padding: 0;
-  display: block;
-  z-index: 3;
+  z-index: 3; /* Below title but above background */
+  pointer-events: none;
+  will-change: transform; /* Optimize cloud animations */
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.center-title.loaded ~ .cloud-image1,
+.center-title.loaded ~ .cloud-image2,
+.center-title.loaded ~ .cloud-image3 {
+  opacity: 1;
 }
 
 .cloud-image1 {
-  align-self: start;
-  margin-bottom: 10px;
+  top: 30%;
+  right: 25%;
 }
 
 .cloud-image2 {
-  align-self: center;
+  top: 55%;
+  right: 45%;
+  transform: translateY(-50%);
 }
 
 .cloud-image3 {
-  align-self: end;
-  margin-top: 10px;
+  top: 20%;
+  right: 70%;
+}
+
+.hero-image-container {
+  position: relative;
+  width: 300vw;
+  height: auto;
+  display: flex;
+  overflow: hidden;
+  animation: slide 30s linear infinite;
+  z-index: 1;
+  will-change: transform;
 }
 
 .hero-image {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100vw;
   height: auto;
   margin: 0;
   padding: 0;
   display: block;
-  z-index: 1;
+  flex-shrink: 0;
+  backface-visibility: hidden;
 }
 
-.register-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #a45f99;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.hero-image-original {
+  transform: scaleX(1);
 }
 
-.register-button:hover {
-  background-color: #7c4675;
+.hero-image-mirrored {
+  transform: scaleX(-1);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200vw);
+  }
+}
+
+/* Media query for smaller screens (tablets and phones) */
+@media (max-width: 768px) {
+  .gridding {
+    grid-template-rows: 1fr 40vh;
+  }
+
+  .hero-image-container {
+    height: 40vh;
+    width: 300vw;
+    animation: slide 20s linear infinite;
+  }
+
+  .hero-image {
+    width: 100vw;
+    height: 40vh;
+    object-fit: cover;
+    object-position: center;
+    flex-shrink: 0;
+    max-height: 40vh;
+    backface-visibility: hidden;
+  }
+
+  .center-title {
+    width: 100%;
+  }
+
+  .title-image {
+    width: 80%; /* Wider on mobile for better visibility */
+  }
+
+  .title-background-cloud {
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+
+  .cloud-image1,
+  .cloud-image2,
+  .cloud-image3 {
+    width: 40%;
+  }
+
+  .cloud-image1 {
+    top: 5%;
+    right: 5%;
+  }
+
+  .cloud-image2 {
+    top: 45%;
+    right: 10%;
+    transform: translateY(-50%);
+  }
+
+  .cloud-image3 {
+    bottom: 5%;
+    right: 5%;
+  }
+}
+
+/* Debug styles to ensure the title image is visible */
+.title-image {
+  /* Ensure it's always visible for debugging */
+  display: block !important;
+}
+
+.center-title.loaded .title-image {
+  visibility: visible !important;
 }

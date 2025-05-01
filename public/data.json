@@ -8,26 +8,30 @@
     ],
     "hero": {
       "title": "EDEN 4.0",
+      
       "subtitle": "Innovate • Collaborate • Transform",
       "image":{
         "heroImage": {
         "src": "/main.svg",
         "alt": "Hero section featured image"
       },
-      "cloud":[
-        {
+      "titleImage": {
+        "src": "/title.svg",
+        "alt": "Eden 4.0"
+      },
+      "cloud1": {
+        "src": "/cloud1.svg",
+        "alt": "Cloud 1"
+      },
+      "cloud2": {
+        "src": "/cloud2.svg",
+        "alt": "Cloud 2"
+      },
+      "cloud3": {
         "src": "/cloud3.svg",
-        "alt": "cloud3"
-        },
-        {
-          "src": "/cloud2.svg",
-          "alt": "cloud2"
-          },
-          {
-            "src": "/clod1.svg",
-            "alt": "cloud1"
-            }
-      ]
+        "alt": "Cloud 3"
+      }
+      
       },
       
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus ac lacus a imperdiet. Integer ac elementum nisi. Aliquam at interdum justo. Nunc nisl mi, semper feugiat maximus id, venenatis ac ante. Cras eu nulla ut diam vulputate fringilla. Phasellus enim dui, fringilla ac velit vel, imperdiet sollicitudin nunc. Morbi ac ultricies leo.",
