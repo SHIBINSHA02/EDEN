@@ -1,6 +1,7 @@
 .about-container {
   position: relative;
   height: 100vh;
+  width: 100%;
 }
 
 .about-background {
@@ -18,25 +19,31 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex; /* Use flexbox for layout */
-  align-items: center; /* Center items vertically */
+  flex-direction: column; /* Stack items vertically to support block button */
+  align-items: center; /* Center items horizontally */
   z-index: 2; /* Ensure content is above background */
-  width: 85%; /* Set width to 85% of the container */
+  width: 85%; /* Default width */
+  max-width: 1200px; /* Prevent excessive stretching on large screens */
+  background: rgba(118, 43, 154, 0.3); /* #762b9a with 30% opacity */
+  padding: 30px;
+  border-radius: 15px;
+  box-sizing: border-box; /* Ensure padding doesn't increase width */
 }
 
 .about-content p {
-  color: white; /* Change text color as needed */
+  color: white; /* Text color */
   text-align: center;
-  font-size: 2rem; /* Adjust font size */
+  font-size: 2rem; /* Default font size */
   font-family: 'Minecraft', sans-serif; /* Apply Minecraft font */
-  padding: 0 15px; /* Apply padding from left and right */
+  padding: 0 15px; /* Default padding */
   margin: 0; /* Remove default margin */
 }
 
 .about-content button {
-  flex: 0 0 40%; /* Set button to take 40% of the width */
-  padding: 10px 20px; /* Button padding */
-  width: 150px;
+  display: block; /* Ensure button is block-level */
+  width: 300px; /* Fixed width */
   height: 100px;
+  padding: 10px 20px; /* Button padding */
   font-size: 2rem; /* Button font size */
   background-color: #efc0ff; /* Button background color */
   color: rgb(0, 0, 0); /* Button text color */
@@ -44,6 +51,8 @@
   border-radius: 15px; /* Rounded corners */
   cursor: pointer; /* Pointer cursor on hover */
   font-family: 'Minecraft', sans-serif; /* Apply Minecraft font */
+  margin: 30px auto; /* Center button horizontally */
+  transition: background-color 0.3s, color 0.3s; /* Smooth hover transitions */
 }
 
 .about-content button:hover {
@@ -51,18 +60,67 @@
   color: beige;
 }
 
-/* Media query for mobile screens */
+/* Media query for mobile screens (up to 768px) */
 @media (max-width: 768px) {
   .about-content {
-    flex-direction: column; /* Stack items on mobile */
-    
+    width: 90%; /* Slightly wider on mobile */
+    padding: 20px; /* Reduced padding */
   }
 
   .about-content p {
-    padding: 0 0; /* Remove padding on mobile for better fit */
+    font-size: 1.5rem; /* Smaller font size for mobile */
+    padding: 0 10px; /* Reduced padding */
   }
 
   .about-content button {
-    width: 100%; /* Make button full width on mobile */
+    width: 80%; /* Wider button relative to container */
+    max-width: 250px; /* Cap width for smaller screens */
+    height: 80px; /* Slightly shorter button */
+    font-size: 1.5rem; /* Smaller font size */
+    padding: 8px 16px; /* Adjusted padding */
+    margin: 20px auto; /* Reduced margin */
+  }
+}
+
+/* Media query for tablet screens (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .about-content {
+    width: 80%; /* Adjusted width for tablets */
+    padding: 25px; /* Slightly reduced padding */
+  }
+
+  .about-content p {
+    font-size: 1.8rem; /* Slightly smaller font size */
+    padding: 0 12px;
+  }
+
+  .about-content button {
+    width: 250px; /* Slightly smaller button width */
+    height: 90px; /* Slightly shorter */
+    font-size: 1.8rem; /* Adjusted font size */
+    padding: 10px 18px;
+    margin: 25px auto;
+  }
+}
+
+/* Media query for smaller mobile screens (up to 480px) */
+@media (max-width: 480px) {
+  .about-content {
+    width: 95%; /* Maximize width for very small screens */
+    padding: 15px; /* Further reduced padding */
+  }
+
+  .about-content p {
+    font-size: 1.2rem; /* Even smaller font size */
+    padding: 0 8px;
+  }
+
+  .about-content button {
+    width: 90%; /* Full width relative to container */
+    max-width: 200px; /* Smaller max width */
+    height: 70px; /* Shorter button */
+    font-size: 1.2rem; /* Smaller font size */
+    padding: 6px 12px; /* Reduced padding */
+    margin: 15px auto; /* Smaller margin */
   }
 }
