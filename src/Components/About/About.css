@@ -28,14 +28,14 @@
   text-align: center;
   font-size: 2rem; /* Adjust font size */
   font-family: 'Minecraft', sans-serif; /* Apply Minecraft font */
-  padding: 0 15px; /* Apply 20% padding from left and right */
+  padding: 0 15px; /* Apply padding from left and right */
   margin: 0; /* Remove default margin */
 }
 
 .about-content button {
   flex: 0 0 40%; /* Set button to take 40% of the width */
   padding: 10px 20px; /* Button padding */
-  width:150px;
+  width: 150px;
   height: 100px;
   font-size: 2rem; /* Button font size */
   background-color: #efc0ff; /* Button background color */
@@ -55,7 +55,7 @@
 @media (max-width: 768px) {
   .about-content {
     flex-direction: column; /* Stack items on mobile */
-    align-items: stretch; /* Stretch items to full width */
+    
   }
 
   .about-content p {

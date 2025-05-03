@@ -8,7 +8,7 @@ export const About = ({ description, buttonText }) => {
       <PixelArtBackground className="about-background" pixelSize={2} density={1} fadeDuration={3000} />
       <div className="about-content">
         <div className='description'>
-        <p>{description}</p>
+          <p>{description}</p>
         </div>
         <button>{buttonText}</button>
       </div>
