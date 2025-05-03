@@ -59,7 +59,7 @@ function App() {
     <>
       <Navbar items={data.navbar} />
       <Home heroData={data.hero} />
-      <About/>
+      <About description={data.hero.description} buttonText={data.hero.buttonText} />
       <Prize/>
       <Schedule/>
       <Venue/>

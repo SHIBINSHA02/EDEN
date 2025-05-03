@@ -1,0 +1,68 @@
+.about-container {
+  position: relative;
+  height: 100vh;
+}
+
+.about-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Ensure background is behind content */
+}
+
+.about-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  z-index: 2; /* Ensure content is above background */
+  width: 85%; /* Set width to 85% of the container */
+}
+
+.about-content p {
+  color: white; /* Change text color as needed */
+  text-align: center;
+  font-size: 2rem; /* Adjust font size */
+  font-family: 'Minecraft', sans-serif; /* Apply Minecraft font */
+  padding: 0 15px; /* Apply 20% padding from left and right */
+  margin: 0; /* Remove default margin */
+}
+
+.about-content button {
+  flex: 0 0 40%; /* Set button to take 40% of the width */
+  padding: 10px 20px; /* Button padding */
+  width:150px;
+  height: 100px;
+  font-size: 2rem; /* Button font size */
+  background-color: #efc0ff; /* Button background color */
+  color: rgb(0, 0, 0); /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 15px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-family: 'Minecraft', sans-serif; /* Apply Minecraft font */
+}
+
+.about-content button:hover {
+  background-color: #762b9a; /* Darker shade on hover */
+  color: beige;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column; /* Stack items on mobile */
+    align-items: stretch; /* Stretch items to full width */
+  }
+
+  .about-content p {
+    padding: 0 0; /* Remove padding on mobile for better fit */
+  }
+
+  .about-content button {
+    width: 100%; /* Make button full width on mobile */
+  }
+}
