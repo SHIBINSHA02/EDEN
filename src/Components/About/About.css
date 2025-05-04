@@ -42,7 +42,7 @@
 .about-content button {
   display: block; /* Ensure button is block-level */
   width: 300px; /* Fixed width */
-  height: 100px;
+  height: 75px;
   padding: 10px 20px; /* Button padding */
   font-size: 2rem; /* Button font size */
   background-color: #efc0ff; /* Button background color */
