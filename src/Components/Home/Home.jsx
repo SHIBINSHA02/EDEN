@@ -1,47 +1,28 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useRef } from "react"
 import "./Home.css"
 import PixelArtBackground from "../Background/PixelArtbg"
 
 export const Home = ({ heroData }) => {
   const { image } = heroData
   const { heroImage, titleImage, cloud1, cloud2, cloud3 } = image
-  const [isLoaded, setIsLoaded] = useState(false)
   const titleRef = useRef(null)
-
-  // Set loaded state when component mounts
-  useEffect(() => {
-    // Short delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      setIsLoaded(true)
-    }, 300)
-    
-    return () => clearTimeout(timer)
-  }, [])
 
   // Title animation
   useEffect(() => {
-    if (!isLoaded) return
-    
     const titleImageElement = titleRef.current
     
     if (titleImageElement) {
       console.log("Title element found:", !!titleImageElement)
       
-      // Make sure image is visible first in center position
       titleImageElement.style.visibility = 'visible'
-      titleImageElement.style.opacity = '1'
-      
-      // Start with the image centered on screen (no transform)
       titleImageElement.style.transform = 'translateY(0)'
       
-      // Delay before starting upward animation
       setTimeout(() => {
         const isMobile = window.innerWidth <= 768
         const titleDistance = isMobile ? 40 : 100
         
-        // Animate upward
         const titleAnimation = titleImageElement.animate(
           [
             { transform: 'translateY(0)' },
@@ -56,21 +37,18 @@ export const Home = ({ heroData }) => {
         
         titleAnimation.finished
           .then(() => {
-            // Apply final state with inline style to ensure it stays
             titleImageElement.style.transform = `translateY(-${titleDistance}px)`
             console.log("Title image animation completed")
           })
           .catch((error) => {
             console.error("Title animation error:", error)
           })
-      }, 2000) // Delay before starting upward motion
+      }, 600)
     }
-  }, [isLoaded])
+  }, [])
 
   // Cloud animations
   useEffect(() => {
-    if (!isLoaded) return
-
     const elements = {
       cloud1: document.querySelector(".cloud-image1"),
       cloud2: document.querySelector(".cloud-image2"),
@@ -78,7 +56,6 @@ export const Home = ({ heroData }) => {
       titleBgCloud: document.querySelector(".title-background-cloud")
     }
     
-    // Verify all elements exist
     const missingElements = Object.entries(elements)
       .filter(([_, el]) => !el)
       .map(([name]) => name)
@@ -87,6 +64,13 @@ export const Home = ({ heroData }) => {
       console.error(`Missing elements: ${missingElements.join(', ')}`)
       return
     }
+
+    // MODIFIED: Apply .loaded-final at 2000ms for cloud position transition parallel with title animation
+    setTimeout(() => {
+      elements.cloud1.classList.add("loaded-final")
+      elements.cloud2.classList.add("loaded-final")
+      elements.cloud3.classList.add("loaded-final")
+    }, 600)
 
     const isMobile = window.innerWidth <= 768
 
@@ -98,9 +82,9 @@ export const Home = ({ heroData }) => {
           ? [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(-10px, -5px) scale(0.9)" }]
           : [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(-20px, -10px) scale(0.8)" }],
         options: {
-          duration: 2000,
+          duration: 4000,
           easing: "ease-in-out",
-          delay: 2500, // Start after title animation
+          delay: 4500, // UNCHANGED: Start after position transition (2000ms + 1500ms)
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -112,9 +96,9 @@ export const Home = ({ heroData }) => {
           ? [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(5px, 10px) scale(0.95)" }]
           : [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(15px, 20px) scale(0.85)" }],
         options: {
-          duration: 2500,
+          duration: 4500,
           easing: "ease-out",
-          delay: 2700, // Start after title animation
+          delay: 4500, // UNCHANGED: Start after position transition
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -128,7 +112,7 @@ export const Home = ({ heroData }) => {
         options: {
           duration: 1800,
           easing: "ease-in",
-          delay: 2600, // Start after title animation
+          delay: 3500, // UNCHANGED: Start after position transition
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -137,12 +121,12 @@ export const Home = ({ heroData }) => {
       {
         element: elements.titleBgCloud,
         keyframes: isMobile
-          ? [{ transform: "translate(-50%, -50%) scale(0.4)" }, { transform: "translate(-45%, -53%) scale(0.45)" }]
-          : [{ transform: "translate(-50%, -50%) scale(0.3)" }, { transform: "translate(-40%, -55%) scale(0.35)" }],
+          ? [{ transform: "scale(0.4)" }, { transform: "scale(0.45)" }]
+          : [{ transform: "scale(0.3)" }, { transform: "scale(0.35)" }],
         options: {
           duration: 3000,
           easing: "ease-in-out",
-          delay: 1000,
+          delay: 3500, // UNCHANGED: Start after title animation
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -156,20 +140,20 @@ export const Home = ({ heroData }) => {
         console.error("Cloud animation error:", error)
       })
     })
-  }, [isLoaded])
+  }, [])
 
   return (
     <div className="home-container">
       <PixelArtBackground pixelSize={2} density={1.9} fadeDuration={3000} maxPlusSigns={70} initialPlusSigns={40} />
       <div className="gridding">
         <div className="hero-section">
-          <div className={`center-title ${isLoaded ? 'loaded' : ''}`}>
+          <div className="center-title">
             <img 
               ref={titleRef}
               src={titleImage.src || "/placeholder.svg"} 
               alt={titleImage.alt} 
               className="title-image"
-              style={{ visibility: 'hidden', width: '50%', height: 'auto' }} // Start hidden, 50% width
+              style={{ visibility: 'hidden', width: '50%', height: 'auto' }}
               onLoad={(e) => {
                 console.log("Title image loaded with dimensions:", e.target.width, "x", e.target.height);
               }}

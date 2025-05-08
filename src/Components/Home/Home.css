@@ -28,8 +28,9 @@
   width: 50%;
   height: 100%;
   pointer-events: none;
-  text-align: center;
-  overflow: visible; /* Allow content to be visible outside */
+  text-align: fichenter;
+  overflow: visible;
+  opacity: 1; /* MODIFIED: Ensure hero-section is fully visible from start */
 }
 
 .center-title {
@@ -43,36 +44,29 @@
   justify-content: center;
   z-index: 5;
   width: 50%;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.center-title.loaded {
-  opacity: 1;
+  opacity: 1; /* MODIFIED: Remove initial opacity transition */
 }
 
 .title-image {
-  width: 50%; /* 50% of screen width as requested */
+  width: 50%;
   height: auto;
   z-index: 4;
   will-change: transform;
   position: relative;
   display: block;
   margin: 0 auto;
-  transition: opacity 0.5s ease;
 }
 
-/* Add styles for the title background cloud */
+/* UNCHANGED: Position title-background-cloud relative to parent .center-title */
 .title-background-cloud {
   position: absolute;
   width: 100%;
   height: auto;
-  z-index: 3; /* Below the title image (z-index: 4) */
-  top: 50%;
-  left: 50% + 200px;
-  
-  transform: translate(-50%, -50%) scale(0.3); /* Initially scaled down */
-  opacity: 0.6; /* Make it subtle */
+  z-index: 3;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.3);
+  opacity: 0.6;
   pointer-events: none;
   will-change: transform;
 }
@@ -81,35 +75,54 @@
 .cloud-image2,
 .cloud-image3 {
   position: absolute;
-  width: 40%; /* Adjusted width */
+  width: 40%;
   height: auto;
-  z-index: 3; /* Below title but above background */
+  z-index: 6; /* UNCHANGED: Initial z-index above all elements */
   pointer-events: none;
-  will-change: transform; /* Optimize cloud animations */
-  opacity: 0;
-  transition: opacity 1s ease-in;
+  opacity: 1; /* MODIFIED: Set opacity to 1 from start */
 }
 
-.center-title.loaded ~ .cloud-image1,
-.center-title.loaded ~ .cloud-image2,
-.center-title.loaded ~ .cloud-image3 {
-  opacity: 1;
+/* MODIFIED: Apply transitions and will-change only when .loaded-final is added */
+.cloud-image1.loaded-final,
+.cloud-image2.loaded-final,
+.cloud-image3.loaded-final {
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, z-index 0ms 1500ms; /* MODIFIED: Only top/right/z-index transitions */
+  will-change: transform; /* MODIFIED: Add will-change during animation */
 }
 
+/* UNCHANGED: Initial positions for clouds */
 .cloud-image1 {
-  top: 30%;
-  right: 25%;
+  top: 40%;
+  right: 55%;
 }
 
 .cloud-image2 {
-  top: 55%;
-  right: 45%;
-  transform: translateY(-50%);
+  top: 50%;
+  right: 35%;
 }
 
 .cloud-image3 {
+  top: 45%;
+  right: 40%;
+}
+
+/* UNCHANGED: Final positions and z-index when .loaded-final is applied */
+.cloud-image1.loaded-final {
+  top: 30%;
+  right: 25%;
+  z-index: 3;
+}
+
+.cloud-image2.loaded-final {
+  top: 70%;
+  right: 45%;
+  z-index: 3;
+}
+
+.cloud-image3.loaded-final {
   top: 20%;
   right: 70%;
+  z-index: 3;
 }
 
 .hero-image-container {
@@ -177,11 +190,13 @@
   }
 
   .title-image {
-    width: 80%; /* Wider on mobile for better visibility */
+    width: 80%;
   }
 
+  /* UNCHANGED: Adjust title-background-cloud for mobile */
   .title-background-cloud {
-    transform: translate(-50%, -50%) scale(0.4);
+    top: 130%;
+    transform: translateX(-50%) scale(0.4);
   }
 
   .cloud-image1,
@@ -190,34 +205,49 @@
     width: 40%;
   }
 
+  /* UNCHANGED: Initial positions for mobile */
   .cloud-image1 {
-    top: 5%;
-    right: 5%;
+    top: 90%;
+    right: 55%;
   }
 
   .cloud-image2 {
-    top: 45%;
-    right: 10%;
-    transform: translateY(-50%);
+    top: 89%;
+    right: 45%;
   }
 
   .cloud-image3 {
+    top: 75%;
+    right: 60%;
+  }
+
+  /* UNCHANGED: Final positions for mobile */
+  .cloud-image1.loaded-final {
+    top: 5%;
+    right: 5%;
+    z-index: 3;
+  }
+
+  .cloud-image2.loaded-final {
+    top: 45%;
+    right: 10%;
+    z-index: 3;
+  }
+
+  .cloud-image3.loaded-final {
     bottom: 5%;
     right: 5%;
+    top: auto;
+    z-index: 3;
   }
 }
 
 /* Debug styles to ensure the title image is visible */
 .title-image {
-  /* Ensure it's always visible for debugging */
   display: block !important;
-}
-
-.center-title.loaded .title-image {
-  visibility: visible !important;
 }
 
 /* Adjust the position of the title container slightly to the right */
 .center-title.right-adjust {
-  transform: translate(calc(-50% + 10px), -50%); /* Move right by 10px */
+  transform: translate(calc(-50% + 10px), -50%);
 }
