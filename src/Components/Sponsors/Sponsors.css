@@ -1,0 +1,30 @@
+/* src/Components/Sponsors/Sponsors.css */
+.sponsors-container {
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .minecraft-font {
+    font-family: 'Minecraft', sans-serif;
+    text-align: center;
+    font-size: 4rem;
+  }
+  
+  .white-expand-initial {
+    transform: scale(0);
+    border-radius: 50%; /* To ensure it expands as a circle initially */
+  }
+  
+  .white-expand-animate {
+    animation: whiteExpand 2s ease-in-out forwards; /* 2s duration as before */
+  }
+  
+  @keyframes whiteExpand {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(2); /* Adjust scale to fully cover */
+      border-radius: 0%; /* Expand to a square/rectangle */
+    }
+  }
