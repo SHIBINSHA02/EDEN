@@ -11,6 +11,7 @@ const PixelArtBackground = ({
 }) => {
   const canvasRef = useRef(null);
   const timeoutRef = useRef(null);
+  const touchStartRef = useRef({ x: 0, y: 0, time: 0 });
   const [plusSigns, setPlusSigns] = useState([]);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
@@ -25,11 +26,9 @@ const PixelArtBackground = ({
       }
     };
 
-    // Initial update and resize handler
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
     
-    // Cleanup event listener
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
 
@@ -100,21 +99,16 @@ const PixelArtBackground = ({
     
     const animate = () => {
       const currentTime = performance.now();
-      const deltaTime = (currentTime - lastFrameTime) / 16; // Normalize to ~60fps
+      const deltaTime = (currentTime - lastFrameTime) / 16;
       lastFrameTime = currentTime;
       
-      // Update positions based on velocity and filter out expired plus signs
-      const updatedSigns = plusSigns.map(sign => {
-        // Update position based on velocity
-        return {
-          ...sign,
-          x: sign.x + sign.velocityX * deltaTime,
-          y: sign.y + sign.velocityY * deltaTime,
-          // Gradually slow down
-          velocityX: sign.velocityX * 0.98,
-          velocityY: sign.velocityY * 0.98
-        };
-      }).filter(sign => 
+      const updatedSigns = plusSigns.map(sign => ({
+        ...sign,
+        x: sign.x + sign.velocityX * deltaTime,
+        y: sign.y + sign.velocityY * deltaTime,
+        velocityX: sign.velocityX * 0.98,
+        velocityY: sign.velocityY * 0.98
+      })).filter(sign => 
         currentTime - sign.startTime < fadeDuration &&
         sign.x >= 0 && 
         sign.x < dimensions.width / pixelSize && 
@@ -122,13 +116,11 @@ const PixelArtBackground = ({
         sign.y < dimensions.height / pixelSize
       );
       
-      // Update the state if signs have changed
       if (updatedSigns.length !== plusSigns.length || 
-          updatedSigns.some((sign, i) => sign.x !== plusSigns[i].x || sign.y !== plusSigns[i].y)) {
+          updatedSigns.some((sign, i) => sign.x !== plusSigns[i]?.x || sign.y !== plusSigns[i]?.y)) {
         setPlusSigns(updatedSigns);
       }
       
-      // Draw the scene
       drawBackground();
       updatedSigns.forEach(sign => {
         const elapsed = currentTime - sign.startTime;
@@ -143,63 +135,101 @@ const PixelArtBackground = ({
       animationId = requestAnimationFrame(animate);
     };
     
-    // Start animation
     animationId = requestAnimationFrame(animate);
     
     // Handle user interactions
+    const handleTouchStart = (event) => {
+      const touch = event.touches[0];
+      touchStartRef.current = {
+        x: touch.clientX,
+        y: touch.clientY,
+        time: performance.now()
+      };
+    };
+
     const handleInteraction = (event) => {
       event.preventDefault();
       const rect = canvas.getBoundingClientRect();
-      const clientX = event.type.startsWith('touch') ? event.touches[0].clientX : event.clientX;
-      const clientY = event.type.startsWith('touch') ? event.touches[0].clientY : event.clientY;
+      const clientX = event.type.startsWith('touch') ? event.changedTouches[0].clientX : event.clientX;
+      const clientY = event.type.startsWith('touch') ? event.changedTouches[0].clientY : event.clientY;
       
       const touchX = Math.floor((clientX - rect.left) / pixelSize);
       const touchY = Math.floor((clientY - rect.top) / pixelSize);
       
-      // Create scattering plus signs
-      const newSigns = [];
-      
-      for (let i = 0; i < scatterCount; i++) {
-        // Calculate random direction and speed
-        const angle = Math.random() * Math.PI * 2; // Random angle in radians
-        const speed = scatterSpeed * (0.5 + Math.random()); // Random speed variation
+      if (event.type === 'touchend') {
+        const touchEndTime = performance.now();
+        const touchDuration = touchEndTime - touchStartRef.current.time;
+        const deltaX = clientX - touchStartRef.current.x;
+        const deltaY = clientY - touchStartRef.current.y;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
-        newSigns.push({
-          x: touchX,
-          y: touchY,
-          type: Math.random() < 0.5 ? 'primary' : 'fade',
-          startTime: performance.now(),
-          velocityX: Math.cos(angle) * speed,
-          velocityY: Math.sin(angle) * speed,
+        // Only trigger scatter if touch is short and movement is minimal
+        if (touchDuration < 250 && distance < 10) {
+          const newSigns = [];
+          for (let i = 0; i < scatterCount; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = scatterSpeed * (0.5 + Math.random());
+            newSigns.push({
+              x: touchX,
+              y: touchY,
+              type: Math.random() < 0.5 ? 'primary' : 'fade',
+              startTime: performance.now(),
+              velocityX: Math.cos(angle) * speed,
+              velocityY: Math.sin(angle) * speed,
+            });
+          }
+          
+          setPlusSigns(prev => {
+            const combined = [...prev, ...newSigns];
+            if (combined.length > maxPlusSigns) {
+              return combined.slice(combined.length - maxPlusSigns);
+            }
+            return combined;
+          });
+        }
+      } else if (event.type === 'click') {
+        // Handle click as before
+        const newSigns = [];
+        for (let i = 0; i < scatterCount; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = scatterSpeed * (0.5 + Math.random());
+          newSigns.push({
+            x: touchX,
+            y: touchY,
+            type: Math.random() < 0.5 ? 'primary' : 'fade',
+            startTime: performance.now(),
+            velocityX: Math.cos(angle) * speed,
+            velocityY: Math.sin(angle) * speed,
+          });
+        }
+        
+        setPlusSigns(prev => {
+          const combined = [...prev, ...newSigns];
+          if (combined.length > maxPlusSigns) {
+            return combined.slice(combined.length - maxPlusSigns);
+          }
+          return combined;
         });
       }
-      
-      setPlusSigns(prev => {
-        const combined = [...prev, ...newSigns];
-        if (combined.length > maxPlusSigns) {
-          return combined.slice(combined.length - maxPlusSigns);
-        }
-        return combined;
-      });
     };
     
     canvas.addEventListener('click', handleInteraction);
-    canvas.addEventListener('touchstart', handleInteraction);
+    canvas.addEventListener('touchstart', handleTouchStart);
+    canvas.addEventListener('touchend', handleInteraction);
     
-    // Cleanup
     return () => {
       cancelAnimationFrame(animationId);
       canvas.removeEventListener('click', handleInteraction);
-      canvas.removeEventListener('touchstart', handleInteraction);
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchend', handleInteraction);
     };
-  }, [dimensions, pixelSize, fadeDuration, plusSigns, scatterSpeed]);
+  }, [dimensions, pixelSize, fadeDuration, plusSigns, scatterSpeed, scatterCount]);
 
   // Generate random plus signs periodically
   useEffect(() => {
     if (dimensions.width <= 0 || dimensions.height <= 0) return;
     
     const generateRandomSign = () => {
-      // Only generate if we're below maximum
       if (plusSigns.length < maxPlusSigns && Math.random() < density) {
         const maxX = Math.floor(dimensions.width / pixelSize);
         const maxY = Math.floor(dimensions.height / pixelSize);
@@ -216,15 +246,12 @@ const PixelArtBackground = ({
         setPlusSigns(prev => [...prev, newSign]);
       }
       
-      // Schedule next generation with random interval
       const nextInterval = 500 + Math.random() * 1500;
       timeoutRef.current = setTimeout(generateRandomSign, nextInterval);
     };
     
-    // Start generation
     generateRandomSign();
     
-    // Cleanup
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -242,7 +269,7 @@ const PixelArtBackground = ({
         width: '100%',
         height: '100%',
         zIndex: 1,
-        touchAction: 'none',
+        touchAction: 'auto', // Changed from 'none' to allow scrolling
         pointerEvents: 'auto',
         backgroundColor: '#1d0a24',
       }}
