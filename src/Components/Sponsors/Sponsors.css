@@ -13,82 +13,75 @@
   height: 100%;
 }
 
-/* Full-screen white layer */
-.white-layer {
-  position: absolute;
+/* Reveal effect */
+#reveal {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
-  transform: scale(0);
-  transform-origin: center;
+  pointer-events: none;
+  z-index: 30;
 }
 
-/* Layer animation to expand from center */
-.layer-animate {
-  animation: expandLayer 5s ease-in-out forwards;
-}
-
-@keyframes expandLayer {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Gradient layer */
-.gradient-layer {
+#reveal > div {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%),
-    linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%),
-    linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%),
-    linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-  background-position: top, bottom, left, right;
-  opacity: 0;
+  background-color: #fff;
+  animation-fill-mode: forwards;
 }
 
-/* Gradient animation */
-.gradient-animate {
-  animation: gradientFade 5s ease-in-out forwards;
+.circle {
+  border-radius: 50%;
 }
 
-@keyframes gradientFade {
-  0% {
-    opacity: 0;
-    background: 
-      linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%),
-      linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%),
-      linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%),
-      linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%);
-  }
-  50% {
-    opacity: 0.7;
-    background: 
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(to top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(to right, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(to left, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
-  }
-  100% {
+.square {
+  border-radius: 0;
+}
+
+.custom1 {
+  animation-name: custom1;
+  animation-timing-function: ease-in;
+}
+
+.custom2 {
+  animation-name: custom2;
+  animation-timing-function: ease-out;
+}
+
+@keyframes custom1 {
+  from {
     opacity: 1;
-    background: 
-      linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),
-      linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),
-      linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),
-      linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(0.2, 0.2, 0.2) translate3d(150px, -100px, 0);
   }
 }
 
-/* Ensure other styles remain intact */
+@keyframes custom2 {
+  from {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(1.5, 1.5, 1.5) translate3d(-100px, 100px, 0);
+  }
+}
+
+/* Page content */
+#page {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Background gradient for final state */
+#app[data-revealed="true"] {
+  background-image: radial-gradient(circle, #73aad6, #003962, #000);
+}
+
+/* Sponsors container */
 .sponsors-container {
   display: flex;
   justify-content: center;

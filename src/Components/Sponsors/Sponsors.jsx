@@ -5,132 +5,178 @@ import { useInView } from 'react-intersection-observer';
 
 export const Sponsors = () => {
   const [animationPhase, setAnimationPhase] = useState('initial');
-  const [activeLayer, setActiveLayer] = useState(0); // Tracks current layer (0 = none, 1-5 = layers)
+  const [revealElements, setRevealElements] = useState([]);
+  const [revealed, setRevealed] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0.5,
-    triggerOnce: true,
+    triggerOnce: false,
   });
 
+  // Configurable parameters
+  const [anim] = useState('custom1');
+  const [shape] = useState('circle');
+  const [shapeSize] = useState(50);
+  const [animDuration] = useState(2);
+  const [animDelay] = useState(0.5);
+  const [randomColors] = useState(true);
+  const [delayType] = useState('incremental');
+
+  // Generate random color
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  // Generate reveal elements
+  const generateRevealElements = () => {
+    console.log('Generating reveal elements');
+    const elements = [];
+    const count = 30;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    for (let i = 0; i < count; i++) {
+      const delay =
+        delayType === 'incremental'
+          ? i * (animDelay / count)
+          : Math.random() * animDelay;
+      const x = Math.random() * vw;
+      const y = Math.random() * vh;
+      elements.push({
+        anim,
+        shape,
+        style: {
+          left: `${x}px`,
+          top: `${y}px`,
+          width: `${shapeSize}px`,
+          height: `${shapeSize}px`,
+          backgroundColor: randomColors ? getRandomColor() : '#fff',
+          animation: `${anim} ${animDuration}s ease-in ${delay}s forwards`,
+        },
+      });
+    }
+    console.log('Reveal elements generated:', elements.length);
+    setRevealElements(elements);
+  };
+
+  // Handle animation end
+  const handleAnimationEnd = () => {
+    console.log('Last reveal animation ended');
+    setRevealed(true);
+    setAnimationPhase('final');
+  };
+
   useEffect(() => {
-    let timer1, timer2, timer3, timer4, interval;
+    console.log('useEffect triggered, inView:', inView, 'animationPhase:', animationPhase);
+    let timer1, timer2;
 
     if (inView && animationPhase === 'initial') {
-      // Start joining animation after 2 seconds
+      console.log('Starting joining phase');
+      setAnimationPhase('joining');
+
+      // Generate reveal elements and start reveal after 2s
       timer1 = setTimeout(() => {
-        console.log('Joining animation started at', Date.now());
-        setAnimationPhase('joining');
+        console.log('Starting revealing phase');
+        generateRevealElements();
+        setAnimationPhase('revealing');
       }, 2000);
 
-      // Start white screen layers after joining completes (2s duration)
+      // Fallback to final phase after reveal duration (2s joining + max animation time)
       timer2 = setTimeout(() => {
-        console.log('White screen animation started at', Date.now());
-        setAnimationPhase('whiteExpanding');
-        let layerIndex = 1;
-        interval = setInterval(() => {
-          console.log(`Layer ${layerIndex} triggered at`, Date.now());
-          setActiveLayer(layerIndex);
-          layerIndex++;
-          if (layerIndex > 5) {
-            clearInterval(interval);
-          }
-        }, 2000);
-      }, 2000);
-
-      // Start gradient animation after white layers (10s: 2s joining + 8s layers)
-      timer3 = setTimeout(() => {
-        console.log('Gradient animation started at', Date.now());
-        setAnimationPhase('gradient');
-      }, 10000);
-
-      // Show final content after gradient finishes (5s gradient duration)
-      timer4 = setTimeout(() => {
-        console.log('Final content triggered at', Date.now());
-        setAnimationPhase('final');
-      }, 15000);
+        if (animationPhase !== 'final') {
+          console.log('Fallback: Forcing final phase');
+          setRevealed(true);
+          setAnimationPhase('final');
+        }
+      }, 2000 + (animDuration + animDelay) * 1000 + 500);
     } else if (!inView && animationPhase !== 'initial') {
-      console.log('Resetting animation at', Date.now());
+      console.log('Resetting to initial phase');
       setAnimationPhase('initial');
-      setActiveLayer(0);
+      setRevealElements([]);
+      setRevealed(false);
     }
 
     return () => {
+      console.log('Cleaning up timers');
       clearTimeout(timer1);
       clearTimeout(timer2);
-      clearTimeout(timer3);
-      clearTimeout(timer4);
-      clearInterval(interval);
     };
-  }, [inView, animationPhase]);
+  }, [inView, animationPhase, animDuration, animDelay]);
 
   return (
-    <div ref={ref} className="relative w-screen h-screen overflow-hidden">
+    <div
+      ref={ref}
+      className="relative w-screen h-screen overflow-hidden"
+      id="app"
+      data-loaded={animationPhase !== 'initial'}
+      data-revealed={revealed}
+    >
       <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
+
+      {/* Reveal effect */}
+      <div
+        id="reveal"
+        className={`fixed top-0 left-0 w-full h-full pointer-events-none z-30 transition-opacity duration-500 ${
+          animationPhase === 'revealing' ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        {revealElements.map((el, index) => (
+          <div
+            key={index}
+            className={`${el.anim} ${el.shape}`}
+            style={el.style}
+            onAnimationEnd={index === revealElements.length - 1 ? handleAnimationEnd : undefined}
+          />
+        ))}
+      </div>
+
+      {/* Initial content */}
       <div
         className={`absolute inset-0 flex justify-center items-center text-white text-4xl sponsors-container z-10 transition-opacity duration-1000 ${
-          animationPhase === 'joining' || animationPhase === 'whiteExpanding' || animationPhase === 'gradient' || animationPhase === 'final' ? 'opacity-0' : 'opacity-100'
+          animationPhase === 'joining' ? 'opacity-100' : 'opacity-0'
         }`}
       >
         <span className="minecraft-font">Red Bull Gives You Wings</span>
       </div>
 
+      {/* Hemicircles */}
       <div className="hemis-container">
         <img
           src="/hemis.svg"
           alt="Hemicircle"
           className={`hemis absolute top-1/2 -translate-y-1/2 z-20 transition-all duration-2000 ease-in-out ${
-            animationPhase === 'joining' || animationPhase === 'whiteExpanding' || animationPhase === 'gradient' || animationPhase === 'final'
+            animationPhase === 'joining' || animationPhase === 'revealing' || animationPhase === 'final'
               ? 'left-[calc(50%-50px)] -translate-x-1/2 opacity-0'
-              : 'left-0'
+              : 'left-0 opacity-100'
           }`}
         />
         <img
           src="/hemis-mirror.svg"
           alt="Mirrored Hemicircle"
           className={`hemis mirror absolute top-1/2 -translate-y-1/2 z-20 transition-all duration-3000 ease-in-out ${
-            animationPhase === 'joining' || animationPhase === 'whiteExpanding' || animationPhase === 'gradient' || animationPhase === 'final'
+            animationPhase === 'joining' || animationPhase === 'revealing' || animationPhase === 'final'
               ? 'right-[calc(50%-50px)] translate-x-1/2 opacity-0'
-              : 'right-0'
+              : 'right-0 opacity-100'
           }`}
         />
       </div>
 
-      {animationPhase === 'whiteExpanding' && (
-        <div className="absolute inset-0 z-30 flex justify-center items-center">
-          <div
-            className={`absolute inset-0 white-layer ${activeLayer >= 1 ? 'layer-animate' : ''}`}
-            style={{ opacity: 0.2, transformOrigin: 'center', zIndex: 1 }}
-          />
-          <div
-            className={`absolute inset-0 white-layer ${activeLayer >= 2 ? 'layer-animate' : ''}`}
-            style={{ opacity: 0.4, transformOrigin: 'center', zIndex: 2 }}
-          />
-          <div
-            className={`absolute inset-0 white-layer ${activeLayer >= 3 ? 'layer-animate' : ''}`}
-            style={{ opacity: 0.6, transformOrigin: 'center', zIndex: 3 }}
-          />
-          <div
-            className={`absolute inset-0 white-layer ${activeLayer >= 4 ? 'layer-animate' : ''}`}
-            style={{ opacity: 0.8, transformOrigin: 'center', zIndex: 4 }}
-          />
-          <div
-            className={`absolute inset-0 white-layer ${activeLayer >= 5 ? 'layer-animate' : ''}`}
-            style={{ opacity: 1.0, transformOrigin: 'center', zIndex: 5 }}
-          />
+      {/* Final content */}
+      <div
+        id="page"
+        className={`absolute inset-0 flex justify-center items-center z-50 transition-opacity duration-1000 ${
+          animationPhase === 'final' ? 'opacity-100 bg-white' : 'opacity-0'
+        }`}
+      >
+        <div className="text-center text-black">
+          <h1 className="text-5xl font-bold mb-4">Thank You, Sponsors!</h1>
+          <p className="text-2xl">Your support makes it all possible.</p>
         </div>
-      )}
-
-      {animationPhase === 'gradient' && (
-        <div className="absolute inset-0 z-40 gradient-layer gradient-animate" />
-      )}
-
-      {animationPhase === 'final' && (
-        <div className="absolute inset-0 bg-white flex justify-center items-center z-50 transition-opacity duration-1000 opacity-100">
-          <div className="text-center text-black">
-            <h1 className="text-5xl font-bold mb-4">Thank You, Sponsors!</h1>
-            <p className="text-2xl">Your support makes it all possible.</p>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };
