@@ -79,8 +79,8 @@ export const Home = ({ heroData }) => {
       {
         element: elements.cloud1,
         keyframes: isMobile
-          ? [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(-10px, -5px) scale(0.9)" }]
-          : [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(-20px, -10px) scale(0.8)" }],
+          ? [{ transform: "translate(+100, 220) scale(0.5)" }, { transform: "translate(-100px, -115px) scale(0.6)" }]
+          : [{ transform: "translate(0, 0) scale(0.6)" }, { transform: "translate(-20px, -10px) scale(0.7)" }],
         options: {
           duration: 4000,
           easing: "ease-in-out",
@@ -93,8 +93,8 @@ export const Home = ({ heroData }) => {
       {
         element: elements.cloud2,
         keyframes: isMobile
-          ? [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(5px, 10px) scale(0.95)" }]
-          : [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(15px, 20px) scale(0.85)" }],
+          ? [{ transform: "translate(0, 0) scale(0.5)" }, { transform: "translate(5px, 10px) scale(0.7)" }]
+          : [{ transform: "translate(0, 0) scale(0.5)" }, { transform: "translate(15px, 20px) scale(0.7)" }],
         options: {
           duration: 4500,
           easing: "ease-out",
@@ -107,12 +107,12 @@ export const Home = ({ heroData }) => {
       {
         element: elements.cloud3,
         keyframes: isMobile
-          ? [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(-8px, 3px) scale(0.88)" }]
-          : [{ transform: "translate(0, 0) scale(1)" }, { transform: "translate(-25px, 15px) scale(0.75)" }],
+          ? [{ transform: "translate(0, 0) scale(0.5)" }, { transform: "translate(-8px, 3px) scale(0.6)" }]
+          : [{ transform: "translate(0, 0) scale(0.5)" }, { transform: "translate(-25px, 15px) scale(0.6)" }],
         options: {
-          duration: 1800,
-          easing: "ease-in",
-          delay: 3500, // UNCHANGED: Start after position transition
+          duration: 4800,
+          easing: "ease-out",
+          delay: 4500, // UNCHANGED: Start after position transition
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
