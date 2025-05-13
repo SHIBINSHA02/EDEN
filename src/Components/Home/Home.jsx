@@ -98,7 +98,7 @@ export const Home = ({ heroData }) => {
         options: {
           duration: 4500,
           easing: "ease-out",
-          delay: 4500, // UNCHANGED: Start after position transition
+          delay: 1500, // UNCHANGED: Start after position transition
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -112,7 +112,7 @@ export const Home = ({ heroData }) => {
         options: {
           duration: 4800,
           easing: "ease-out",
-          delay: 4500, // UNCHANGED: Start after position transition
+          delay: 1500, // UNCHANGED: Start after position transition
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -126,7 +126,7 @@ export const Home = ({ heroData }) => {
         options: {
           duration: 3000,
           easing: "ease-in-out",
-          delay: 3500, // UNCHANGED: Start after title animation
+          delay: 1500, // UNCHANGED: Start after title animation
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",

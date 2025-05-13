@@ -94,6 +94,7 @@
 .cloud-image1 {
   top: 40%;
   right: 55%;
+  
 }
 
 .cloud-image2 {
@@ -108,21 +109,27 @@
 
 /* UNCHANGED: Final positions and z-index when .loaded-final is applied */
 .cloud-image1.loaded-final {
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 30%;
   right: 25%;
   z-index: 3;
+  transform: scale(0.6);
 }
 
 .cloud-image2.loaded-final {
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 70%;
   right: 45%;
   z-index: 3;
+  transform: scale(0.5);
 }
 
 .cloud-image3.loaded-final {
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 20%;
   right: 70%;
   z-index: 3;
+  transform: scale(0.5);
 }
 
 .hero-image-container {
