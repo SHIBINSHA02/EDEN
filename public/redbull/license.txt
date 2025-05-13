@@ -1,0 +1,11 @@
+Model Information:
+* title:	RED BULL ENERGY DRINK CAN
+* source:	https://sketchfab.com/3d-models/red-bull-energy-drink-can-2a29aa47ffd74b6395d07cd270db4735
+* author:	martin_dalm (https://sketchfab.com/martin_dalm)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "RED BULL ENERGY DRINK CAN" (https://sketchfab.com/3d-models/red-bull-energy-drink-can-2a29aa47ffd74b6395d07cd270db4735) by martin_dalm (https://sketchfab.com/martin_dalm) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
