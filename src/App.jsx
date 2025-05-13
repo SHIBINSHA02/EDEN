@@ -14,6 +14,7 @@ import { Team } from './Components/Team/Team'
 import { Navbar } from './Components/Navbar/Navbar'
 import FriskyFont from './fonts/Frisky.ttf'
 import MinecraftFont from './fonts/Minecraftchmc.ttf'
+import Redbull from './Components/RedBull/Redbull'
 
 function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
@@ -60,6 +61,7 @@ function App() {
       <Navbar items={data.navbar} />
       <Home heroData={data.hero} />
       <About description={data.hero.description} buttonText={data.hero.buttonText} />
+      <Redbull/>
       <Prize/>
       <Schedule/>
       <Venue/>

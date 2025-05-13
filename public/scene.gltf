@@ -390,7 +390,7 @@
   "buffers": [
     {
       "byteLength": 1141400,
-      "uri": "scene.bin"
+      "uri": "./scene.bin"
     }
   ],
   "images": [
@@ -419,7 +419,8 @@
           "index": 1
         },
         "roughnessFactor": 0.26884062393851904
-      }
+      },
+      "alphaMode": "BLEND"
     },
     {
       "doubleSided": true,
@@ -429,7 +430,8 @@
           "index": 2
         },
         "roughnessFactor": 0.1880952823236122
-      }
+      },
+      "alphaMode": "BLEND"
     },
     {
       "doubleSided": true,
@@ -440,7 +442,8 @@
         },
         "metallicFactor": 0.4613872077894507,
         "roughnessFactor": 0.175672922075165
-      }
+      },
+      "alphaMode": "BLEND"
     },
     {
       "doubleSided": true,
@@ -453,7 +456,8 @@
           1.0
         ],
         "roughnessFactor": 0.33716360530497863
-      }
+      },
+      "alphaMode": "BLEND"
     }
   ],
   "meshes": [
