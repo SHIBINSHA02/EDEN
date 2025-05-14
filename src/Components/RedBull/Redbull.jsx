@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import PixelArtBackground from '../Background/PixelArtbg';
 
 const Redbull = () => {
   const mountRef = useRef(null);
@@ -23,6 +24,7 @@ const Redbull = () => {
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     mountRef.current.appendChild(renderer.domElement);
+    console.log('Canvas appended to mountRef'); // Debug to confirm canvas attachment
 
     // Add orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -194,10 +196,19 @@ const Redbull = () => {
   }, []);
 
   return (
-    <div
-      style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100vh", background: "transparent" }}
-      ref={mountRef}
-    />
+    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+      <PixelArtBackground 
+        pixelSize={2} 
+        density={1} 
+        fadeDuration={3000} 
+        maxPlusSigns={100} 
+        initialPlusSigns={50} 
+      />
+      <div
+        ref={mountRef}
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 1 }}
+      />
+    </div>
   );
 };
 
