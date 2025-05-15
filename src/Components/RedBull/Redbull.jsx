@@ -3,11 +3,13 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import PixelArtBackground from '../Background/PixelArtbg';
 
 const Redbull = () => {
   const mountRef = useRef(null);
+  const modelRef = useRef(null); // To store the model for rotation
+  const lastScrollY = useRef(0); // Track last scroll position
+  const wasVisible = useRef(false); // Track visibility state
 
   useEffect(() => {
     // Scene setup
@@ -17,44 +19,33 @@ const Redbull = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0); // Fully transparent background
 
-    // Explicitly disable shadow mapping
+    // Disable shadow mapping
     renderer.shadowMap.enabled = false;
 
     // Set correct color space
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     mountRef.current.appendChild(renderer.domElement);
-    console.log('Canvas appended to mountRef'); // Debug to confirm canvas attachment
-
-    // Add orbit controls
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.target.set(0, 0, 0);
+    console.log('Canvas appended to mountRef');
 
     // Lighting setup
-    // Ambient light to reduce dark areas
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Increased to minimize shadow-like dark patches
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
-    // Main front light for strong front illumination
-    const frontLight = new THREE.DirectionalLight(0xffffff, 1.2); // Increased intensity
-    frontLight.position.set(0, 1, 8); // Directly in front, slightly elevated
+    const frontLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    frontLight.position.set(0, 1, 8);
     scene.add(frontLight);
 
-    // Top light for additional illumination
-    const topLight = new THREE.DirectionalLight(0xffffff, 0.6); // Slightly reduced to avoid washing out
-    topLight.position.set(0, 6, 4); // Above and slightly forward
+    const topLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    topLight.position.set(0, 6, 4);
     scene.add(topLight);
 
-    // Brighter left light for left-side emphasis
     const leftLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    leftLight.position.set(-6, 1, 6); // Left, slightly forward to light front-left
+    leftLight.position.set(-6, 1, 6);
     scene.add(leftLight);
 
-    // Right fill light, soft to maintain left-side dominance
     const rightLight = new THREE.DirectionalLight(0xffffff, 0.4);
-    rightLight.position.set(6, 1, 6); // Right, slightly forward
+    rightLight.position.set(6, 1, 6);
     scene.add(rightLight);
 
     // Texture loader
@@ -70,11 +61,9 @@ const Redbull = () => {
       (gltf) => {
         const model = gltf.scene;
         scene.add(model);
+        modelRef.current = model; // Store model for rotation
 
         console.log("GLTF Data:", gltf);
-
-        // Rotate model to ensure front faces camera (adjust based on GLTF orientation)
-        model.rotation.y = Math.PI; // 180 degrees to face forward (modify if needed)
 
         // Process materials
         model.traverse((child) => {
@@ -84,10 +73,10 @@ const Redbull = () => {
             if (child.material) {
               console.log("Material:", child.material.name);
 
-              // Optimize material properties for bright lighting
-              child.material.roughness = child.material.roughness || 0.4; // Slightly smoother
-              child.material.metalness = child.material.metalness || 0.6; // More metallic
-              child.material.envMapIntensity = 1.0; // Stronger reflections
+              // Optimize material properties
+              child.material.roughness = child.material.roughness || 0.4;
+              child.material.metalness = child.material.metalness || 0.6;
+              child.material.envMapIntensity = 1.0;
 
               if (child.material.name === "label") {
                 textureLoader.load(
@@ -99,7 +88,7 @@ const Redbull = () => {
                     child.material.needsUpdate = true;
                   },
                   undefined,
-                  (error) => console.error("Error loading label texture:", error),
+                  (error) => console.error("Error loading label texture:", error)
                 );
                 textureLoader.load(
                   "label_metallicRoughness.png",
@@ -109,7 +98,7 @@ const Redbull = () => {
                     child.material.needsUpdate = true;
                   },
                   undefined,
-                  (error) => console.error("Error loading metallic roughness texture:", error),
+                  (error) => console.error("Error loading metallic roughness texture:", error)
                 );
               } else if (child.material.name === "silver") {
                 textureLoader.load(
@@ -120,7 +109,7 @@ const Redbull = () => {
                     child.material.needsUpdate = true;
                   },
                   undefined,
-                  (error) => console.error("Error loading silver texture:", error),
+                  (error) => console.error("Error loading silver texture:", error)
                 );
                 child.material.metalness = 0.9;
                 child.material.roughness = 0.2;
@@ -133,7 +122,7 @@ const Redbull = () => {
                     child.material.needsUpdate = true;
                   },
                   undefined,
-                  (error) => console.error("Error loading top part texture:", error),
+                  (error) => console.error("Error loading top part texture:", error)
                 );
                 child.material.metalness = 0.8;
                 child.material.roughness = 0.3;
@@ -147,7 +136,7 @@ const Redbull = () => {
         // Scale and center model
         const box = new THREE.Box3().setFromObject(model);
         const height = box.max.y - box.min.y;
-        const scale = 2.5 / height; // Prominent scale
+        const scale = 2.5 / height;
         model.scale.set(scale, scale, scale);
 
         // Center model
@@ -155,41 +144,80 @@ const Redbull = () => {
         const center = new THREE.Vector3();
         scaledBox.getCenter(center);
         model.position.sub(center);
-        model.position.y += 0.5; // Elevate slightly
+
+        // Set initial position
+        model.position.set(0, 1, 0); // X: 0, Y: 1, Z: 0
+
+        // Set initial rotation
+        model.rotation.set(Math.PI / 4, Math.PI, Math.PI / 6); // X: 45°, Y: 180°, Z: 30°
       },
       (xhr) => {
         console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       },
       (error) => {
         console.error("An error happened while loading the GLTF model:", error);
-      },
+      }
     );
 
     // Position camera
-    camera.position.set(0, 1, 4); // Close, elevated view
+    camera.position.set(3, 1, 4);
     camera.lookAt(0, 0, 0);
+
+    // Scroll-based rotation
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+      const rect = mountRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Check if component is in viewport
+      const isVisible = rect.top < windowHeight && rect.bottom >= 0;
+      const rotationSpeed = 0.1; // Adjust for smoother/faster rotation
+
+      if (modelRef.current) {
+        if (isVisible && !wasVisible.current) {
+          // Entering viewport: positive rotation on all axes
+          modelRef.current.rotation.x += rotationSpeed * 10; // Amplify for noticeable effect
+          modelRef.current.rotation.y += rotationSpeed * 10;
+          modelRef.current.rotation.z += rotationSpeed * 10;
+        } else if (!isVisible && wasVisible.current) {
+          // Leaving viewport: negative rotation on all axes
+          modelRef.current.rotation.x -= rotationSpeed * 10;
+          modelRef.current.rotation.y -= rotationSpeed * 10;
+          modelRef.current.rotation.z -= rotationSpeed * 10;
+        } else if (isVisible) {
+          // While in viewport: subtle rotation based on scroll direction
+          if (delta > 0) {
+            // Scroll down: slight positive rotation
+            modelRef.current.rotation.x += rotationSpeed;
+            modelRef.current.rotation.y += rotationSpeed;
+            modelRef.current.rotation.z += rotationSpeed;
+          } else if (delta < 0) {
+            // Scroll up: slight negative rotation
+            modelRef.current.rotation.x -= rotationSpeed;
+            modelRef.current.rotation.y -= rotationSpeed;
+            modelRef.current.rotation.z -= rotationSpeed;
+          }
+        }
+      }
+
+      lastScrollY.current = currentScrollY;
+      wasVisible.current = isVisible;
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
 
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
-      controls.update();
       renderer.render(scene, camera);
     };
     animate();
 
-    // Handle window resize
-    const handleResize = () => {
-      const newWidth = window.innerWidth;
-      const newHeight = window.innerHeight;
-      camera.aspect = newWidth / newHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(newWidth, newHeight);
-    };
-    window.addEventListener("resize", handleResize);
-
     // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
       mountRef.current.removeChild(renderer.domElement);
       renderer.dispose();
     };
