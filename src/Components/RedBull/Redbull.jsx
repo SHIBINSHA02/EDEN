@@ -222,7 +222,6 @@ const Redbull = () => {
       renderer.render(scene, camera);
     };
     animate();
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
@@ -261,18 +260,18 @@ const Redbull = () => {
         position: 'relative',
         zIndex: 4,
       }}>
-        <FluidContainer style={{ width: '100%', height: '100%' }} />
+        <FluidContainer style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 5 }} /> {/* Inline styles here */}
         <div
           ref={mountRef}
-          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 6 }}
         />
       </div>
-      <PixelArtBackground 
-        pixelSize={2} 
-        density={1} 
-        fadeDuration={3000} 
-        maxPlusSigns={100} 
-        initialPlusSigns={50} 
+      <PixelArtBackground
+        pixelSize={2}
+        density={1}
+        fadeDuration={3000}
+        maxPlusSigns={100}
+        initialPlusSigns={50}
         style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }}
       />
     </div>
