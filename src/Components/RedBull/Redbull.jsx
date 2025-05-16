@@ -16,7 +16,7 @@ const Redbull = () => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth * 0.3 / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth * 0.3, window.innerHeight); // 30% width
+    renderer.setSize(window.innerWidth * 0.3, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
@@ -44,6 +44,14 @@ const Redbull = () => {
     rightLight.position.set(6, 1, 6);
     scene.add(rightLight);
 
+    // Fallback cube if model fails to load
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+    const cube = new THREE.Mesh(geometry, material);
+    cube.position.set(1, 1, 0);
+    scene.add(cube);
+    console.log("Fallback cube added to scene");
+
     // Texture loader
     const textureLoader = new THREE.TextureLoader();
     textureLoader.setPath("/textures/");
@@ -55,6 +63,7 @@ const Redbull = () => {
       "scene.gltf",
       (gltf) => {
         const model = gltf.scene;
+        scene.remove(cube); // Remove fallback cube
         scene.add(model);
         modelRef.current = model;
         console.log("Model loaded successfully");
@@ -119,28 +128,38 @@ const Redbull = () => {
           }
         });
 
-        // Scale and center model
+        // Scale model to fit 95% of container height
         const box = new THREE.Box3().setFromObject(model);
-        const height = box.max.y - box.min.y;
-        const scale = 2.5 / height;
+        const modelHeight = box.max.y - box.min.y;
+        const containerHeight = window.innerHeight;
+        const fov = camera.fov * (Math.PI / 180);
+        const cameraDistance = 4;
+        const targetWorldHeight = (2 * cameraDistance * Math.tan(fov / 2) * containerHeight) / window.innerHeight * 0.95;
+        const scale = targetWorldHeight / modelHeight;
         model.scale.set(scale, scale, scale);
+        console.log(`Model scaled: scale=${scale}, modelHeight=${modelHeight}, targetWorldHeight=${targetWorldHeight}`);
 
+        // Center model after scaling
         const scaledBox = new THREE.Box3().setFromObject(model);
         const center = new THREE.Vector3();
         scaledBox.getCenter(center);
         model.position.sub(center);
 
-        // Position model slightly right in the 30% canvas and face forward
-        model.position.set(1, 1, 0); // X: 1 (right-aligned), Y: 1, Z: 0
-        model.rotation.set(0, 0, 0); // Face forward
+        // Position model right-aligned in the 30% canvas and face forward
+        model.position.set(1, 1, 0);
+        model.rotation.set(0, 0, 0);
       },
       (xhr) => console.log((xhr.loaded / xhr.total) * 100 + "% loaded"),
-      (error) => console.error("Error loading GLTF model:", error)
+      (error) => {
+        console.error("Error loading GLTF model:", error);
+        console.log("Fallback cube will remain in scene");
+      }
     );
 
-    // Position camera to view the model
-    camera.position.set(1, 1, 4); // Align with model
+    // Position camera
+    camera.position.set(1, 1, 4);
     camera.lookAt(1, 1, 0);
+    console.log("Camera positioned at (1, 1, 4), looking at (1, 1, 0)");
 
     // Handle window resize
     const handleResize = () => {
@@ -149,8 +168,27 @@ const Redbull = () => {
       renderer.setSize(width, height);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
+      console.log(`Renderer resized: width=${width}, height=${height}`);
       if (modelRef.current) {
-        modelRef.current.position.set(1, 1, 0); // Keep right-aligned
+        // Re-scale model to fit 95% of new container height
+        const box = new THREE.Box3().setFromObject(modelRef.current);
+        const modelHeight = box.max.y - box.min.y;
+        const containerHeight = window.innerHeight;
+        const fov = camera.fov * (Math.PI / 180);
+        const cameraDistance = 4;
+        const targetWorldHeight = (2 * cameraDistance * Math.tan(fov / 2) * containerHeight) / window.innerHeight * 0.95;
+        const scale = targetWorldHeight / modelHeight;
+        modelRef.current.scale.set(scale, scale, scale);
+        console.log(`Model resized: scale=${scale}, modelHeight=${modelHeight}, targetWorldHeight=${targetWorldHeight}`);
+
+        // Re-center model
+        const scaledBox = new THREE.Box3().setFromObject(modelRef.current);
+        const center = new THREE.Vector3();
+        scaledBox.getCenter(center);
+        modelRef.current.position.sub(center);
+
+        // Maintain right-aligned position
+        modelRef.current.position.set(1, 1, 0);
         camera.position.set(1, 1, 4);
         camera.lookAt(1, 1, 0);
       }
@@ -228,7 +266,7 @@ const Redbull = () => {
         width: '30%',
         height: '100vh',
         position: 'relative',
-        zIndex: 2,
+        zIndex: 3, // Increased to ensure canvas is above background
       }}>
         <div
           ref={mountRef}
