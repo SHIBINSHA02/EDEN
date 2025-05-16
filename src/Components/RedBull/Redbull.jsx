@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import PixelArtBackground from '../Background/PixelArtbg';
+import FluidContainer from './FluidContainer'; // Adjust path if necessary
 
 const Redbull = () => {
   const mountRef = useRef(null);
@@ -58,17 +59,16 @@ const Redbull = () => {
 
     // Load GLTF model
     const loader = new GLTFLoader();
-    loader.setPath("/"); // Adjust this path if needed (e.g., "/models/")
+    loader.setPath("/");
     loader.load(
       "scene.gltf",
       (gltf) => {
         const model = gltf.scene;
-        scene.remove(cube); // Remove fallback cube on successful load
+        scene.remove(cube);
         scene.add(model);
         modelRef.current = model;
         console.log("Model loaded successfully");
 
-        // Process materials
         model.traverse((child) => {
           if (child.isMesh && child.material) {
             child.material.roughness = child.material.roughness || 0.4;
@@ -128,7 +128,6 @@ const Redbull = () => {
           }
         });
 
-        // Scale model to fit 80% of container height
         const box = new THREE.Box3().setFromObject(model);
         const modelHeight = box.max.y - box.min.y;
         const containerHeight = window.innerHeight;
@@ -139,13 +138,11 @@ const Redbull = () => {
         model.scale.set(scale, scale, scale);
         console.log(`Model scaled: scale=${scale}, modelHeight=${modelHeight}, targetWorldHeight=${targetWorldHeight}`);
 
-        // Center model after scaling
         const scaledBox = new THREE.Box3().setFromObject(model);
         const center = new THREE.Vector3();
         scaledBox.getCenter(center);
         model.position.sub(center);
 
-        // Position model right-aligned in the 30% canvas
         model.position.set(1, 1, 0);
         model.rotation.set(0, 0, 0);
       },
@@ -156,12 +153,10 @@ const Redbull = () => {
       }
     );
 
-    // Position camera
     camera.position.set(1, 1, 4);
     camera.lookAt(1, 1, 0);
     console.log("Camera positioned at (1, 1, 4), looking at (1, 1, 0)");
 
-    // Handle window resize with debounce
     let resizeTimeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
@@ -173,7 +168,6 @@ const Redbull = () => {
         camera.updateProjectionMatrix();
         console.log(`Renderer resized: width=${width}, height=${height}`);
         if (modelRef.current) {
-          // Re-scale model to fit 80% of new container height
           const box = new THREE.Box3().setFromObject(modelRef.current);
           const modelHeight = box.max.y - box.min.y;
           const containerHeight = window.innerHeight;
@@ -184,24 +178,21 @@ const Redbull = () => {
           modelRef.current.scale.set(scale, scale, scale);
           console.log(`Model resized: scale=${scale}, modelHeight=${modelHeight}, targetWorldHeight=${targetWorldHeight}`);
 
-          // Re-center model
           const scaledBox = new THREE.Box3().setFromObject(modelRef.current);
           const center = new THREE.Vector3();
           scaledBox.getCenter(center);
           modelRef.current.position.sub(center);
 
-          // Maintain right-aligned position
           modelRef.current.position.set(1, 1, 0);
           camera.position.set(1, 1, 4);
           camera.lookAt(1, 1, 0);
         }
-      }, 100); // Debounce delay of 100ms
+      }, 100);
     };
 
     window.addEventListener("resize", handleResize);
     handleResize();
 
-    // Scroll-based rotation (Y-axis only)
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY.current;
@@ -226,14 +217,12 @@ const Redbull = () => {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
     };
     animate();
 
-    // Cleanup
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
@@ -270,8 +259,9 @@ const Redbull = () => {
         width: '30%',
         height: '100vh',
         position: 'relative',
-        zIndex: 4, // Higher z-index for 3D canvas
+        zIndex: 4,
       }}>
+        <FluidContainer style={{ width: '100%', height: '100%' }} />
         <div
           ref={mountRef}
           style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
