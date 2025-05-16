@@ -14,12 +14,19 @@ const Redbull = () => {
   useEffect(() => {
     // Scene setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth * 0.3 / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth * 0.3, window.innerHeight); // 30% width
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    mountRef.current.appendChild(renderer.domElement);
+
+    if (mountRef.current) {
+      mountRef.current.appendChild(renderer.domElement);
+      console.log("Renderer appended to mountRef");
+    } else {
+      console.error("mountRef.current is null");
+      return;
+    }
 
     // Lighting setup
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
@@ -50,6 +57,7 @@ const Redbull = () => {
         const model = gltf.scene;
         scene.add(model);
         modelRef.current = model;
+        console.log("Model loaded successfully");
 
         // Process materials
         model.traverse((child) => {
@@ -65,6 +73,7 @@ const Redbull = () => {
                   texture.colorSpace = THREE.SRGBColorSpace;
                   child.material.map = texture;
                   child.material.needsUpdate = true;
+                  console.log("Label texture applied");
                 },
                 undefined,
                 (error) => console.error("Error loading label texture:", error)
@@ -121,45 +130,42 @@ const Redbull = () => {
         scaledBox.getCenter(center);
         model.position.sub(center);
 
-        // Position model on the far right side and face forward
-        model.position.set(8, 1, 0); // X: 4 (far right), Y: 1 (vertical center), Z: 0
-        model.rotation.set(0, 3, 0); // No rotation to face forward (positive Z-axis)
+        // Position model slightly right in the 30% canvas and face forward
+        model.position.set(1, 1, 0); // X: 1 (right-aligned), Y: 1, Z: 0
+        model.rotation.set(0, 0, 0); // Face forward
       },
       (xhr) => console.log((xhr.loaded / xhr.total) * 100 + "% loaded"),
       (error) => console.error("Error loading GLTF model:", error)
     );
 
-    // Position camera to focus on the right side
-    camera.position.set(6, 1, 4); // X: 6 (shifted right), Y: 1, Z: 4
-    camera.lookAt(6, 1, 0); // Look at the model's right-side position
+    // Position camera to view the model
+    camera.position.set(1, 1, 4); // Align with model
+    camera.lookAt(1, 1, 0);
 
-    // Handle window resize for responsive positioning
+    // Handle window resize
     const handleResize = () => {
-      const width = window.innerWidth;
+      const width = window.innerWidth * 0.3;
       const height = window.innerHeight;
       renderer.setSize(width, height);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
-
-      // Adjust model position dynamically based on viewport width
       if (modelRef.current) {
-        const rightOffset = width > 1200 ? 4 : width > 768 ? 3 : 2; // Scale offset for smaller screens
-        modelRef.current.position.set(rightOffset, 1, 0);
-        camera.position.set(rightOffset + 5, 1, 4);
-        camera.lookAt(rightOffset,1, 0);
+        modelRef.current.position.set(1, 1, 0); // Keep right-aligned
+        camera.position.set(1, 1, 4);
+        camera.lookAt(1, 1, 0);
       }
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Initial call to set correct position
+    handleResize();
 
     // Scroll-based rotation (Y-axis only)
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY.current;
-      const rect = mountRef.current.getBoundingClientRect();
+      const rect = mountRef.current?.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const isVisible = rect.top < windowHeight && rect.bottom >= 0;
+      const isVisible = rect && rect.top < windowHeight && rect.bottom >= 0;
       const rotationSpeed = 0.002;
 
       if (modelRef.current && isVisible) {
@@ -169,7 +175,7 @@ const Redbull = () => {
           modelRef.current.rotation.y,
           -1,
           1
-        ); // Adjusted clamp to rotate around 0 (front-facing)
+        );
       }
 
       lastScrollY.current = currentScrollY;
@@ -197,17 +203,45 @@ const Redbull = () => {
   }, []);
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+    <div style={{ display: 'flex', width: '100%', height: '100vh', position: 'relative' }}>
+      <div style={{
+        width: '70%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'transparent',
+        zIndex: 2,
+      }}>
+        <h1 style={{
+          fontSize: 'clamp(2rem, 5vw, 4rem)',
+          fontWeight: 'bold',
+          color: '#ffffff',
+          textAlign: 'center',
+          fontFamily: '"Arial", sans-serif',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+          margin: '0 20px',
+        }}>
+          Red Bull Gives You Wings
+        </h1>
+      </div>
+      <div style={{
+        width: '30%',
+        height: '100vh',
+        position: 'relative',
+        zIndex: 2,
+      }}>
+        <div
+          ref={mountRef}
+          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+        />
+      </div>
       <PixelArtBackground 
         pixelSize={2} 
         density={1} 
         fadeDuration={3000} 
         maxPlusSigns={100} 
         initialPlusSigns={50} 
-      />
-      <div
-        ref={mountRef}
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 1 }}
+        style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }}
       />
     </div>
   );
