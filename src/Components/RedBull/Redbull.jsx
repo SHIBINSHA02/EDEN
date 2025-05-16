@@ -58,12 +58,12 @@ const Redbull = () => {
 
     // Load GLTF model
     const loader = new GLTFLoader();
-    loader.setPath("/");
+    loader.setPath("/"); // Adjust this path if needed (e.g., "/models/")
     loader.load(
       "scene.gltf",
       (gltf) => {
         const model = gltf.scene;
-        scene.remove(cube); // Remove fallback cube
+        scene.remove(cube); // Remove fallback cube on successful load
         scene.add(model);
         modelRef.current = model;
         console.log("Model loaded successfully");
@@ -128,13 +128,13 @@ const Redbull = () => {
           }
         });
 
-        // Scale model to fit 95% of container height
+        // Scale model to fit 80% of container height
         const box = new THREE.Box3().setFromObject(model);
         const modelHeight = box.max.y - box.min.y;
         const containerHeight = window.innerHeight;
         const fov = camera.fov * (Math.PI / 180);
         const cameraDistance = 4;
-        const targetWorldHeight = (2 * cameraDistance * Math.tan(fov / 2) * containerHeight) / window.innerHeight * 0.95;
+        const targetWorldHeight = (2 * cameraDistance * Math.tan(fov / 2) * containerHeight) / window.innerHeight * 0.8;
         const scale = targetWorldHeight / modelHeight;
         model.scale.set(scale, scale, scale);
         console.log(`Model scaled: scale=${scale}, modelHeight=${modelHeight}, targetWorldHeight=${targetWorldHeight}`);
@@ -145,7 +145,7 @@ const Redbull = () => {
         scaledBox.getCenter(center);
         model.position.sub(center);
 
-        // Position model right-aligned in the 30% canvas and face forward
+        // Position model right-aligned in the 30% canvas
         model.position.set(1, 1, 0);
         model.rotation.set(0, 0, 0);
       },
@@ -161,37 +161,41 @@ const Redbull = () => {
     camera.lookAt(1, 1, 0);
     console.log("Camera positioned at (1, 1, 4), looking at (1, 1, 0)");
 
-    // Handle window resize
+    // Handle window resize with debounce
+    let resizeTimeout;
     const handleResize = () => {
-      const width = window.innerWidth * 0.3;
-      const height = window.innerHeight;
-      renderer.setSize(width, height);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      console.log(`Renderer resized: width=${width}, height=${height}`);
-      if (modelRef.current) {
-        // Re-scale model to fit 95% of new container height
-        const box = new THREE.Box3().setFromObject(modelRef.current);
-        const modelHeight = box.max.y - box.min.y;
-        const containerHeight = window.innerHeight;
-        const fov = camera.fov * (Math.PI / 180);
-        const cameraDistance = 4;
-        const targetWorldHeight = (2 * cameraDistance * Math.tan(fov / 2) * containerHeight) / window.innerHeight * 0.95;
-        const scale = targetWorldHeight / modelHeight;
-        modelRef.current.scale.set(scale, scale, scale);
-        console.log(`Model resized: scale=${scale}, modelHeight=${modelHeight}, targetWorldHeight=${targetWorldHeight}`);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const width = window.innerWidth * 0.3;
+        const height = window.innerHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        console.log(`Renderer resized: width=${width}, height=${height}`);
+        if (modelRef.current) {
+          // Re-scale model to fit 80% of new container height
+          const box = new THREE.Box3().setFromObject(modelRef.current);
+          const modelHeight = box.max.y - box.min.y;
+          const containerHeight = window.innerHeight;
+          const fov = camera.fov * (Math.PI / 180);
+          const cameraDistance = 4;
+          const targetWorldHeight = (2 * cameraDistance * Math.tan(fov / 2) * containerHeight) / window.innerHeight * 0.8;
+          const scale = targetWorldHeight / modelHeight;
+          modelRef.current.scale.set(scale, scale, scale);
+          console.log(`Model resized: scale=${scale}, modelHeight=${modelHeight}, targetWorldHeight=${targetWorldHeight}`);
 
-        // Re-center model
-        const scaledBox = new THREE.Box3().setFromObject(modelRef.current);
-        const center = new THREE.Vector3();
-        scaledBox.getCenter(center);
-        modelRef.current.position.sub(center);
+          // Re-center model
+          const scaledBox = new THREE.Box3().setFromObject(modelRef.current);
+          const center = new THREE.Vector3();
+          scaledBox.getCenter(center);
+          modelRef.current.position.sub(center);
 
-        // Maintain right-aligned position
-        modelRef.current.position.set(1, 1, 0);
-        camera.position.set(1, 1, 4);
-        camera.lookAt(1, 1, 0);
-      }
+          // Maintain right-aligned position
+          modelRef.current.position.set(1, 1, 0);
+          camera.position.set(1, 1, 4);
+          camera.lookAt(1, 1, 0);
+        }
+      }, 100); // Debounce delay of 100ms
     };
 
     window.addEventListener("resize", handleResize);
@@ -266,7 +270,7 @@ const Redbull = () => {
         width: '30%',
         height: '100vh',
         position: 'relative',
-        zIndex: 3, // Increased to ensure canvas is above background
+        zIndex: 4, // Higher z-index for 3D canvas
       }}>
         <div
           ref={mountRef}
