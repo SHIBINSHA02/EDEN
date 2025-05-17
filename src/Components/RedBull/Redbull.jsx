@@ -47,7 +47,7 @@ const Redbull = () => {
 
     // Fallback cube if model fails to load
     const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
     const cube = new THREE.Mesh(geometry, material);
     cube.position.set(1, 1, 0);
     scene.add(cube);
@@ -144,7 +144,7 @@ const Redbull = () => {
         model.position.sub(center);
 
         model.position.set(1, 1, 0);
-        model.rotation.set(0, 0, 0);
+        model.rotation.set(0, 3, 0);
       },
       (xhr) => console.log((xhr.loaded / xhr.total) * 100 + "% loaded"),
       (error) => {
@@ -199,11 +199,11 @@ const Redbull = () => {
       const rect = mountRef.current?.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const isVisible = rect && rect.top < windowHeight && rect.bottom >= 0;
-      const rotationSpeed = 0.002;
+      const rotationSpeed = 0.01;
 
       if (modelRef.current && isVisible) {
         const rotationDelta = delta * rotationSpeed;
-        modelRef.current.rotation.y += rotationDelta;
+        modelRef.current.rotation.y += rotationDelta+0.01;
         modelRef.current.rotation.y = THREE.MathUtils.clamp(
           modelRef.current.rotation.y,
           -1,
@@ -260,10 +260,27 @@ const Redbull = () => {
         position: 'relative',
         zIndex: 4,
       }}>
-        <FluidContainer style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 5 }} /> {/* Inline styles here */}
+        <FluidContainer
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: 0,
+            width: '100%',
+            height: '100%',
+            transform: 'translateY(-50%)',
+            zIndex: 5,
+          }}
+        />
         <div
           ref={mountRef}
-          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 6 }}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 6,
+          }}
         />
       </div>
       <PixelArtBackground
