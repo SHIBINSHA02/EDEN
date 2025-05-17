@@ -3,19 +3,28 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import PixelArtBackground from '../Background/PixelArtbg';
-import FluidContainer from './FluidContainer';
+import { Canvas } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
+import PixelArtBackground from "../Background/PixelArtbg";
+import FluidContainer from "./FluidContainer";
 
 const Redbull = () => {
   const mountRef = useRef(null);
   const modelRef = useRef(null);
   const lastScrollY = useRef(0);
   const wasVisible = useRef(false);
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' && window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" && window.innerWidth <= 768
+  );
 
   useEffect(() => {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth * 0.3 / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth * 0.3 / window.innerHeight,
+      0.1,
+      1000
+    );
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -47,7 +56,7 @@ const Redbull = () => {
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
     const cube = new THREE.Mesh(geometry, material);
-    cube.position.set(1, 1, 0);
+    cube.position.set(0, 0, 0);
     scene.add(cube);
 
     const textureLoader = new THREE.TextureLoader();
@@ -88,7 +97,8 @@ const Redbull = () => {
                   child.material.needsUpdate = true;
                 },
                 undefined,
-                (error) => console.error("Error loading metallic roughness texture:", error)
+                (error) =>
+                  console.error("Error loading metallic roughness texture:", error)
               );
             } else if (child.material.name === "silver") {
               textureLoader.load(
@@ -112,7 +122,8 @@ const Redbull = () => {
                   child.material.needsUpdate = true;
                 },
                 undefined,
-                (error) => console.error("Error loading top part texture:", error)
+                (error) =>
+                  console.error("Error loading top part texture:", error)
               );
               child.material.metalness = 0.8;
               child.material.roughness = 0.3;
@@ -124,22 +135,22 @@ const Redbull = () => {
         const box = new THREE.Box3().setFromObject(model);
         const modelSize = box.getSize(new THREE.Vector3());
         const maxDim = Math.max(modelSize.x, modelSize.y, modelSize.z);
-        const scale = 2 / maxDim; // Normalize to fit within 2 units
+        const scale = 2 / maxDim;
         model.scale.set(scale, scale, scale);
 
         const scaledBox = new THREE.Box3().setFromObject(model);
         const center = new THREE.Vector3();
         scaledBox.getCenter(center);
         model.position.sub(center);
-        model.position.set(1, 1, 0);
+        model.position.set(0, 0, 0);
         model.rotation.set(0, 3, 0);
       },
       (xhr) => console.log((xhr.loaded / xhr.total) * 100 + "% loaded"),
       (error) => console.error("Error loading GLTF model:", error)
     );
 
-    camera.position.set(1, 1, 4);
-    camera.lookAt(1, 1, 0);
+    camera.position.set(0, 0, 4);
+    camera.lookAt(0, 0, 0);
 
     let resizeTimeout;
     const handleResize = () => {
@@ -152,18 +163,6 @@ const Redbull = () => {
           renderer.setSize(width, height);
           camera.aspect = width / height;
           camera.updateProjectionMatrix();
-          if (modelRef.current) {
-            const box = new THREE.Box3().setFromObject(modelRef.current);
-            const modelSize = box.getSize(new THREE.Vector3());
-            const maxDim = Math.max(modelSize.x, modelSize.y, modelSize.z);
-            const scale = 2 / maxDim; // Maintain consistent size
-            modelRef.current.scale.set(scale, scale, scale);
-            const scaledBox = new THREE.Box3().setFromObject(modelRef.current);
-            const center = new THREE.Vector3();
-            scaledBox.getCenter(center);
-            modelRef.current.position.sub(center);
-            modelRef.current.position.set(1, 1, 0);
-          }
         }
       }, 100);
     };
@@ -212,59 +211,49 @@ const Redbull = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', width: '100%', height: '100vh', position: 'relative' }}>
-      <div style={{
-        width: isMobile ? 'auto' : '70%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'transparent',
-        position: isMobile ? 'absolute' : 'static',
-        top: isMobile ? '20%' : undefined,
-        left: isMobile ? '50%' : undefined,
-        transform: isMobile ? 'translate(-50%, -50%)' : undefined,
-        zIndex: isMobile ? 10 : 2,
-      }}>
-        <h1 style={{
-          fontSize: 'clamp(2rem, 5vw, 4rem)',
-          fontWeight: 'bold',
-          color: '#ffffff',
-          textAlign: 'center',
-          fontFamily: '"Arial", sans-serif',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-          margin: '0 20px',
-        }}>
+    <div
+      style={{ display: "flex", width: "100%", height: "100vh", position: "relative" }}
+    >
+      <div
+        style={{
+          width: isMobile ? "auto" : "70%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "transparent",
+          position: isMobile ? "absolute" : "static",
+          top: isMobile ? "20%" : undefined,
+          left: isMobile ? "50%" : undefined,
+          transform: isMobile ? "translate(-50%, -50%)" : undefined,
+          zIndex: isMobile ? 10 : 2,
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "clamp(2rem, 5vw, 4rem)",
+            fontWeight: "bold",
+            color: "#ffffff",
+            textAlign: "center",
+            fontFamily: '"Arial", sans-serif',
+            textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+            margin: "0 20px",
+          }}
+        >
           Red Bull Gives You Wings
         </h1>
       </div>
-      <div style={{
-        width: isMobile ? '100%' : '30%',
-        height: '70vh',
-        position: 'relative',
-        zIndex: 4,
-      }}>
-        <FluidContainer
-          style={{
-            position: 'absolute',
-            top: 100,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 4,
-            pointerEvents: 'none',
-          }}
-        />
-        <div
-          ref={mountRef}
-          style={{
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 6,
-          }}
-        />
+      <div
+        style={{
+          width: isMobile ? "100%" : "30%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
+          zIndex: 4,
+        }}
+      >
+        <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
       </div>
       <PixelArtBackground
         pixelSize={2}
@@ -272,7 +261,7 @@ const Redbull = () => {
         fadeDuration={3000}
         maxPlusSigns={100}
         initialPlusSigns={50}
-        style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }}
+        style={{ position: "absolute", width: "100%", height: "100%", zIndex: 1 }}
       />
     </div>
   );
