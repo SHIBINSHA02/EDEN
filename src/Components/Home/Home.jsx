@@ -3,11 +3,16 @@
 import { useEffect, useRef } from "react"
 import "./Home.css"
 import PixelArtBackground from "../Background/PixelArtbg"
+import Countdown from "./countdown" // Import the Countdown component
 
 export const Home = ({ heroData }) => {
   const { image } = heroData
   const { heroImage, titleImage, cloud1, cloud2, cloud3 } = image
   const titleRef = useRef(null)
+
+  // Define the target date for the countdown (e.g., 30 days from now)
+  const targetDate = new Date()
+  targetDate.setDate(targetDate.getDate() + 30)
 
   // Title animation
   useEffect(() => {
@@ -65,7 +70,6 @@ export const Home = ({ heroData }) => {
       return
     }
 
-    // MODIFIED: Apply .loaded-final at 2000ms for cloud position transition parallel with title animation
     setTimeout(() => {
       elements.cloud1.classList.add("loaded-final")
       elements.cloud2.classList.add("loaded-final")
@@ -74,7 +78,6 @@ export const Home = ({ heroData }) => {
 
     const isMobile = window.innerWidth <= 768
 
-    // Cloud Animation Definitions (Responsive)
     const cloudAnimations = [
       {
         element: elements.cloud1,
@@ -84,7 +87,7 @@ export const Home = ({ heroData }) => {
         options: {
           duration: 4000,
           easing: "ease-in-out",
-          delay: 4500, // UNCHANGED: Start after position transition (2000ms + 1500ms)
+          delay: 4500,
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -98,7 +101,7 @@ export const Home = ({ heroData }) => {
         options: {
           duration: 4500,
           easing: "ease-out",
-          delay: 1500, // UNCHANGED: Start after position transition
+          delay: 1500,
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -112,7 +115,7 @@ export const Home = ({ heroData }) => {
         options: {
           duration: 4800,
           easing: "ease-out",
-          delay: 1500, // UNCHANGED: Start after position transition
+          delay: 1500,
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -126,7 +129,7 @@ export const Home = ({ heroData }) => {
         options: {
           duration: 3000,
           easing: "ease-in-out",
-          delay: 1500, // UNCHANGED: Start after title animation
+          delay: 1500,
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -134,7 +137,6 @@ export const Home = ({ heroData }) => {
       },
     ]
 
-    // Apply animations to clouds
     cloudAnimations.forEach(({ element, keyframes, options }) => {
       element.animate(keyframes, options).finished.catch((error) => {
         console.error("Cloud animation error:", error)
@@ -163,6 +165,7 @@ export const Home = ({ heroData }) => {
               alt="Background cloud" 
               className="title-background-cloud" 
             />
+            <Countdown targetDate={targetDate} /> {/* Add Countdown component */}
           </div>
           <img src={cloud1.src || "/placeholder.svg"} alt={cloud1.alt} className="cloud-image1" />
           <img src={cloud2.src || "/placeholder.svg"} alt={cloud2.alt} className="cloud-image2" />

@@ -258,3 +258,32 @@
 .center-title.right-adjust {
   transform: translate(calc(-50% + 10px), -50%);
 }
+
+
+
+
+
+
+
+/* count doen.. */
+/* Add styles for the countdown component */
+.countdown-container {
+  position: absolute;
+  z-index: 4; /* Place above title-background-cloud but below clouds */
+  top: 180%; /* Position below title-background-cloud on desktop */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff; /* White text for visibility; adjust as needed */
+  font-family: Arial, sans-serif; /* Match your site's typography */
+  font-size: 1.5rem; /* Default font size for desktop */
+  opacity: 1;
+  pointer-events: auto; /* Allow interaction if needed */
+  will-change: transform;
+}
+
+/* Style for countdown text elements */
+
+
+
+/* end of countdown */

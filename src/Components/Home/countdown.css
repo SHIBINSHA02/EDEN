@@ -1,0 +1,50 @@
+/* Add styles for the countdown component */
+.countdown-container {
+    position: absolute;
+    z-index: 4; /* Place above title-background-cloud but below clouds */
+    top: 180%; /* Position below title-background-cloud on desktop */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff; /* White text for visibility; adjust as needed */
+    font-family: Arial, sans-serif; /* Match your site's typography */
+    font-size: 1.5rem; /* Default font size for desktop */
+    opacity: 1;
+    pointer-events: auto; /* Allow interaction if needed */
+    will-change: transform;
+  }
+  
+  /* Style for countdown text elements */
+  .countdown-container h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for individual time units */
+  .countdown-container p {
+    margin: 5px 0;
+    font-weight: bold;
+  }
+  
+  /* Apply transition for smooth positioning */
+  .countdown-container.loaded-final {
+    transition: top 1500ms ease-in-out, transform 1000ms ease-in-out;
+    top: 160%; /* Final position on desktop */
+  }
+  
+  /* Responsive styles for mobile */
+  @media (max-width: 768px) {
+    .countdown-container {
+      top: 200%; /* Adjust position for mobile */
+      font-size: 1rem; /* Smaller font size for mobile */
+      transform: translateX(-50%) scale(0.8); /* Slightly scale down */
+    }
+  
+    .countdown-container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .countdown-container.loaded-final {
+      top: 180%; /* Final position on mobile */
+    }
+  }
