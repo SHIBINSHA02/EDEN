@@ -173,22 +173,22 @@
 /* Media query for smaller screens (tablets and phones) */
 @media (max-width: 768px) {
   .gridding {
-    grid-template-rows: 1fr 40vh;
+    grid-template-rows: 1fr 60vh;
   }
 
   .hero-image-container {
-    height: 40vh;
+    height: 60vh;
     width: 300vw;
     animation: slide 20s linear infinite;
   }
 
   .hero-image {
     width: 100vw;
-    height: 40vh;
+    height: 60vh;
     object-fit: cover;
     object-position: center;
     flex-shrink: 0;
-    max-height: 40vh;
+    max-height: 60vh;
     backface-visibility: hidden;
   }
 
@@ -209,7 +209,7 @@
   .cloud-image1,
   .cloud-image2,
   .cloud-image3 {
-    width: 40%;
+    width: 60%;
   }
 
   /* UNCHANGED: Initial positions for mobile */
@@ -237,13 +237,13 @@
 
   .cloud-image2.loaded-final {
     top: 45%;
-    right: 10%;
+    right: 40%;
     z-index: 3;
   }
 
   .cloud-image3.loaded-final {
-    bottom: 5%;
-    right: 5%;
+    bottom: 15%;
+    right: 25%;
     top: auto;
     z-index: 3;
   }
