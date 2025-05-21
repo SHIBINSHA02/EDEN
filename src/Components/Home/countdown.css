@@ -1,50 +1,72 @@
-/* Add styles for the countdown component */
+
 .countdown-container {
-    position: absolute;
-    z-index: 4; /* Place above title-background-cloud but below clouds */
-    top: 180%; /* Position below title-background-cloud on desktop */
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: #fff; /* White text for visibility; adjust as needed */
-    font-family: Arial, sans-serif; /* Match your site's typography */
-    font-size: 1.5rem; /* Default font size for desktop */
-    opacity: 1;
-    pointer-events: auto; /* Allow interaction if needed */
-    will-change: transform;
+  position: absolute;
+  z-index: 4; /* Place above title-background-cloud but below clouds */
+  top: 180%; /* Position below title-background-cloud on desktop */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff; /* White text for visibility */
+ 
+  opacity: 1;
+  pointer-events: auto; /* Allow interaction if needed */
+  will-change: transform;
+}
+
+/* Style for the timer display */
+.countdown-container .timer {
+  width: 30vw; /* 30% of viewport width for smaller screens */
+  height: auto; /* Auto height to adjust to content */
+  font-size: 20px; /* Default font size for readability */
+  font-family: 'frisky', monospace; /* Use Minecraftchmc with monospace fallback */
+  font-weight: 100; /* Default weight */
+  background-color: transparent; /* Transparent background */
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #efc0ff; /* Blue text for timer */
+  display: inline-block;
+  line-height: normal; /* Ensure proper text alignment */
+}
+
+/* Apply transition for smooth positioning */
+.countdown-container.loaded-final {
+  transition: top 1500ms ease-in-out, transform 1000ms ease-in-out;
+  top: 160%; /* Final position on desktop */
+}
+
+/* Responsive styles for larger screens */
+@media (min-width: 769px) {
+  .countdown-container .timer {
+      width: 50vw; /* 50% of viewport width for larger screens */
+      font-size: 4rem; /* Maintain font size for larger screens */
+      font-weight: 200; /* Lighter weight, if supported by the font */
   }
-  
-  /* Style for countdown text elements */
-  .countdown-container h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+
+  .countdown-container {
+      top: 180%; /* Maintain position for desktop */
   }
-  
-  /* Style for individual time units */
-  .countdown-container p {
-    margin: 5px 0;
-    font-weight: bold;
-  }
-  
-  /* Apply transition for smooth positioning */
+
   .countdown-container.loaded-final {
-    transition: top 1500ms ease-in-out, transform 1000ms ease-in-out;
-    top: 160%; /* Final position on desktop */
+      top: 160%; /* Final position on desktop */
   }
-  
-  /* Responsive styles for mobile */
-  @media (max-width: 768px) {
-    .countdown-container {
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .countdown-container {
       top: 200%; /* Adjust position for mobile */
-      font-size: 1rem; /* Smaller font size for mobile */
       transform: translateX(-50%) scale(0.8); /* Slightly scale down */
-    }
-  
-    .countdown-container h1 {
-      font-size: 1.5rem;
-    }
-  
-    .countdown-container.loaded-final {
-      top: 180%; /* Final position on mobile */
-    }
   }
+
+  .countdown-container .timer {
+      width: 30vw; /* Ensure 30% of viewport width for mobile */
+      font-size: 2rem; /* Smaller font size for mobile */
+      font-weight: 300; /* Slightly heavier weight for mobile, if supported */
+      padding: 1rem;
+  }
+
+  .countdown-container.loaded-final {
+      top: 180%; /* Final position on mobile */
+  }
+}
