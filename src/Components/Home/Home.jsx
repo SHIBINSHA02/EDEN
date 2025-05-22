@@ -81,7 +81,7 @@ export const Home = ({ heroData }) => {
       {
         element: elements.cloud1,
         keyframes: isMobile
-          ? [{ transform: "translate(+100, 220) scale(0.5)" }, { transform: "translate(-100px, -115px) scale(0.6)" }]
+          ? [{ transform: "translate(0,0) scale(0.5)" }, { transform: "translate(-5px, -8px) scale(0.6)" }]
           : [{ transform: "translate(0, 0) scale(0.6)" }, { transform: "translate(-20px, -10px) scale(0.7)" }],
         options: {
           duration: 4000,
@@ -95,7 +95,7 @@ export const Home = ({ heroData }) => {
       {
         element: elements.cloud2,
         keyframes: isMobile
-          ? [{ transform: "translate(0, 0) scale(0.5)" }, { transform: "translate(5px, 10px) scale(0.7)" }]
+          ? [{ transform: "translate(0, 0) scale(0.5)" }, { transform: "translate(5px, 10px) scale(0.6)" }]
           : [{ transform: "translate(0, 0) scale(0.5)" }, { transform: "translate(15px, 20px) scale(0.7)" }],
         options: {
           duration: 4500,

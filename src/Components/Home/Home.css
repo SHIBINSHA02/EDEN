@@ -209,40 +209,40 @@
   .cloud-image1,
   .cloud-image2,
   .cloud-image3 {
-    width: 60%;
+    width: 70%;
   }
 
   /* UNCHANGED: Initial positions for mobile */
   .cloud-image1 {
-    top: 90%;
-    right: 55%;
+    top: 75%;
+    right: 23%;
   }
 
   .cloud-image2 {
-    top: 89%;
+    top: 88%;
     right: 45%;
   }
 
   .cloud-image3 {
-    top: 75%;
-    right: 60%;
+    top: 85%;
+    right: 50%;
   }
 
   /* UNCHANGED: Final positions for mobile */
   .cloud-image1.loaded-final {
-    top: 5%;
-    right: 5%;
+    top: 85%;
+    right: 45%;
     z-index: 3;
   }
 
   .cloud-image2.loaded-final {
-    top: 45%;
-    right: 40%;
+    top: 27%;
+    right: 50%;
     z-index: 3;
   }
 
   .cloud-image3.loaded-final {
-    bottom: 15%;
+    bottom: 25%;
     right: 25%;
     top: auto;
     z-index: 3;
