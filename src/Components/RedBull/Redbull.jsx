@@ -4,41 +4,43 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-// Note: PixelArtBackground import commented out due to "not defined" error
-// Ensure the file exists at src/Components/Background/PixelArtbg.jsx and exports correctly
 import PixelArtBackground from "../Background/PixelArtbg";
 
 const Redbull = () => {
   const mountRef = useRef(null);
   const modelRef = useRef(null);
   const controlsRef = useRef(null);
-  const scaleRef = useRef(null); // Store scale to prevent recalculation
+  const scaleRef = useRef(null);
+  const rendererRef = useRef(null);
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" && window.innerWidth <= 768
   );
   const [isInteracting, setIsInteracting] = useState(false);
 
   useEffect(() => {
+    if (!mountRef.current) {
+      console.error("mountRef is not initialized");
+      return;
+    }
+
     // Initialize scene, camera, and renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth * 0.3 / window.innerHeight,
+      1, // Placeholder aspect ratio, updated in resize
       0.1,
       1000
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    rendererRef.current = renderer;
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.setPixelRatio(window.devicePixelRatio); // Improve quality on high-DPI screens
 
-    if (mountRef.current) {
-      renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
-      mountRef.current.appendChild(renderer.domElement);
-      console.log("Three.js canvas appended to mountRef");
-    } else {
-      console.error("mountRef.current is null");
-      return;
-    }
+    // Append renderer to DOM
+    renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+    mountRef.current.appendChild(renderer.domElement);
+    console.log("Three.js canvas appended to mountRef");
 
     // Lighting setup
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
@@ -59,7 +61,7 @@ const Redbull = () => {
     // Placeholder cube
     const cube = new THREE.Mesh(
       new THREE.BoxGeometry(1, 1, 1),
-      new THREE.MeshStandardMaterial({ color: 0xffffff })
+      new THREE.MeshStandardMaterial({ color: 0xff0000 }) // Red for visibility
     );
     cube.position.set(0, 0, 0);
     scene.add(cube);
@@ -78,16 +80,16 @@ const Redbull = () => {
         scene.remove(cube);
         scene.add(model);
         modelRef.current = model;
+        console.log("Model loaded successfully");
 
         // Apply textures and material properties
         model.traverse((child) => {
           if (child.isMesh && child.material) {
-            // Base material settings for all meshes
             child.material.roughness = 0.4;
             child.material.metalness = 0.6;
             child.material.envMapIntensity = 1.0;
-            child.material.side = THREE.DoubleSide; // Prevent flickering
-            child.material.polygonOffset = true; // Reduce Z-fighting
+            child.material.side = THREE.DoubleSide;
+            child.material.polygonOffset = true;
             child.material.polygonOffsetFactor = 1;
             child.material.polygonOffsetUnits = 1;
             child.material.depthTest = true;
@@ -101,13 +103,14 @@ const Redbull = () => {
                   texture.colorSpace = THREE.SRGBColorSpace;
                   child.material.map = texture;
                   child.material.needsUpdate = true;
+                  console.log("Silver texture applied");
                 },
                 undefined,
                 (error) => console.error("Error loading silver texture:", error)
               );
               child.material.metalness = 0.9;
               child.material.roughness = 0.2;
-              child.renderOrder = 1; // Lower render order
+              child.renderOrder = 1;
             } else if (child.material.name === "top_part") {
               textureLoader.load(
                 "top_part_baseColor.jpeg",
@@ -115,13 +118,14 @@ const Redbull = () => {
                   texture.colorSpace = THREE.SRGBColorSpace;
                   child.material.map = texture;
                   child.material.needsUpdate = true;
+                  console.log("Top part texture applied");
                 },
                 undefined,
                 (error) => console.error("Error loading top part texture:", error)
               );
               child.material.metalness = 0.8;
               child.material.roughness = 0.3;
-              child.renderOrder = 1; // Lower render order
+              child.renderOrder = 1;
             } else if (child.material.name === "label") {
               textureLoader.load(
                 "label_baseColor.png",
@@ -129,6 +133,7 @@ const Redbull = () => {
                   texture.colorSpace = THREE.SRGBColorSpace;
                   child.material.map = texture;
                   child.material.needsUpdate = true;
+                  console.log("Label texture applied");
                 },
                 undefined,
                 (error) => console.error("Error loading label texture:", error)
@@ -139,20 +144,20 @@ const Redbull = () => {
                   child.material.metalnessMap = texture;
                   child.material.roughnessMap = texture;
                   child.material.needsUpdate = true;
+                  console.log("Label metallic/roughness texture applied");
                 },
                 undefined,
                 (error) => console.error("Error loading metallic roughness texture:", error)
               );
-              // Prioritize label rendering
-              child.material.polygonOffsetFactor = 2; // Higher offset for label
+              child.material.polygonOffsetFactor = 2;
               child.material.polygonOffsetUnits = 2;
-              child.renderOrder = 2; // Higher render order to draw last
+              child.renderOrder = 2;
             }
             child.material.needsUpdate = true;
           }
         });
 
-        // Set scale and center once
+        // Set scale and center
         if (!scaleRef.current) {
           const box = new THREE.Box3().setFromObject(model);
           const modelSize = box.getSize(new THREE.Vector3());
@@ -161,30 +166,37 @@ const Redbull = () => {
           model.scale.set(scaleRef.current, scaleRef.current, scaleRef.current);
 
           const center = new THREE.Vector3();
-          box.setFromObject(model).getCenter(center);
+          box.getCenter(center);
           model.position.sub(center);
           model.position.set(0, 0, 0);
           model.rotation.set(0, 0, 0);
-          console.log("Model scale set to:", scaleRef.current);
+          console.log("Model scale set to:", scaleRef.current, "Center:", center);
         }
+
+        // Ensure model is within camera view
+        camera.lookAt(0, 0, 0);
       },
-      (xhr) => console.log(`Model loading: ${(xhr.loaded / xhr.total) * 100}%`),
-      (error) => console.error("Error loading GLTF model:", error)
+      (xhr) => console.log(`Model loading: ${(xhr.loaded / xhr.total * 100).toFixed(2)}%`),
+      (error) => {
+        console.error("Error loading GLTF model:", error);
+        // Keep cube if model fails to load
+        cube.material.color.set(0xff0000); // Red to indicate error
+      }
     );
 
     // Set up camera
-    camera.position.set(0, 0, 4);
+    camera.position.set(0, 0, 5); // Slightly further for better view
     camera.lookAt(0, 0, 0);
 
-    // Set up OrbitControls for Y-axis rotation
+    // Set up OrbitControls
     const controls = new OrbitControls(camera, renderer.domElement);
     controlsRef.current = controls;
     controls.enablePan = false;
-    controls.enableZoom = false;
+    controls.enableZoom = true; // Allow zoom for debugging
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.minPolarAngle = Math.PI / 2; // Restrict to Y-axis
-    controls.maxPolarAngle = Math.PI / 2; // Restrict to Y-axis
+    controls.minPolarAngle = Math.PI / 2;
+    controls.maxPolarAngle = Math.PI / 2;
 
     // Handle user interaction
     controls.addEventListener("start", () => {
@@ -197,35 +209,34 @@ const Redbull = () => {
     });
 
     // Handle resize
-    let resizeTimeout;
     const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
+      if (mountRef.current && rendererRef.current) {
+        const width = mountRef.current.clientWidth;
+        const height = mountRef.current.clientHeight || window.innerHeight * 0.6; // Fallback height
+        rendererRef.current.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
         setIsMobile(window.innerWidth <= 768);
-        if (mountRef.current) {
-          const width = mountRef.current.clientWidth;
-          const height = mountRef.current.clientHeight;
-          renderer.setSize(width, height);
-          camera.aspect = width / height;
-          camera.updateProjectionMatrix();
-        }
-      }, 100);
+        console.log("Resize: width", width, "height", height, "isMobile", window.innerWidth <= 768);
+      }
     };
-    window.addEventListener("resize", handleResize);
+
+    // Initial resize and event listener
     handleResize();
+    window.addEventListener("resize", handleResize);
 
     // Animation loop
     const animate = () => {
+      if (!rendererRef.current) return;
       requestAnimationFrame(animate);
 
-      // Continuous, endless Y rotation when not interacting
       if (modelRef.current && !isInteracting) {
-        modelRef.current.rotation.y += 0.005; // Rotate endlessly
+        modelRef.current.rotation.y += 0.005;
         modelRef.current.scale.set(scaleRef.current, scaleRef.current, scaleRef.current);
       }
 
       controls.update();
-      renderer.render(scene, camera);
+      rendererRef.current.render(scene, camera);
     };
     animate();
 
@@ -236,6 +247,8 @@ const Redbull = () => {
         mountRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
+      rendererRef.current = null;
+      console.log("Three.js cleanup completed");
     };
   }, []);
 
@@ -253,29 +266,26 @@ const Redbull = () => {
         style={{
           width: isMobile ? "100%" : "70%",
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "center",
           background: "transparent",
           position: isMobile ? "absolute" : "static",
-          top: isMobile ? "10%" : undefined,
+          top: isMobile ? "0" : undefined,
           left: isMobile ? "50%" : undefined,
           transform: isMobile ? "translate(-50%, 0)" : undefined,
           zIndex: isMobile ? 10 : 2,
         }}
       >
-        <h1
+        <img
+          src="/energypartner.svg"
+          alt="Energy Partner Logo"
           style={{
-            fontSize: "clamp(2rem, 5vw, 4rem)",
-            fontWeight: "bold",
-            color: "#ffffff",
-            textAlign: "center",
-            fontFamily: '"Arial", sans-serif',
-            textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
-            margin: "0 20px",
+            width: isMobile ? "70%" : "50%",
+            height: "auto",
+            margin: "auto",
+            zIndex: 10,
           }}
-        >
-          Red Bull Gives You Wings
-        </h1>
+        />
       </div>
       <div
         style={{
@@ -290,17 +300,15 @@ const Redbull = () => {
       >
         <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
       </div>
-      {/* Fallback for PixelArtBackground due to "not defined" error */}
       <div
         style={{
           position: "absolute",
           width: "100%",
           height: "100%",
-          background: "#000", // Fallback background
+          background: "#000",
           zIndex: 1,
         }}
       />
-     
       <PixelArtBackground
         pixelSize={2}
         density={1}
@@ -309,27 +317,8 @@ const Redbull = () => {
         initialPlusSigns={50}
         style={{ position: "absolute", width: "100%", height: "100%", zIndex: 1 }}
       />
-     
     </div>
   );
 };
 
 export default Redbull;
-
-// Consider adding an error boundary around the Redbull component to handle runtime errors.
-// Example:
-// import { Component } from 'react';
-// class ErrorBoundary extends Component {
-//   state = { hasError: false };
-//   static getDerivedStateFromError() {
-//     return { hasError: true };
-//   }
-//   render() {
-//     if (this.state.hasError) {
-//       return <h1>Something went wrong.</h1>;
-//     }
-//     return this.props.children;
-//   }
-// }
-// Wrap Redbull in App.jsx: <ErrorBoundary><Redbull /></ErrorBoundary>
-// See https://reactjs.org/link/error-boundaries for details.
