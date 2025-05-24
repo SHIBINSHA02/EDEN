@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PixelArtBackground from '../Background/PixelArtbg';
+import './Venue.css';
 
 export const Venue = () => {
   const [backgroundError, setBackgroundError] = useState(false);
 
   useEffect(() => {
-    // Log to check if PixelArtBackground is loaded
     try {
-      console.log('Attempting to load PixelArtBackground');
+      console.log('Attempting to load PixelArtBackground in Venue');
       if (!PixelArtBackground) {
         throw new Error('PixelArtBackground component is undefined');
       }
@@ -17,94 +17,78 @@ export const Venue = () => {
     }
   }, []);
 
-  // Example event handlers for PixelArtBackground
-  const handleBackgroundClick = (event) => {
-    console.log('PixelArtBackground clicked at:', event.clientX, event.clientY);
-    // Add custom interaction logic (e.g., spawn particles, change animation)
-  };
-
-  const handleBackgroundMouseMove = (event) => {
-    console.log('Mouse moved over PixelArtBackground:', event.clientX, event.clientY);
-    // Add animation effects based on mouse position
-  };
-
   return (
-    <div className="relative w-screen h-screen overflow-auto">
+    <div className="venue-container">
       {/* Pixel Art Background with Fallback */}
-      <div className="absolute inset-0 z-0">
+      <div className="background-wrapper">
         {backgroundError ? (
-          <div
-            className="w-full h-full"
-            style={{
-              background: 'linear-gradient(135deg, #1a202c 0%, #2d3748 100%)',
-            }}
-          >
-            {/* Fallback gradient background */}
-            <p className="text-white text-center pt-4">
+          <div className="fallback-background">
+            <p className="fallback-text">
               Background failed to load. Using fallback.
             </p>
           </div>
         ) : (
           <PixelArtBackground
             pixelSize={2}
-            density={1}
+            density={1.9}
             fadeDuration={3000}
-            maxPlusSigns={100}
-            initialPlusSigns={50}
-            className="absolute inset-0 z-0"
+            maxPlusSigns={70}
+            initialPlusSigns={40}
+            className="background-canvas"
             onError={() => {
-              console.error('PixelArtBackground failed to render');
+              console.error('PixelArtBackground failed to render in Venue');
               setBackgroundError(true);
             }}
-            onClick={handleBackgroundClick}
-            onMouseMove={handleBackgroundMouseMove}
           />
         )}
       </div>
 
+      {/* Transparent Overlay */}
+      <div className="overlay" />
+
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-start min-h-screen text-white px-4 py-8 sm:py-12">
+      <div className="content-container">
         {/* Event Title */}
-        <h1 className="text-4xl sm:text-5xl font-bold text-center mb-6 sm:mb-8 drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)]">
+        <h1 className="event-title">
           Hackathon 2025 Venue
         </h1>
 
         {/* Venue Details Section */}
-        <section className="w-full max-w-4xl bg-gray-900 bg-opacity-95 rounded-lg p-6 sm:p-8 mb-8">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4 drop-shadow-lg">Event Details</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <section className="venue-details">
+          <h2 className="section-title">Event Details</h2>
+          <div className="details-grid">
             <div>
-              <p className="text-lg drop-shadow-md">
-                <span className="font-bold">Venue:</span> Conference Hall, KV Institute of Management and Information Studies
+              <p className="detail-item">
+                <span className="detail-label">Venue:</span> Conference Hall, KV Institute of Management and Information Studies
               </p>
-              <p className="text-lg drop-shadow-md">
-                <span className="font-bold">Address:</span> 545 Sathy Main Road, Kurumbapalayam-PO, Coimbatore, Tamil Nadu - 641107, India
+              <p className="detail-item">
+                <span className="detail-label">Address:</span> 545 Sathy Main Road, Kurumbapalayam-PO, Coimbatore, Tamil Nadu - 641107, India
               </p>
-              <p className="text-lg drop-shadow-md">
-                <span className="font-bold">Date:</span> May 23, 2025
+              <p className="detail-item">
+                <span className="detail-label">Date:</span> May 23, 2025
               </p>
-              <p className="text-lg drop-shadow-md">
-                <span className="font-bold">Time:</span> 9:00 AM - 6:00 PM IST
+              <p className="detail-item">
+                <span className="detail-label">Time:</span> 9:00 AM - 6:00 PM IST
               </p>
-              <p className="text-lg drop-shadow-md">
-                <span className="font-bold">Contact:</span>{' '}
-                <a href="mailto:events@kvimis.ac.in" className="underline hover:text-blue-400">
+              <p className="detail-item">
+                <span className="detail-label">Contact:</span>{' '}
+                <a href="mailto:events@kvimis.ac.in" className="link">
                   events@kvimis.ac.in
                 </a>
               </p>
             </div>
             <div>
-              <p className="text-lg drop-shadow-md">
-                <span className="font-bold">Organizers:</span> KVIM in collaboration with StartupTN
+              <p className="detail-item">
+                <span className="detail-label">Organizers:</span> KVIM in collaboration with StartupTN
               </p>
-              <p className="text-lg drop-shadow-md">
-                <span className="font-bold">Capacity:</span> 300 participants
+              <p className="detail-item">
+                <span className="detail-label">Capacity:</span> 300 participants
               </p>
-              <p className="text-lg drop-shadow-md">
-                <span className="font-bold">Registration:</span>{' '}
+              <p className="detail-item">
+                <span className="detail-label">Registration:</span>{' '}
                 <a
                   href="https://example.com/register"
-                  className="underline hover:text-blue-400"
+                  className="link"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -116,9 +100,9 @@ export const Venue = () => {
         </section>
 
         {/* Map Section */}
-        <section className="w-full max-w-4xl mb-8">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4 text-center drop-shadow-lg">Location</h2>
-          <div className="w-full h-64 sm:h-96 bg-gray-800 rounded-lg overflow-hidden">
+        <section className="map-section">
+          <h2 className="section-title text-center">Location</h2>
+          <div className="map-container">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.765047136255!2d77.02887631480175!3d11.104614692087832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8f7b7a7b7a7b7%3A0x7b7b7b7b7b7b7b7b!2sKV%20Institute%20of%20Management%20and%20Information%20Studies!5e0!3m2!1sen!2sin!4v1634567890123!5m2!1sen!2sin"
               width="100%"
@@ -132,48 +116,10 @@ export const Venue = () => {
         </section>
 
         {/* Logistics Section */}
-        <section className="w-full max-w-4xl bg-gray-900 bg-opacity-95 rounded-lg p-6 sm:p-8 mb-8">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4 drop-shadow-lg">Logistics & Amenities</h2>
-          <ul className="list-disc list-inside text-lg space-y-2">
-            <li className="drop-shadow-md">
-              <span className="font-bold">Wi-Fi:</span> High-speed Wi-Fi available, supporting up to 4 devices per participant. Contact organizers for access details.
-            </li>
-            <li className="drop-shadow-md">
-              <span className="font-bold">Power:</span> Ample power outlets for laptops and devices. Extension cords provided.
-            </li>
-            <li className="drop-shadow-md">
-              <span className="font-bold">Seating:</span> Banquet-style seating with circular tables for collaborative hacking (10 people per table).
-            </li>
-            <li className="drop-shadow-md">
-              <span className="font-bold">Accessibility:</span> Wheelchair-accessible entrances, gender-neutral restrooms, and elevators available.
-            </li>
-            <li className="drop-shadow-md">
-              <span className="font-bold">Food:</span> Vegetarian and dairy-free catering provided (breakfast, lunch, snacks). Coffee and water available throughout.
-            </li>
-            <li className="drop-shadow-md">
-              <span className="font-bold">Transport:</span> Accessible via public transport (bus stop 500m away). Limited parking available.
-            </li>
-            <li className="drop-shadow-md">
-              <span className="font-bold">Relaxation:</span> Quiet rooms and lounge areas for breaks. Outdoor space for fresh air.
-            </li>
-          </ul>
-        </section>
+        
 
         {/* Call to Action */}
-        <section className="w-full max-w-4xl text-center">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4 drop-shadow-lg">Join Us!</h2>
-          <p className="text-lg mb-6 drop-shadow-md">
-            Don’t miss Hackathon 2025 at KV Institute! Collaborate, innovate, and compete for exciting prizes. Register now and be part of the tech future!
-          </p>
-          <a
-            href="https://example.com/register"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors drop-shadow-lg"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Register Now
-          </a>
-        </section>
+        
       </div>
     </div>
   );
