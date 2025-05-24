@@ -1,20 +1,21 @@
 import React from 'react';
 import Lottie from 'react-lottie';
-import animationData from '../../assets/loading.json'; // Corrected path to loading.json
+import animationData from '../../assets/loading.json'; // Ensure this path is correct
+import './Loading.css';
 
 export const Loading = () => {
   const defaultOptions = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   return (
-    <div>
-      <Lottie options={defaultOptions} height={100} width={100} />
+    <div className="loadingContainer">
+      <Lottie options={defaultOptions} />
     </div>
   );
 };
