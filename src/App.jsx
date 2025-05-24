@@ -61,7 +61,7 @@ function App() {
       <Navbar items={data.navbar} />
       <Home heroData={data.hero} />
       <About description={data.hero.description} buttonText={data.hero.buttonText} />
-      <Redbull/>
+      
       <Prize/>
       <Schedule/>
       <Venue/>
@@ -69,6 +69,7 @@ function App() {
       <Faq/>
       <Judge/>
       <Team/>
+      <Redbull/>
       <Footer/>
     </>
   )
