@@ -9,7 +9,7 @@ import { Venue } from './Components/Venue/Venue'
 import { Faq } from './Components/FAQ/Faq'
 import { Sponsors } from './Components/Sponsors/Sponsors'
 import { Footer } from './Components/Footer/Footer'
-import { Judge } from './Components/Judge/Judge'
+// import { Judge } from './Components/Judge/Judge'
 import { Team } from './Components/Team/Team'
 import { Navbar } from './Components/Navbar/Navbar'
 import FriskyFont from './fonts/Frisky.ttf'
@@ -67,7 +67,7 @@ function App() {
       <Venue/>
       <Sponsors/>
       <Faq/>
-      <Judge/>
+      {/* <Judge/> */}
       <Team/>
       <Redbull/>
       <Footer/>
