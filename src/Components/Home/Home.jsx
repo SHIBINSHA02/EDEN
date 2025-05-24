@@ -149,6 +149,7 @@ export const Home = ({ heroData }) => {
       <div className="gridding">
         <div className="hero-section">
           <div className="center-title">
+          
             <img 
               ref={titleRef}
               src={titleImage.src || "/placeholder.svg"} 
@@ -164,7 +165,10 @@ export const Home = ({ heroData }) => {
               alt="Background cloud" 
               className="title-background-cloud" 
             />
-            <Countdown targetDate={targetDate} /> {/* Add Countdown component */}
+            <div className="countdown-container close-to-title">
+              <Countdown targetDate={targetDate} />
+            </div>
+            
           </div>
           <img src={cloud1.src || "/placeholder.svg"} alt={cloud1.alt} className="cloud-image1" />
           <img src={cloud2.src || "/placeholder.svg"} alt={cloud2.alt} className="cloud-image2" />

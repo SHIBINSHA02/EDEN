@@ -15,6 +15,7 @@ import { Navbar } from './Components/Navbar/Navbar'
 import FriskyFont from './fonts/Frisky.ttf'
 import MinecraftFont from './fonts/Minecraftchmc.ttf'
 import Redbull from './Components/RedBull/Redbull'
+import { Loading } from './Components/Loading/loading'
 
 function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
@@ -53,7 +54,7 @@ function App() {
   }, []);
 
   if (!isFontLoaded || !data) {
-    return <div>Loading...</div>;
+    return <Loading/>;
   }
 
   return (

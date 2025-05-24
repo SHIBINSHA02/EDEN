@@ -28,7 +28,7 @@
   width: 50%;
   height: 100%;
   pointer-events: none;
-  text-align: fichenter;
+  text-align: center;
   overflow: visible;
   opacity: 1; /* MODIFIED: Ensure hero-section is fully visible from start */
 }
@@ -94,7 +94,6 @@
 .cloud-image1 {
   top: 40%;
   right: 55%;
-  
 }
 
 .cloud-image2 {
@@ -170,6 +169,45 @@
   }
 }
 
+/* Updated countdown positioning - relative to title image */
+.countdown-container {
+  position: absolute;
+  z-index: 4; /* Place above title-background-cloud but below clouds */
+  top: 160%; /* Positioned relative to title image */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 1.5rem;
+  opacity: 1;
+  pointer-events: auto;
+  will-change: transform;
+  width: 80%; /* Responsive width */
+  max-width: 400px; /* Maximum width constraint */
+}
+
+/* Countdown text styling */
+.countdown-container .countdown-text {
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Better text visibility */
+  margin-bottom: 10px;
+}
+
+.countdown-container .countdown-timer {
+  font-size: 1.2em;
+  letter-spacing: 2px;
+}
+
+/* Alternative positioning classes */
+.countdown-container.close-to-title {
+  top: 120%; /* Even closer to title image */
+}
+
+.countdown-container.below-cloud {
+  top: 200%; /* Below the title-background-cloud */
+}
+
 /* Media query for smaller screens (tablets and phones) */
 @media (max-width: 768px) {
   .gridding {
@@ -230,8 +268,8 @@
 
   /* UNCHANGED: Final positions for mobile */
   .cloud-image1.loaded-final {
-    top: 85%;
-    right: 45%;
+    top: 25%;
+    right: 15%;
     z-index: 3;
   }
 
@@ -247,6 +285,28 @@
     top: auto;
     z-index: 3;
   }
+
+  /* Mobile countdown positioning */
+  .countdown-container {
+    top: 140%; /* Closer positioning on mobile */
+    font-size: 1.2rem; /* Slightly smaller font on mobile */
+    width: 90%; /* More width utilization on mobile */
+    max-width: none; /* Remove max-width constraint on mobile */
+  }
+  
+  .countdown-container .countdown-timer {
+    font-size: 1.1em;
+    letter-spacing: 1px;
+  }
+
+  /* Mobile alternative positioning */
+  .countdown-container.close-to-title {
+    top: 110%;
+  }
+  
+  .countdown-container.below-cloud {
+    top: 180%;
+  }
 }
 
 /* Debug styles to ensure the title image is visible */
@@ -258,32 +318,3 @@
 .center-title.right-adjust {
   transform: translate(calc(-50% + 10px), -50%);
 }
-
-
-
-
-
-
-
-/* count doen.. */
-/* Add styles for the countdown component */
-.countdown-container {
-  position: absolute;
-  z-index: 4; /* Place above title-background-cloud but below clouds */
-  top: 180%; /* Position below title-background-cloud on desktop */
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: #fff; /* White text for visibility; adjust as needed */
-  font-family: Arial, sans-serif; /* Match your site's typography */
-  font-size: 1.5rem; /* Default font size for desktop */
-  opacity: 1;
-  pointer-events: auto; /* Allow interaction if needed */
-  will-change: transform;
-}
-
-/* Style for countdown text elements */
-
-
-
-/* end of countdown */
