@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PixelArtBackground from "../Background/PixelArtbg";
 import "./Footer.css";
-// import { Instagram, Twitter, LinkedIn } from './assets/svg';
-// import data from '../../../data.json';
 
 export const Footer = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -19,130 +17,101 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="FooterWrapper">
-      <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
+    <footer className="minimal-footer">
+      <PixelArtBackground pixelSize={2} density={0.8} fadeDuration={3000} />
 
-      <div className="footer-grid">
-        <div className="footer-brand">
-          <div className="brand-logo">
-            <div className="logo-text">EDEN 4.0</div>
-            <div className="logo-subtitle">HACKATHON</div>
+      {/* Floating Plus Signs */}
+      <div className="footer-plus-signs">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className={`footer-plus plus-${i % 3}`}
+            style={{
+              left: `${10 + i * 12}%`,
+              animationDelay: `${i * 0.5}s`,
+            }}
+          >
+            +
           </div>
-          <p className="brand-description">
-            Where innovation meets execution. Join the ultimate coding challenge
-            and build the future.
-          </p>
-          <div className="contact-info">
-            <div className="contact-item">
-              <span className="contact-label">Email</span>
-              <a href={`mailto:${data.email}`} className="contact-link">
-                {data.email}
-              </a>
+        ))}
+      </div>
+
+      <div className="footer-content">
+        {/* Main Brand Section */}
+        <div className="footer-brand-minimal">
+          <div className="brand-logo-minimal">
+            <div className="logo-text-minimal">EDEN 4.0</div>
+            <div className="logo-tagline">
+              Innovation • Collaboration • Excellence
             </div>
           </div>
         </div>
 
-        <div className="footer-links">
-          <div className="link-group">
-            <h3 className="link-title">Explore</h3>
-            <div className="link-list">
-              <a
-                href="https://mulearn.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                µLearn
-              </a>
-              <a
-                href="https://mulearn.org/announcements"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Events
-              </a>
-              <a
-                href="https://mulearn.org/gallery"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Gallery
-              </a>
-              <a
-                href="https://online.fliphtml5.com/egsqr/tlgc/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Branding
-              </a>
-            </div>
+        {/* Quick Stats */}
+        <div className="footer-stats-minimal">
+          <div className="stat-minimal">
+            <span className="stat-number-minimal">48H</span>
+            <span className="stat-label-minimal">Duration</span>
           </div>
-
-          <div className="link-group">
-            <h3 className="link-title">Connect</h3>
-            <div className="social-grid">
-              <a
-                href={data.linkedIn}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link linkedin"
-              >
-                <div className="social-icon">in</div>
-                <span>LinkedIn</span>
-              </a>
-              <a
-                href={data.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link instagram"
-              >
-                <div className="social-icon">ig</div>
-                <span>Instagram</span>
-              </a>
-              <a
-                href={data.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link twitter"
-              >
-                <div className="social-icon">tw</div>
-                <span>Twitter</span>
-              </a>
-            </div>
+          <div className="stat-minimal">
+            <span className="stat-number-minimal">500+</span>
+            <span className="stat-label-minimal">Hackers</span>
+          </div>
+          <div className="stat-minimal">
+            <span className="stat-number-minimal">50K+</span>
+            <span className="stat-label-minimal">Prizes</span>
           </div>
         </div>
 
-        <div className="footer-stats">
-          <div className="stat-item">
-            <div className="stat-number">48</div>
-            <div className="stat-label">Hours</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">500+</div>
-            <div className="stat-label">Participants</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">50K+</div>
-            <div className="stat-label">Prize Pool</div>
+        {/* Social Links */}
+        <div className="footer-social-minimal">
+          <a
+            href={data.linkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-minimal linkedin"
+            aria-label="LinkedIn"
+          >
+            <div className="social-icon-minimal">in</div>
+          </a>
+          <a
+            href={data.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-minimal instagram"
+            aria-label="Instagram"
+          >
+            <div className="social-icon-minimal">ig</div>
+          </a>
+          <a
+            href={data.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-minimal twitter"
+            aria-label="Twitter"
+          >
+            <div className="social-icon-minimal">tw</div>
+          </a>
+          <a
+            href={`mailto:${data.email}`}
+            className="social-minimal email"
+            aria-label="Email"
+          >
+            <div className="social-icon-minimal">@</div>
+          </a>
+        </div>
+
+        {/* Copyright */}
+        <div className="footer-copyright-minimal">
+          <p>© {currentYear} EDEN 4.0 • Powered by µLearn</p>
+          <div className="footer-badge-minimal">
+            <span>BUILT FOR INNOVATORS</span>
           </div>
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <div className="footer-divider"></div>
-        <div className="bottom-content">
-          <div className="copyright">
-            <p>© {currentYear} EDEN 4.0 Hackathon. All rights reserved.</p>
-            <p>Powered by µLearn Foundation</p>
-          </div>
-          <div className="footer-badge">
-            <div className="badge-text">BUILT FOR INNOVATORS</div>
-          </div>
-        </div>
-      </div>
+      {/* Pixel Border */}
+      <div className="footer-pixel-border"></div>
     </footer>
   );
 };
