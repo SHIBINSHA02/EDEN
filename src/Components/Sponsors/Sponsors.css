@@ -32,6 +32,150 @@
   letter-spacing: 0.1em;
 }
 
+/* Red Bull Energy Partner Special Styling */
+.redbull-sponsor-box {
+  background: linear-gradient(135deg, #e21b4d, #ffd300, #000b8d);
+  border: 2px solid #ffd300;
+  box-shadow: 0 8px 32px rgba(226, 27, 77, 0.4), 0 0 20px rgba(255, 211, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.redbull-sponsor-box:hover {
+  border-color: #e21b4d;
+  box-shadow: 0 12px 40px rgba(226, 27, 77, 0.6),
+    0 0 30px rgba(255, 211, 0, 0.5);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Energy wave animations */
+.energy-wave {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 211, 0, 0.3),
+    transparent
+  );
+  animation: energyFlow 3s ease-in-out infinite;
+}
+
+.energy-wave-1 {
+  top: -50%;
+  left: -50%;
+  animation-delay: 0s;
+}
+
+.energy-wave-2 {
+  top: -50%;
+  left: -50%;
+  animation-delay: 1s;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(226, 27, 77, 0.2),
+    transparent
+  );
+}
+
+.energy-wave-3 {
+  top: -50%;
+  left: -50%;
+  animation-delay: 2s;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 11, 141, 0.2),
+    transparent
+  );
+}
+
+@keyframes energyFlow {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Wing elements */
+.wing-left,
+.wing-right {
+  width: 20px;
+  height: 12px;
+  background: linear-gradient(45deg, #ffd300, #e21b4d);
+  border-radius: 50% 10px 50% 10px;
+  animation: wingFlap 2s ease-in-out infinite;
+}
+
+.wing-left {
+  transform: rotate(-15deg);
+  animation-delay: 0s;
+}
+
+.wing-right {
+  transform: rotate(15deg) scaleX(-1);
+  animation-delay: 0.1s;
+}
+
+@keyframes wingFlap {
+  0%,
+  100% {
+    transform: rotate(-15deg) scale(1);
+  }
+  50% {
+    transform: rotate(-25deg) scale(1.1);
+  }
+}
+
+/* Energy dots */
+.energy-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffd300;
+  animation: energyPulse 1.5s ease-in-out infinite;
+}
+
+.energy-dot-1 {
+  animation-delay: 0s;
+}
+
+.energy-dot-2 {
+  animation-delay: 0.3s;
+}
+
+.energy-dot-3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes energyPulse {
+  0%,
+  100% {
+    background: #ffd300;
+    box-shadow: 0 0 5px #ffd300;
+  }
+  50% {
+    background: #e21b4d;
+    box-shadow: 0 0 10px #e21b4d;
+  }
+}
+
+/* Enhanced text shadow for Red Bull text */
+.text-shadow-red {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(226, 27, 77, 0.5),
+    0 0 20px rgba(255, 211, 0, 0.3);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .sponsors-section {
@@ -43,8 +187,38 @@
     min-height: 120px;
   }
 
+  .redbull-sponsor-box {
+    min-height: 160px;
+  }
+
+  .redbull-sponsor-box .flex {
+    flex-direction: column;
+    space-x: 0;
+  }
+
+  .redbull-sponsor-box .space-x-4 > * + * {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  /* Smaller can on mobile */
+  .redbull-sponsor-box .flex-shrink-0 {
+    transform: scale(0.6);
+  }
+
   .minecraft-font {
     font-size: 1.5rem !important;
+  }
+
+  .wing-left,
+  .wing-right {
+    width: 16px;
+    height: 10px;
+  }
+
+  .energy-dot {
+    width: 5px;
+    height: 5px;
   }
 }
 

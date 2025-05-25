@@ -1,5 +1,6 @@
 import React from "react";
 import PixelArtBackground from "../Background/PixelArtbg";
+import RedBullCan from "./RedBullCan";
 import "./Sponsors.css";
 
 export const Sponsors = () => {
@@ -49,13 +50,74 @@ export const Sponsors = () => {
           </div>
         </div>
 
-        {/* Energy Partner Section */}
+        {/* Energy Partner Section - Red Bull Special */}
         <div className="w-full max-w-2xl">
           <h2 className="text-white text-3xl md:text-4xl font-bold text-center mb-12 minecraft-font tracking-wider">
             ENERGY PARTNER
           </h2>
           <div className="flex justify-center">
-            <div className="sponsor-box aspect-[3/2] bg-purple-600 rounded-lg shadow-lg hover:bg-purple-500 transition-colors duration-300 w-full max-w-sm" />
+            <div
+              className="redbull-sponsor-box aspect-[3/2] w-full max-w-sm relative overflow-hidden rounded-lg cursor-pointer group"
+              onClick={() => {
+                // Scroll to the main Red Bull section
+                const redbullSection =
+                  document.querySelector("#redbull-section");
+                if (redbullSection) {
+                  redbullSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              title="Click to see the full Red Bull experience"
+            >
+              {/* Red Bull gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600 via-red-500 to-yellow-400 opacity-90"></div>
+
+              {/* Animated energy waves */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="energy-wave energy-wave-1"></div>
+                <div className="energy-wave energy-wave-2"></div>
+                <div className="energy-wave energy-wave-3"></div>
+              </div>
+
+              {/* Pulsing glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-300 to-transparent opacity-20 animate-pulse"></div>
+
+              {/* Wing elements */}
+              <div className="absolute top-2 left-2 opacity-60">
+                <div className="wing-left"></div>
+              </div>
+              <div className="absolute top-2 right-2 opacity-60">
+                <div className="wing-right"></div>
+              </div>
+
+              {/* Content overlay with 3D can */}
+              <div className="relative z-10 h-full flex items-center justify-center">
+                <div className="flex items-center space-x-4">
+                  {/* 3D Red Bull Can */}
+                  <div className="flex-shrink-0">
+                    <RedBullCan width={200} height={200} />
+                  </div>
+
+                  {/* Text content */}
+                  <div className="text-center">
+                    <div className="text-white font-bold text-xl md:text-2xl minecraft-font mb-1 drop-shadow-lg text-shadow-red">
+                      RED BULL
+                    </div>
+                    <div className="text-yellow-200 text-xs md:text-sm font-semibold tracking-wider animate-pulse">
+                      GIVES YOU WINGS
+                    </div>
+                    {/* Energy indicator */}
+                    <div className="flex justify-center mt-2 space-x-1">
+                      <div className="energy-dot energy-dot-1"></div>
+                      <div className="energy-dot energy-dot-2"></div>
+                      <div className="energy-dot energy-dot-3"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hover effect overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
+            </div>
           </div>
         </div>
       </div>

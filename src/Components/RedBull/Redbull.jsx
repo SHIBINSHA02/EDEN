@@ -38,7 +38,10 @@ const Redbull = () => {
     renderer.setPixelRatio(window.devicePixelRatio); // Improve quality on high-DPI screens
 
     // Append renderer to DOM
-    renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+    renderer.setSize(
+      mountRef.current.clientWidth,
+      mountRef.current.clientHeight
+    );
     mountRef.current.appendChild(renderer.domElement);
     console.log("Three.js canvas appended to mountRef");
 
@@ -121,7 +124,8 @@ const Redbull = () => {
                   console.log("Top part texture applied");
                 },
                 undefined,
-                (error) => console.error("Error loading top part texture:", error)
+                (error) =>
+                  console.error("Error loading top part texture:", error)
               );
               child.material.metalness = 0.8;
               child.material.roughness = 0.3;
@@ -147,7 +151,11 @@ const Redbull = () => {
                   console.log("Label metallic/roughness texture applied");
                 },
                 undefined,
-                (error) => console.error("Error loading metallic roughness texture:", error)
+                (error) =>
+                  console.error(
+                    "Error loading metallic roughness texture:",
+                    error
+                  )
               );
               child.material.polygonOffsetFactor = 2;
               child.material.polygonOffsetUnits = 2;
@@ -170,13 +178,21 @@ const Redbull = () => {
           model.position.sub(center);
           model.position.set(0, 0, 0);
           model.rotation.set(0, 0, 0);
-          console.log("Model scale set to:", scaleRef.current, "Center:", center);
+          console.log(
+            "Model scale set to:",
+            scaleRef.current,
+            "Center:",
+            center
+          );
         }
 
         // Ensure model is within camera view
         camera.lookAt(0, 0, 0);
       },
-      (xhr) => console.log(`Model loading: ${(xhr.loaded / xhr.total * 100).toFixed(2)}%`),
+      (xhr) =>
+        console.log(
+          `Model loading: ${((xhr.loaded / xhr.total) * 100).toFixed(2)}%`
+        ),
       (error) => {
         console.error("Error loading GLTF model:", error);
         // Keep cube if model fails to load
@@ -212,12 +228,20 @@ const Redbull = () => {
     const handleResize = () => {
       if (mountRef.current && rendererRef.current) {
         const width = mountRef.current.clientWidth;
-        const height = mountRef.current.clientHeight || window.innerHeight * 0.6; // Fallback height
+        const height =
+          mountRef.current.clientHeight || window.innerHeight * 0.6; // Fallback height
         rendererRef.current.setSize(width, height);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         setIsMobile(window.innerWidth <= 768);
-        console.log("Resize: width", width, "height", height, "isMobile", window.innerWidth <= 768);
+        console.log(
+          "Resize: width",
+          width,
+          "height",
+          height,
+          "isMobile",
+          window.innerWidth <= 768
+        );
       }
     };
 
@@ -232,7 +256,11 @@ const Redbull = () => {
 
       if (modelRef.current && !isInteracting) {
         modelRef.current.rotation.y += 0.005;
-        modelRef.current.scale.set(scaleRef.current, scaleRef.current, scaleRef.current);
+        modelRef.current.scale.set(
+          scaleRef.current,
+          scaleRef.current,
+          scaleRef.current
+        );
       }
 
       controls.update();
@@ -254,6 +282,7 @@ const Redbull = () => {
 
   return (
     <div
+      id="redbull-section"
       style={{
         display: "flex",
         width: "100%",
@@ -315,7 +344,12 @@ const Redbull = () => {
         fadeDuration={3000}
         maxPlusSigns={100}
         initialPlusSigns={50}
-        style={{ position: "absolute", width: "100%", height: "100%", zIndex: 1 }}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+        }}
       />
     </div>
   );
