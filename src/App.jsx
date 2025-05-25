@@ -14,7 +14,7 @@ import { Team } from "./Components/Team/Team";
 import { Navbar } from "./Components/Navbar/Navbar";
 import FriskyFont from "./fonts/Frisky.ttf";
 import MinecraftFont from "./fonts/Minecraftchmc.ttf";
-import Redbull from "./Components/RedBull/Redbull";
+
 import { Loading } from "./Components/Loading/loading";
 
 function App() {
@@ -73,7 +73,6 @@ function App() {
       <Faq />
       {/* <Judge/> */}
       <Team />
-      <Redbull />
       <Footer />
     </>
   );
