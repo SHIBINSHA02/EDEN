@@ -8,7 +8,7 @@ export const Home = ({ heroData }) => {
   const { heroImage, titleImage, cloud1, cloud2, cloud3 } = image;
   const titleRef = useRef(null);
 
-  // Define the target date for the countdown (e.g., 30 days from now)
+  // Define the target date for the countdown
   const targetDate = new Date("2025-06-27T00:00:00Z");
 
   // Title animation
@@ -19,11 +19,11 @@ export const Home = ({ heroData }) => {
       titleImageElement.style.visibility = "visible";
       titleImageElement.style.transform = "translateY(0)";
 
-      setTimeout(() => {
-        const isMobile = window.innerWidth <= 768;
-        const titleDistance = isMobile ? 40 : 100;
+      const isMobile = window.innerWidth <= 768;
+      const titleDistance = isMobile ? 40 : 100;
 
-        const titleAnimation = titleImageElement.animate(
+      setTimeout(() => {
+        titleImageElement.animate(
           [
             { transform: "translateY(0)" },
             { transform: `translateY(-${titleDistance}px)` },
@@ -33,15 +33,9 @@ export const Home = ({ heroData }) => {
             easing: "ease-in-out",
             fill: "forwards",
           }
-        );
-
-        titleAnimation.finished
-          .then(() => {
-            titleImageElement.style.transform = `translateY(-${titleDistance}px)`;
-          })
-          .catch(() => {
-            // Animation error handled silently
-          });
+        ).finished.then(() => {
+          titleImageElement.style.transform = `translateY(-${titleDistance}px)`;
+        }).catch(() => {});
       }, 600);
     }
   }, []);
@@ -52,23 +46,24 @@ export const Home = ({ heroData }) => {
       cloud1: document.querySelector(".cloud-image1"),
       cloud2: document.querySelector(".cloud-image2"),
       cloud3: document.querySelector(".cloud-image3"),
-      titleBgCloud: document.querySelector(".title-background-cloud"),
     };
 
+    // Check for missing elements
     const missingElements = Object.entries(elements)
       .filter(([, el]) => !el)
       .map(([name]) => name);
 
     if (missingElements.length > 0) {
+      console.warn(`Missing elements: ${missingElements.join(", ")}`);
       return;
     }
 
+    // Add loaded-final class for initial CSS transitions
     setTimeout(() => {
-      elements.cloud1.classList.add("loaded-final");
-      elements.cloud2.classList.add("loaded-final");
-      elements.cloud3.classList.add("loaded-final");
+      Object.values(elements).forEach((el) => el.classList.add("loaded-final"));
     }, 600);
 
+    // Define looping animations after initial transition
     const isMobile = window.innerWidth <= 768;
 
     const cloudAnimations = [
@@ -76,17 +71,16 @@ export const Home = ({ heroData }) => {
         element: elements.cloud1,
         keyframes: isMobile
           ? [
-              { transform: "translate(0,0) scale(0.5)" },
               { transform: "translate(-5px, -8px) scale(0.6)" },
+              { transform: "translate(5px, 8px) scale(0.6)" },
             ]
           : [
-              { transform: "translate(0, 0) scale(0.6)" },
               { transform: "translate(-20px, -10px) scale(0.7)" },
+              { transform: "translate(20px, 10px) scale(0.7)" },
             ],
         options: {
           duration: 4000,
           easing: "ease-in-out",
-          delay: 4500,
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -96,17 +90,16 @@ export const Home = ({ heroData }) => {
         element: elements.cloud2,
         keyframes: isMobile
           ? [
-              { transform: "translate(0, 0) scale(0.5)" },
               { transform: "translate(5px, 10px) scale(0.6)" },
+              { transform: "translate(-5px, -10px) scale(0.6)" },
             ]
           : [
-              { transform: "translate(0, 0) scale(0.5)" },
               { transform: "translate(15px, 20px) scale(0.7)" },
+              { transform: "translate(-15px, -20px) scale(0.7)" },
             ],
         options: {
           duration: 4500,
           easing: "ease-out",
-          delay: 1500,
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -116,31 +109,16 @@ export const Home = ({ heroData }) => {
         element: elements.cloud3,
         keyframes: isMobile
           ? [
-              { transform: "translate(0, 0) scale(0.5)" },
               { transform: "translate(-8px, 3px) scale(0.6)" },
+              { transform: "translate(8px, -3px) scale(0.6)" },
             ]
           : [
-              { transform: "translate(0, 0) scale(0.5)" },
               { transform: "translate(-25px, 15px) scale(0.6)" },
+              { transform: "translate(25px, -15px) scale(0.6)" },
             ],
         options: {
           duration: 4800,
           easing: "ease-out",
-          delay: 1500,
-          fill: "forwards",
-          iterations: Infinity,
-          direction: "alternate",
-        },
-      },
-      {
-        element: elements.titleBgCloud,
-        keyframes: isMobile
-          ? [{ transform: "scale(0.4)" }, { transform: "scale(0.45)" }]
-          : [{ transform: "scale(0.3)" }, { transform: "scale(0.35)" }],
-        options: {
-          duration: 3000,
-          easing: "ease-in-out",
-          delay: 1500,
           fill: "forwards",
           iterations: Infinity,
           direction: "alternate",
@@ -148,11 +126,15 @@ export const Home = ({ heroData }) => {
       },
     ];
 
-    cloudAnimations.forEach(({ element, keyframes, options }) => {
-      element.animate(keyframes, options).finished.catch((error) => {
-        console.error("Cloud animation error:", error);
-      });
-    });
+    // Start looping animations after initial transition
+    const animations = cloudAnimations.map(({ element, keyframes, options }) =>
+      element.animate(keyframes, { ...options, delay: 2100 }) // Delay to wait for CSS transition
+    );
+
+    // Cleanup animations on unmount
+    return () => {
+      animations.forEach((animation) => animation.cancel());
+    };
   }, []);
 
   return (
@@ -165,7 +147,6 @@ export const Home = ({ heroData }) => {
         initialPlusSigns={40}
       />
 
-      {/* Floating particles */}
       <div className="floating-particles">
         {[...Array(20)].map((_, i) => (
           <div key={i} className={`particle particle-${(i % 3) + 1}`}></div>
@@ -181,14 +162,6 @@ export const Home = ({ heroData }) => {
               alt={titleImage.alt}
               className="title-image"
               style={{ visibility: "hidden", width: "50%", height: "auto" }}
-              onLoad={() => {
-                // Image loaded successfully
-              }}
-            />
-            <img
-              src={cloud1.src || "/placeholder.svg"}
-              alt="Background cloud"
-              className="title-background-cloud"
             />
             <div className="countdown-container close-to-title">
               <Countdown targetDate={targetDate} />

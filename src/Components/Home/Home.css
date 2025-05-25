@@ -141,7 +141,7 @@
   pointer-events: none;
   text-align: center;
   overflow: visible;
-  opacity: 1; /* MODIFIED: Ensure hero-section is fully visible from start */
+  opacity: 1;
 }
 
 .center-title {
@@ -214,41 +214,24 @@
   }
 }
 
-/* UNCHANGED: Position title-background-cloud relative to parent .center-title */
-.title-background-cloud {
-  position: absolute;
-  width: 100%;
-  height: auto;
-  z-index: 3;
-  top: 120%;
-  left: 50%;
-  transform: translateX(-50%) scale(0.3);
-  opacity: 0.6;
-  pointer-events: none;
-  will-change: transform;
-}
-
 .cloud-image1,
 .cloud-image2,
 .cloud-image3 {
   position: absolute;
   width: 40%;
   height: auto;
-  z-index: 6; /* UNCHANGED: Initial z-index above all elements */
+  z-index: 6;
   pointer-events: none;
-  opacity: 1; /* MODIFIED: Set opacity to 1 from start */
+  opacity: 1;
 }
 
-/* MODIFIED: Apply transitions and will-change only when .loaded-final is added */
 .cloud-image1.loaded-final,
 .cloud-image2.loaded-final,
 .cloud-image3.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
-    z-index 0ms 1500ms; /* MODIFIED: Only top/right/z-index transitions */
-  will-change: transform; /* MODIFIED: Add will-change during animation */
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, z-index 0ms 1500ms;
+  will-change: top, right;
 }
 
-/* UNCHANGED: Initial positions for clouds */
 .cloud-image1 {
   top: 40%;
   right: 55%;
@@ -264,32 +247,22 @@
   right: 40%;
 }
 
-/* UNCHANGED: Final positions and z-index when .loaded-final is applied */
 .cloud-image1.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
-    transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 30%;
   right: 25%;
   z-index: 3;
-  transform: scale(0.6);
 }
 
 .cloud-image2.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
-    transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 70%;
   right: 45%;
   z-index: 3;
-  transform: scale(0.5);
 }
 
 .cloud-image3.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
-    transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 20%;
   right: 70%;
   z-index: 3;
-  transform: scale(0.5);
 }
 
 .hero-image-container {
@@ -330,11 +303,10 @@
   }
 }
 
-/* Updated countdown positioning - relative to title image */
 .countdown-container {
   position: absolute;
-  z-index: 4; /* Place above title-background-cloud but below clouds */
-  top: 160%; /* Positioned relative to title image */
+  z-index: 4;
+  top: 160%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -344,14 +316,13 @@
   opacity: 1;
   pointer-events: auto;
   will-change: transform;
-  width: 80%; /* Responsive width */
-  max-width: 400px; /* Maximum width constraint */
+  width: 80%;
+  max-width: 400px;
 }
 
-/* Countdown text styling */
 .countdown-container .countdown-text {
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Better text visibility */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
 }
 
@@ -360,16 +331,14 @@
   letter-spacing: 2px;
 }
 
-/* Alternative positioning classes */
 .countdown-container.close-to-title {
-  top: 120%; /* Even closer to title image */
+  top: 120%;
 }
 
 .countdown-container.below-cloud {
-  top: 200%; /* Below the title-background-cloud */
+  top: 200%;
 }
 
-/* Media query for smaller screens (tablets and phones) */
 @media (max-width: 768px) {
   .gridding {
     grid-template-rows: 1fr 60vh;
@@ -405,19 +374,12 @@
     top: 115%;
   }
 
-  /* UNCHANGED: Adjust title-background-cloud for mobile */
-  .title-background-cloud {
-    top: 130%;
-    transform: translateX(-50%) scale(0.4);
-  }
-
   .cloud-image1,
   .cloud-image2,
   .cloud-image3 {
     width: 70%;
   }
 
-  /* UNCHANGED: Initial positions for mobile */
   .cloud-image1 {
     top: 75%;
     right: 23%;
@@ -433,7 +395,6 @@
     right: 50%;
   }
 
-  /* UNCHANGED: Final positions for mobile */
   .cloud-image1.loaded-final {
     top: 25%;
     right: 15%;
@@ -453,12 +414,11 @@
     z-index: 3;
   }
 
-  /* Mobile countdown positioning */
   .countdown-container {
-    top: 140%; /* Closer positioning on mobile */
-    font-size: 1.2rem; /* Slightly smaller font on mobile */
-    width: 90%; /* More width utilization on mobile */
-    max-width: none; /* Remove max-width constraint on mobile */
+    top: 140%;
+    font-size: 1.2rem;
+    width: 90%;
+    max-width: none;
   }
 
   .countdown-container .countdown-timer {
@@ -466,7 +426,6 @@
     letter-spacing: 1px;
   }
 
-  /* Mobile alternative positioning */
   .countdown-container.close-to-title {
     top: 110%;
   }
@@ -476,12 +435,10 @@
   }
 }
 
-/* Debug styles to ensure the title image is visible */
 .title-image {
   display: block !important;
 }
 
-/* Adjust the position of the title container slightly to the right */
 .center-title.right-adjust {
   transform: translate(calc(-50% + 10px), -50%);
 }
