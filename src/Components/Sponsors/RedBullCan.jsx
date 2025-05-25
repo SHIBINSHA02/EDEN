@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -8,7 +8,6 @@ const RedBullCan = ({ width = 200, height = 200 }) => {
   const rendererRef = useRef(null);
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -17,26 +16,26 @@ const RedBullCan = ({ width = 200, height = 200 }) => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    
+
     sceneRef.current = scene;
     cameraRef.current = camera;
     rendererRef.current = renderer;
-    
+
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(width, height);
-    
+
     mountRef.current.appendChild(renderer.domElement);
 
     // Lighting setup optimized for the can
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
-    
+
     const frontLight = new THREE.DirectionalLight(0xffffff, 1.0);
     frontLight.position.set(0, 1, 5);
     scene.add(frontLight);
-    
+
     const leftLight = new THREE.DirectionalLight(0xffffff, 0.8);
     leftLight.position.set(-3, 1, 3);
     scene.add(leftLight);
@@ -54,7 +53,6 @@ const RedBullCan = ({ width = 200, height = 200 }) => {
         const model = gltf.scene;
         scene.add(model);
         modelRef.current = model;
-        setIsLoaded(true);
 
         // Apply textures and material properties
         model.traverse((child) => {
@@ -66,6 +64,9 @@ const RedBullCan = ({ width = 200, height = 200 }) => {
             if (child.material.name === "silver") {
               textureLoader.load("silver_baseColor.png", (texture) => {
                 texture.colorSpace = THREE.SRGBColorSpace;
+                texture.generateMipmaps = false;
+                texture.minFilter = THREE.LinearFilter;
+                texture.magFilter = THREE.LinearFilter;
                 child.material.map = texture;
                 child.material.needsUpdate = true;
               });
@@ -74,6 +75,9 @@ const RedBullCan = ({ width = 200, height = 200 }) => {
             } else if (child.material.name === "top_part") {
               textureLoader.load("top_part_baseColor.jpeg", (texture) => {
                 texture.colorSpace = THREE.SRGBColorSpace;
+                texture.generateMipmaps = false;
+                texture.minFilter = THREE.LinearFilter;
+                texture.magFilter = THREE.LinearFilter;
                 child.material.map = texture;
                 child.material.needsUpdate = true;
               });
@@ -82,10 +86,16 @@ const RedBullCan = ({ width = 200, height = 200 }) => {
             } else if (child.material.name === "label") {
               textureLoader.load("label_baseColor.png", (texture) => {
                 texture.colorSpace = THREE.SRGBColorSpace;
+                texture.generateMipmaps = false;
+                texture.minFilter = THREE.LinearFilter;
+                texture.magFilter = THREE.LinearFilter;
                 child.material.map = texture;
                 child.material.needsUpdate = true;
               });
               textureLoader.load("label_metallicRoughness.png", (texture) => {
+                texture.generateMipmaps = false;
+                texture.minFilter = THREE.LinearFilter;
+                texture.magFilter = THREE.LinearFilter;
                 child.material.metalnessMap = texture;
                 child.material.roughnessMap = texture;
                 child.material.needsUpdate = true;
@@ -108,7 +118,9 @@ const RedBullCan = ({ width = 200, height = 200 }) => {
         model.position.set(0, 0, 0);
       },
       undefined,
-      (error) => console.error("Error loading Red Bull can model:", error)
+      () => {
+        // Error loading Red Bull can model
+      }
     );
 
     // Set up camera
@@ -139,15 +151,15 @@ const RedBullCan = ({ width = 200, height = 200 }) => {
   }, [width, height]);
 
   return (
-    <div 
-      ref={mountRef} 
-      style={{ 
-        width: `${width}px`, 
+    <div
+      ref={mountRef}
+      style={{
+        width: `${width}px`,
         height: `${height}px`,
-        position: 'relative',
-        borderRadius: '8px',
-        overflow: 'hidden'
-      }} 
+        position: "relative",
+        borderRadius: "8px",
+        overflow: "hidden",
+      }}
     />
   );
 };

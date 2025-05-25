@@ -1,9 +1,7 @@
-"use client";
-
 import { useEffect, useRef } from "react";
 import "./Home.css";
 import PixelArtBackground from "../Background/PixelArtbg";
-import Countdown from "./countdown"; // Import the Countdown component
+import Countdown from "./countdown";
 
 export const Home = ({ heroData }) => {
   const { image } = heroData;
@@ -18,8 +16,6 @@ export const Home = ({ heroData }) => {
     const titleImageElement = titleRef.current;
 
     if (titleImageElement) {
-      console.log("Title element found:", !!titleImageElement);
-
       titleImageElement.style.visibility = "visible";
       titleImageElement.style.transform = "translateY(0)";
 
@@ -42,10 +38,9 @@ export const Home = ({ heroData }) => {
         titleAnimation.finished
           .then(() => {
             titleImageElement.style.transform = `translateY(-${titleDistance}px)`;
-            console.log("Title image animation completed");
           })
-          .catch((error) => {
-            console.error("Title animation error:", error);
+          .catch(() => {
+            // Animation error handled silently
           });
       }, 600);
     }
@@ -61,11 +56,10 @@ export const Home = ({ heroData }) => {
     };
 
     const missingElements = Object.entries(elements)
-      .filter(([_, el]) => !el)
+      .filter(([, el]) => !el)
       .map(([name]) => name);
 
     if (missingElements.length > 0) {
-      console.error(`Missing elements: ${missingElements.join(", ")}`);
       return;
     }
 
@@ -187,13 +181,8 @@ export const Home = ({ heroData }) => {
               alt={titleImage.alt}
               className="title-image"
               style={{ visibility: "hidden", width: "50%", height: "auto" }}
-              onLoad={(e) => {
-                console.log(
-                  "Title image loaded with dimensions:",
-                  e.target.width,
-                  "x",
-                  e.target.height
-                );
+              onLoad={() => {
+                // Image loaded successfully
               }}
             />
             <img

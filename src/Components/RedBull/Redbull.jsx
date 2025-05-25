@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -19,7 +17,6 @@ const Redbull = () => {
 
   useEffect(() => {
     if (!mountRef.current) {
-      console.error("mountRef is not initialized");
       return;
     }
 
@@ -43,7 +40,6 @@ const Redbull = () => {
       mountRef.current.clientHeight
     );
     mountRef.current.appendChild(renderer.domElement);
-    console.log("Three.js canvas appended to mountRef");
 
     // Lighting setup
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
@@ -83,7 +79,6 @@ const Redbull = () => {
         scene.remove(cube);
         scene.add(model);
         modelRef.current = model;
-        console.log("Model loaded successfully");
 
         // Apply textures and material properties
         model.traverse((child) => {
@@ -101,61 +96,77 @@ const Redbull = () => {
 
             if (child.material.name === "silver") {
               textureLoader.load(
-                "silver_baseColor.png",
+                "/textures/silver_baseColor.png",
                 (texture) => {
                   texture.colorSpace = THREE.SRGBColorSpace;
+                  texture.generateMipmaps = false;
+                  texture.minFilter = THREE.LinearFilter;
+                  texture.magFilter = THREE.LinearFilter;
                   child.material.map = texture;
                   child.material.needsUpdate = true;
-                  console.log("Silver texture applied");
                 },
                 undefined,
-                (error) => console.error("Error loading silver texture:", error)
+                () => {
+                  // Error loading silver texture - use fallback color
+                  child.material.color.set(0xc0c0c0);
+                }
               );
               child.material.metalness = 0.9;
               child.material.roughness = 0.2;
               child.renderOrder = 1;
             } else if (child.material.name === "top_part") {
               textureLoader.load(
-                "top_part_baseColor.jpeg",
+                "/textures/top_part_baseColor.jpeg",
                 (texture) => {
                   texture.colorSpace = THREE.SRGBColorSpace;
+                  texture.generateMipmaps = false;
+                  texture.minFilter = THREE.LinearFilter;
+                  texture.magFilter = THREE.LinearFilter;
                   child.material.map = texture;
                   child.material.needsUpdate = true;
-                  console.log("Top part texture applied");
                 },
                 undefined,
-                (error) =>
-                  console.error("Error loading top part texture:", error)
+                () => {
+                  // Error loading top part texture - use fallback color
+                  child.material.color.set(0x8b5cf6);
+                }
               );
               child.material.metalness = 0.8;
               child.material.roughness = 0.3;
               child.renderOrder = 1;
             } else if (child.material.name === "label") {
               textureLoader.load(
-                "label_baseColor.png",
+                "/textures/label_baseColor.png",
                 (texture) => {
                   texture.colorSpace = THREE.SRGBColorSpace;
+                  texture.generateMipmaps = false;
+                  texture.minFilter = THREE.LinearFilter;
+                  texture.magFilter = THREE.LinearFilter;
                   child.material.map = texture;
                   child.material.needsUpdate = true;
-                  console.log("Label texture applied");
                 },
                 undefined,
-                (error) => console.error("Error loading label texture:", error)
+                () => {
+                  // Error loading label texture - use fallback color
+                  child.material.color.set(0xff0000);
+                }
               );
               textureLoader.load(
-                "label_metallicRoughness.png",
+                "/textures/label_metallicRoughness.png",
                 (texture) => {
+                  texture.generateMipmaps = false;
+                  texture.minFilter = THREE.LinearFilter;
+                  texture.magFilter = THREE.LinearFilter;
                   child.material.metalnessMap = texture;
                   child.material.roughnessMap = texture;
                   child.material.needsUpdate = true;
-                  console.log("Label metallic/roughness texture applied");
                 },
                 undefined,
-                (error) =>
-                  console.error(
-                    "Error loading metallic roughness texture:",
-                    error
-                  )
+                () => {
+                  // Error loading metallic roughness texture - use defaults
+                  child.material.metalness = 0.5;
+                  child.material.roughness = 0.5;
+                }
               );
               child.material.polygonOffsetFactor = 2;
               child.material.polygonOffsetUnits = 2;
@@ -178,24 +189,16 @@ const Redbull = () => {
           model.position.sub(center);
           model.position.set(0, 0, 0);
           model.rotation.set(0, 0, 0);
-          console.log(
-            "Model scale set to:",
-            scaleRef.current,
-            "Center:",
-            center
-          );
         }
 
         // Ensure model is within camera view
         camera.lookAt(0, 0, 0);
       },
-      (xhr) =>
-        console.log(
-          `Model loading: ${((xhr.loaded / xhr.total) * 100).toFixed(2)}%`
-        ),
-      (error) => {
-        console.error("Error loading GLTF model:", error);
-        // Keep cube if model fails to load
+      () => {
+        // Model loading progress
+      },
+      () => {
+        // Error loading GLTF model - keep cube if model fails to load
         cube.material.color.set(0xff0000); // Red to indicate error
       }
     );
@@ -216,11 +219,9 @@ const Redbull = () => {
 
     // Handle user interaction
     controls.addEventListener("start", () => {
-      console.log("User interaction started");
       setIsInteracting(true);
     });
     controls.addEventListener("end", () => {
-      console.log("User interaction ended");
       setIsInteracting(false);
     });
 
@@ -234,14 +235,6 @@ const Redbull = () => {
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         setIsMobile(window.innerWidth <= 768);
-        console.log(
-          "Resize: width",
-          width,
-          "height",
-          height,
-          "isMobile",
-          window.innerWidth <= 768
-        );
       }
     };
 
@@ -276,9 +269,8 @@ const Redbull = () => {
       }
       renderer.dispose();
       rendererRef.current = null;
-      console.log("Three.js cleanup completed");
     };
-  }, []);
+  }, [isInteracting]);
 
   return (
     <div

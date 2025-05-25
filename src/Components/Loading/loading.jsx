@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Loading.css";
 
 export const Loading = () => {
@@ -7,16 +7,15 @@ export const Loading = () => {
   const [showCursor, setShowCursor] = useState(true);
   const [pixelBlocks, setPixelBlocks] = useState([]);
 
-  const loadingTexts = [
-    "INITIALIZING EDEN 4.0...",
-    "LOADING PIXEL MODULES...",
-    "CONNECTING TO INNOVATION HUB...",
-    "PREPARING DIGITAL WORKSPACE...",
-    "SYNCING HACKATHON MATRIX...",
-    "ALMOST READY TO INNOVATE...",
-  ];
-
   useEffect(() => {
+    const loadingTexts = [
+      "INITIALIZING EDEN 4.0...",
+      "LOADING PIXEL MODULES...",
+      "CONNECTING TO INNOVATION HUB...",
+      "PREPARING DIGITAL WORKSPACE...",
+      "SYNCING HACKATHON MATRIX...",
+      "ALMOST READY TO INNOVATE...",
+    ];
     // Generate random pixel blocks
     const blocks = [];
     for (let i = 0; i < 30; i++) {

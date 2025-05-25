@@ -1,4 +1,3 @@
-import React from "react";
 import PixelArtBackground from "../Background/PixelArtbg";
 import RedBullCan from "./RedBullCan";
 import "./Sponsors.css";

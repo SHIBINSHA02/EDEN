@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import { Home } from "./Components/Home/Home";
@@ -9,7 +9,6 @@ import { Venue } from "./Components/Venue/Venue";
 import { Faq } from "./Components/FAQ/Faq";
 import { Sponsors } from "./Components/Sponsors/Sponsors";
 import { Footer } from "./Components/Footer/Footer";
-// import { Judge } from './Components/Judge/Judge'
 import { Team } from "./Components/Team/Team";
 import { Navbar } from "./Components/Navbar/Navbar";
 import FriskyFont from "./fonts/Frisky.ttf";
@@ -31,8 +30,9 @@ function App() {
         fonts.forEach((font) => document.fonts.add(font));
         setIsFontLoaded(true);
       })
-      .catch((error) => {
-        console.error("Font loading failed:", error);
+      .catch(() => {
+        // Font loading failed, continue with fallback fonts
+        setIsFontLoaded(true);
       });
 
     // Fetch the data from data.json
@@ -44,9 +44,12 @@ function App() {
         }
         const jsonData = await response.json();
         setData(jsonData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setData({ navbar: [] });
+      } catch {
+        // Error fetching data, use fallback
+        setData({
+          navbar: [],
+          hero: { image: {}, description: "", buttonText: "" },
+        });
       }
     };
 

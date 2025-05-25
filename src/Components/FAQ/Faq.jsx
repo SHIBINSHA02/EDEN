@@ -1,5 +1,4 @@
-import React from 'react'
-import PixelArtBackground from '../Background/PixelArtbg'
+import PixelArtBackground from "../Background/PixelArtbg";
 
 export const Faq = () => {
   return (
@@ -9,5 +8,5 @@ export const Faq = () => {
         Frequently Asked Questions
       </div>
     </div>
-  )
-}
+  );
+};

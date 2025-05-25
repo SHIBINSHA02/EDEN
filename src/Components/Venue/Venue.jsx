@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import PixelArtBackground from '../Background/PixelArtbg';
-import './Venue.css';
+import { useEffect, useState } from "react";
+import PixelArtBackground from "../Background/PixelArtbg";
+import "./Venue.css";
 
 export const Venue = () => {
   const [backgroundError, setBackgroundError] = useState(false);
 
   useEffect(() => {
     try {
-      console.log('Attempting to load PixelArtBackground in Venue');
+      console.log("Attempting to load PixelArtBackground in Venue");
       if (!PixelArtBackground) {
-        throw new Error('PixelArtBackground component is undefined');
+        throw new Error("PixelArtBackground component is undefined");
       }
     } catch (error) {
-      console.error('Error with PixelArtBackground:', error);
+      console.error("Error with PixelArtBackground:", error);
       setBackgroundError(true);
     }
   }, []);
@@ -36,7 +36,7 @@ export const Venue = () => {
             initialPlusSigns={40}
             className="background-canvas"
             onError={() => {
-              console.error('PixelArtBackground failed to render in Venue');
+              console.error("PixelArtBackground failed to render in Venue");
               setBackgroundError(true);
             }}
           />
@@ -49,9 +49,7 @@ export const Venue = () => {
       {/* Main Content */}
       <div className="content-container">
         {/* Event Title */}
-        <h1 className="event-title">
-          Hackathon 2025 Venue
-        </h1>
+        <h1 className="event-title">Hackathon 2025 Venue</h1>
 
         {/* Venue Details Section */}
         <section className="venue-details">
@@ -59,19 +57,22 @@ export const Venue = () => {
           <div className="details-grid">
             <div>
               <p className="detail-item">
-                <span className="detail-label">Venue:</span> Conference Hall, KV Institute of Management and Information Studies
+                <span className="detail-label">Venue:</span> Conference Hall, KV
+                Institute of Management and Information Studies
               </p>
               <p className="detail-item">
-                <span className="detail-label">Address:</span> 545 Sathy Main Road, Kurumbapalayam-PO, Coimbatore, Tamil Nadu - 641107, India
+                <span className="detail-label">Address:</span> 545 Sathy Main
+                Road, Kurumbapalayam-PO, Coimbatore, Tamil Nadu - 641107, India
               </p>
               <p className="detail-item">
                 <span className="detail-label">Date:</span> May 23, 2025
               </p>
               <p className="detail-item">
-                <span className="detail-label">Time:</span> 9:00 AM - 6:00 PM IST
+                <span className="detail-label">Time:</span> 9:00 AM - 6:00 PM
+                IST
               </p>
               <p className="detail-item">
-                <span className="detail-label">Contact:</span>{' '}
+                <span className="detail-label">Contact:</span>{" "}
                 <a href="mailto:events@kvimis.ac.in" className="link">
                   events@kvimis.ac.in
                 </a>
@@ -79,13 +80,14 @@ export const Venue = () => {
             </div>
             <div>
               <p className="detail-item">
-                <span className="detail-label">Organizers:</span> KVIM in collaboration with StartupTN
+                <span className="detail-label">Organizers:</span> KVIM in
+                collaboration with StartupTN
               </p>
               <p className="detail-item">
                 <span className="detail-label">Capacity:</span> 300 participants
               </p>
               <p className="detail-item">
-                <span className="detail-label">Registration:</span>{' '}
+                <span className="detail-label">Registration:</span>{" "}
                 <a
                   href="https://example.com/register"
                   className="link"
@@ -116,10 +118,8 @@ export const Venue = () => {
         </section>
 
         {/* Logistics Section */}
-        
 
         {/* Call to Action */}
-        
       </div>
     </div>
   );

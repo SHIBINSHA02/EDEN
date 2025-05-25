@@ -1,6 +1,5 @@
 // src/Components/Schedule/Schedule.jsx
-import React from 'react';
-import PixelArtBackground from '../Background/PixelArtbg'; // Adjust the import path as necessary
+import PixelArtBackground from "../Background/PixelArtbg"; // Adjust the import path as necessary
 
 export const Schedule = () => {
   return (
