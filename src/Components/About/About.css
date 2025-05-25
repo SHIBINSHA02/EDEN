@@ -19,11 +19,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack items vertically to support block button */
+  flex-direction: column; /* Stack items vertically */
   align-items: center; /* Center items horizontally */
   z-index: 2; /* Ensure content is above background */
   width: 85%; /* Default width */
-  max-width: 1200px; /* Prevent excessive stretching on large screens */
+  max-width: 1200px; /* Prevent excessive stretching */
   background: rgba(118, 43, 154, 0.3); /* #762b9a with 30% opacity */
   padding: 30px;
   border-radius: 15px;
@@ -39,25 +39,51 @@
   margin: 0; /* Remove default margin */
 }
 
-.about-content button {
-  display: block; /* Ensure button is block-level */
+.button-container {
+  display: flex; /* Inline buttons */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: 20px; /* Space between buttons */
+  justify-content: center; /* Center buttons horizontally */
+  margin-top: 20px; /* Space above buttons */
+}
+
+.about-content button.primary-button {
   width: 300px; /* Fixed width */
   height: 75px;
   padding: 10px 20px; /* Button padding */
   font-size: 2rem; /* Button font size */
-  background-color: #efc0ff; /* Button background color */
+  background-color: #efc0ff; /* Primary button background */
   color: rgb(0, 0, 0); /* Button text color */
   border: none; /* Remove border */
   border-radius: 15px; /* Rounded corners */
   cursor: pointer; /* Pointer cursor on hover */
   font-family: 'Minecraft', sans-serif; /* Apply Minecraft font */
-  margin: 30px auto; /* Center button horizontally */
   transition: background-color 0.3s, color 0.3s; /* Smooth hover transitions */
 }
 
-.about-content button:hover {
-  background-color: #762b9a; /* Darker shade on hover */
+.about-content button.primary-button:hover {
+  background-color: #762b9a; /* Original darker shade on hover */
   color: beige;
+}
+
+.about-content button.secondary-button {
+  width: 300px; /* Same width as primary for consistency */
+  height: 75px;
+  padding: 10px 20px;
+  font-size: 2rem;
+  background-color: transparent; /* Transparent background */
+  color: white; /* Text color */
+  border: 2px solid #efc0ff; /* Green border */
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: 'Minecraft', sans-serif;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions for background and text */
+}
+
+.about-content button.secondary-button:hover {
+  background-color: #762b9a; /* Same as primary button hover */
+  color: beige; /* Same as primary button hover */
+  border: 2px solid #efc0ff; /* Retain border for consistency */
 }
 
 /* Media query for mobile screens (up to 768px) */
@@ -69,16 +95,21 @@
 
   .about-content p {
     font-size: 1.5rem; /* Smaller font size for mobile */
-    padding: 0 10px; /* Reduced padding */
+    padding: 0 10px;
   }
 
-  .about-content button {
+  .button-container {
+    gap: 15px; /* Reduced gap */
+    flex-direction: row; /* Keep inline, wrap if needed */
+  }
+
+  .about-content button.primary-button,
+  .about-content button.secondary-button {
     width: 80%; /* Wider button relative to container */
-    max-width: 250px; /* Cap width for smaller screens */
-    height: 80px; /* Slightly shorter button */
+    max-width: 250px; /* Cap width */
+    height: 80px; /* Slightly shorter */
     font-size: 1.5rem; /* Smaller font size */
     padding: 8px 16px; /* Adjusted padding */
-    margin: 20px auto; /* Reduced margin */
   }
 }
 
@@ -94,12 +125,16 @@
     padding: 0 12px;
   }
 
-  .about-content button {
-    width: 250px; /* Slightly smaller button width */
+  .button-container {
+    gap: 18px; /* Slightly reduced gap */
+  }
+
+  .about-content button.primary-button,
+  .about-content button.secondary-button {
+    width: 250px; /* Smaller button width */
     height: 90px; /* Slightly shorter */
     font-size: 1.8rem; /* Adjusted font size */
     padding: 10px 18px;
-    margin: 25px auto;
   }
 }
 
@@ -115,12 +150,19 @@
     padding: 0 8px;
   }
 
-  .about-content button {
+  .button-container {
+    gap: 10px; /* Smaller gap */
+    flex-direction: column; /* Stack buttons on very small screens */
+    align-items: center;
+  }
+
+  .about-content button.primary-button,
+  .about-content button.secondary-button {
     width: 90%; /* Full width relative to container */
     max-width: 200px; /* Smaller max width */
     height: 70px; /* Shorter button */
     font-size: 1.2rem; /* Smaller font size */
     padding: 6px 12px; /* Reduced padding */
-    margin: 15px auto; /* Smaller margin */
   }
 }
+
