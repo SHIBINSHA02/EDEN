@@ -196,9 +196,6 @@ export const Home = ({ heroData }) => {
                 );
               }}
             />
-            <div className="subtitle-text">
-              Innovate • Collaborate • Transform
-            </div>
             <img
               src={cloud1.src || "/placeholder.svg"}
               alt="Background cloud"
