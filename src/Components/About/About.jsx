@@ -11,7 +11,7 @@ export const About = ({ description, buttonText }) => {
     const pdfUrl = "./MODULE.pdf"; // Assumes schedule.pdf is in the public directory
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = 'MODULE.pdf'; // Corrected file name for download
+    link.download = './MODULE.pdf'; // Corrected file name for download
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
