@@ -4,11 +4,122 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: transparent;
+  background: linear-gradient(
+    135deg,
+    #0a0a0a 0%,
+    #1a0a2e 30%,
+    #16213e 70%,
+    #0f3460 100%
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.home-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 119, 198, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(120, 219, 255, 0.2) 0%,
+      transparent 50%
+    );
+  animation: gradientShift 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.floating-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.particle-1 {
+  width: 4px;
+  height: 4px;
+  background: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 8s;
+}
+
+.particle-2 {
+  width: 6px;
+  height: 6px;
+  background: rgba(192, 132, 252, 0.7);
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.9);
+  top: 60%;
+  left: 80%;
+  animation-delay: 2s;
+  animation-duration: 10s;
+}
+
+.particle-3 {
+  width: 3px;
+  height: 3px;
+  background: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
+  top: 80%;
+  left: 30%;
+  animation-delay: 4s;
+  animation-duration: 12s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-5px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-20px) translateX(-10px);
+    opacity: 0.8;
+  }
 }
 
 .gridding {
@@ -44,7 +155,7 @@
   justify-content: center;
   z-index: 5;
   width: 50%;
-  opacity: 1; /* MODIFIED: Remove initial opacity transition */
+  opacity: 1;
 }
 
 .title-image {
@@ -55,6 +166,52 @@
   position: relative;
   display: block;
   margin: 0 auto;
+  filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.6))
+    drop-shadow(0 0 60px rgba(192, 132, 252, 0.4));
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% {
+    filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.6))
+      drop-shadow(0 0 60px rgba(192, 132, 252, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.8))
+      drop-shadow(0 0 80px rgba(192, 132, 252, 0.6))
+      drop-shadow(0 0 120px rgba(168, 85, 247, 0.3));
+  }
+}
+
+.subtitle-text {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "frisky", "Orbitron", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.8),
+    0 0 40px rgba(139, 92, 246, 0.6);
+  animation: subtitleFloat 4s ease-in-out infinite;
+  z-index: 4;
+  white-space: nowrap;
+}
+
+@keyframes subtitleFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(-50%) translateY(-5px);
+    opacity: 1;
+  }
 }
 
 /* UNCHANGED: Position title-background-cloud relative to parent .center-title */
@@ -86,7 +243,8 @@
 .cloud-image1.loaded-final,
 .cloud-image2.loaded-final,
 .cloud-image3.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, z-index 0ms 1500ms; /* MODIFIED: Only top/right/z-index transitions */
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
+    z-index 0ms 1500ms; /* MODIFIED: Only top/right/z-index transitions */
   will-change: transform; /* MODIFIED: Add will-change during animation */
 }
 
@@ -108,7 +266,8 @@
 
 /* UNCHANGED: Final positions and z-index when .loaded-final is applied */
 .cloud-image1.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, transform 1000ms ease-in-out, z-index 0ms 1500ms;
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
+    transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 30%;
   right: 25%;
   z-index: 3;
@@ -116,7 +275,8 @@
 }
 
 .cloud-image2.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, transform 1000ms ease-in-out, z-index 0ms 1500ms;
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
+    transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 70%;
   right: 45%;
   z-index: 3;
@@ -124,7 +284,8 @@
 }
 
 .cloud-image3.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, transform 1000ms ease-in-out, z-index 0ms 1500ms;
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
+    transform 1000ms ease-in-out, z-index 0ms 1500ms;
   top: 20%;
   right: 70%;
   z-index: 3;
@@ -238,6 +399,12 @@
     width: 80%;
   }
 
+  .subtitle-text {
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    top: 115%;
+  }
+
   /* UNCHANGED: Adjust title-background-cloud for mobile */
   .title-background-cloud {
     top: 130%;
@@ -293,7 +460,7 @@
     width: 90%; /* More width utilization on mobile */
     max-width: none; /* Remove max-width constraint on mobile */
   }
-  
+
   .countdown-container .countdown-timer {
     font-size: 1.1em;
     letter-spacing: 1px;
@@ -303,7 +470,7 @@
   .countdown-container.close-to-title {
     top: 110%;
   }
-  
+
   .countdown-container.below-cloud {
     top: 180%;
   }
