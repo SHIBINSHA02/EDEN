@@ -223,14 +223,6 @@
 }
 
 @media (max-width: 640px) {
-  .grid-cols-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-cols-2 {
-    grid-template-columns: 1fr;
-  }
-
   .sponsor-box {
     min-height: 100px;
   }

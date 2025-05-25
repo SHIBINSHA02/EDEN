@@ -11,13 +11,13 @@ export const Sponsors = () => {
     >
       <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
 
-      <div className="relative flex flex-col justify-center items-center z-10 px-8 py-16">
+      <div className="relative flex flex-col justify-center items-center z-10 px-4 sm:px-6 md:px-8 py-12 sm:py-16">
         {/* Title Sponsors Section */}
-        <div className="mb-16 w-full max-w-6xl">
-          <h2 className="text-white text-4xl md:text-5xl font-bold text-center mb-12 minecraft-font tracking-wider">
+        <div className="mb-12 sm:mb-16 w-full max-w-6xl">
+          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
             TITLE SPONSORS
           </h2>
-          <div className="grid grid-cols-3 gap-8 md:gap-12 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12 mb-8">
             {[...Array(3)].map((_, index) => (
               <div
                 key={index}
@@ -25,7 +25,7 @@ export const Sponsors = () => {
               />
             ))}
           </div>
-          <div className="grid grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {[...Array(3)].map((_, index) => (
               <div
                 key={index + 3}
@@ -36,11 +36,11 @@ export const Sponsors = () => {
         </div>
 
         {/* Community Partner Section */}
-        <div className="mb-16 w-full max-w-4xl">
-          <h2 className="text-white text-3xl md:text-4xl font-bold text-center mb-12 minecraft-font tracking-wider">
+        <div className="mb-12 sm:mb-16 w-full max-w-4xl">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
             COMMUNITY PARTNER
           </h2>
-          <div className="grid grid-cols-2 gap-8 md:gap-12 justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center">
             {[...Array(2)].map((_, index) => (
               <div
                 key={index}
@@ -52,7 +52,7 @@ export const Sponsors = () => {
 
         {/* Energy Partner Section - Red Bull Special */}
         <div className="w-full max-w-2xl">
-          <h2 className="text-white text-3xl md:text-4xl font-bold text-center mb-12 minecraft-font tracking-wider">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
             ENERGY PARTNER
           </h2>
           <div className="flex justify-center">

@@ -1,221 +1,250 @@
 .FooterWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 5vh 5vw 3vh;
-    background: #a56eb7;
-    width: 100%;
-    gap: 30px;
-    color: white;
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5vh 5vw 3vh;
+  background: #000;
+  width: 100%;
+  gap: 30px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  font-family: "Minecraft", "Minecraftchmc", monospace;
+  box-shadow: 0 -4px 20px rgba(139, 92, 246, 0.2);
+  text-shadow: 0 0 10px rgba(225, 183, 252, 0.3);
 }
 
 .FooterWrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e1b7fc,
+    #b678e6,
+    #e1b7fc,
+    transparent
+  );
 }
 
 .topFooter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5vh;
-    position: relative;
-    z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5vh;
+  position: relative;
+  z-index: 1;
 }
 
 .topFooter > div {
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .topFooter svg {
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-    transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
 }
 
 .topFooter svg:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .topFooter a,
 .topFooter p {
-    color: white;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 5px 0;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 5px 0;
+  font-family: "Minecraft", "Minecraftchmc", monospace;
 }
 
 .topFooter a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: white;
-    transition: width 0.3s ease;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #e1b7fc, #b678e6);
+  transition: width 0.3s ease;
 }
 
 .topFooter a:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
 .socialMedia {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .socialMedia a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: white;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 50px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: 2px solid #a855f7;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  font-family: "Minecraft", "Minecraftchmc", monospace;
 }
 
 .socialMedia a:hover {
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  border-color: #9333ea;
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .socialMedia svg {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .socialMedia a:hover svg {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .line {
-    width: 80%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    margin: 10px 0;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e1b7fc,
+    #b678e6,
+    #e1b7fc,
+    transparent
+  );
+  margin: 15px 0;
+  border-radius: 1px;
 }
 
 .ptag {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    opacity: 0.9;
-    position: relative;
-    z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+  font-family: "Minecraft", "Minecraftchmc", monospace;
 }
 
 .ptag p {
-    text-align: center;
-    line-height: 1.5;
+  text-align: center;
+  line-height: 1.5;
 }
 
 /* Floating dots background animation */
 .FooterWrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    animation: floatingDots 15s linear infinite;
-    opacity: 0.5;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(225, 183, 252, 0.2) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  animation: floatingDots 15s linear infinite;
+  opacity: 0.6;
 }
 
 @keyframes floatingDots {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 20px 20px;
-    }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
 }
 
 @media (max-width: 768px) {
-    .FooterWrapper {
-        padding: 4vh 4vw 2vh;
-        gap: 25px;
-    }
+  .FooterWrapper {
+    padding: 4vh 4vw 2vh;
+    gap: 25px;
+  }
 
-    .socialMedia {
-        gap: 20px;
-    }
+  .socialMedia {
+    gap: 20px;
+  }
 
-    .socialMedia a {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-    }
+  .socialMedia a {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
 
-    .topFooter > div {
-        gap: 20px;
-    }
+  .topFooter > div {
+    gap: 20px;
+  }
 
-    .ptag {
-        font-size: 0.85rem;
-    }
+  .ptag {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .FooterWrapper {
-        padding: 3vh 3vw 2vh;
-        gap: 20px;
-    }
+  .FooterWrapper {
+    padding: 3vh 3vw 2vh;
+    gap: 20px;
+  }
 
-    .socialMedia {
-        gap: 15px;
-    }
+  .socialMedia {
+    gap: 15px;
+  }
 
-    .socialMedia a {
-        padding: 5px 10px;
-        font-size: 0.8rem;
-    }
+  .socialMedia a {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
 
-    .topFooter > div {
-        gap: 15px;
-    }
+  .topFooter > div {
+    gap: 15px;
+  }
 
-    .ptag {
-        font-size: 0.8rem;
-    }
+  .ptag {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 350px) {
-    .FooterWrapper {
-        padding: 2vh 2vw 1vh;
-        font-size: 0.75rem;
-    }
+  .FooterWrapper {
+    padding: 2vh 2vw 1vh;
+    font-size: 0.75rem;
+  }
 
-    .socialMedia a {
-        padding: 4px 8px;
-        font-size: 0.75rem;
-    }
+  .socialMedia a {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
 
-    .ptag {
-        font-size: 0.75rem;
-    }
+  .ptag {
+    font-size: 0.75rem;
+  }
 }
