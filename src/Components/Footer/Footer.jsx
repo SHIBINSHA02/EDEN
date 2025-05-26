@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PixelArtBackground from "../Background/PixelArtbg";
 import "./Footer.css";
+import { FaLinkedinIn, FaInstagram, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 export const Footer = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -56,7 +57,9 @@ export const Footer = () => {
             className="social-minimal linkedin"
             aria-label="LinkedIn"
           >
-            <div className="social-icon-minimal">in</div>
+            <div className="social-icon-minimal">
+              <FaLinkedinIn />
+            </div>
           </a>
           <a
             href={data.instagram}
@@ -65,7 +68,9 @@ export const Footer = () => {
             className="social-minimal instagram"
             aria-label="Instagram"
           >
-            <div className="social-icon-minimal">ig</div>
+            <div className="social-icon-minimal">
+              <FaInstagram />
+            </div>
           </a>
           <a
             href={data.twitter}
@@ -74,20 +79,24 @@ export const Footer = () => {
             className="social-minimal twitter"
             aria-label="Twitter"
           >
-            <div className="social-icon-minimal">tw</div>
+            <div className="social-icon-minimal">
+              <FaTwitter />
+            </div>
           </a>
           <a
             href={`mailto:${data.email}`}
             className="social-minimal email"
             aria-label="Email"
           >
-            <div className="social-icon-minimal">@</div>
+            <div className="social-icon-minimal">
+              <FaEnvelope />
+            </div>
           </a>
         </div>
 
         {/* Copyright */}
         <div className="footer-copyright-minimal">
-          <p>© {currentYear} EDEN 4.0 • Powered by µLearn</p>
+          <p>© {currentYear} EDEN 4.0 • Powered by Inspira Marian IEDC</p>
           <div className="footer-badge-minimal">
             <span>BUILT FOR INNOVATORS</span>
           </div>
