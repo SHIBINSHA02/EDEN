@@ -73,15 +73,18 @@
 /* Card title styles */
 .prize-title-container {
   margin-bottom: 1rem;
+  position: relative; /* Ensure positioning adjustments work */
 }
 
 .prize-card-title {
-  font-size: 2rem;
+  font-size: 2.5rem; /* Increased font size */
   font-weight: bold;
   color: #ffffff;
   text-shadow: 
     0 0 10px rgba(255, 255, 255, 0.8), /* Glow effect */
     0 0 20px rgba(255, 255, 255, 0.6);
+  text-align: center; /* Center-align the text */
+  transform: translateX(-4rem); /* Shift the text slightly to the left */
 }
 
 /* Section spacing */
