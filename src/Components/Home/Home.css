@@ -146,7 +146,7 @@
 
 .center-title {
   position: absolute;
-  top: 100%;
+  top: calc(100% - 40px);
   left: 33%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -228,7 +228,8 @@
 .cloud-image1.loaded-final,
 .cloud-image2.loaded-final,
 .cloud-image3.loaded-final {
-  transition: top 1500ms ease-in-out, right 1500ms ease-in-out, z-index 0ms 1500ms;
+  transition: top 1500ms ease-in-out, right 1500ms ease-in-out,
+    z-index 0ms 1500ms;
   will-change: top, right;
 }
 

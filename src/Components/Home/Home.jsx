@@ -23,19 +23,22 @@ export const Home = ({ heroData }) => {
       const titleDistance = isMobile ? 40 : 100;
 
       setTimeout(() => {
-        titleImageElement.animate(
-          [
-            { transform: "translateY(0)" },
-            { transform: `translateY(-${titleDistance}px)` },
-          ],
-          {
-            duration: 1500,
-            easing: "ease-in-out",
-            fill: "forwards",
-          }
-        ).finished.then(() => {
-          titleImageElement.style.transform = `translateY(-${titleDistance}px)`;
-        }).catch(() => {});
+        titleImageElement
+          .animate(
+            [
+              { transform: "translateY(0)" },
+              { transform: `translateY(-${titleDistance}px)` },
+            ],
+            {
+              duration: 1500,
+              easing: "ease-in-out",
+              fill: "forwards",
+            }
+          )
+          .finished.then(() => {
+            titleImageElement.style.transform = `translateY(-${titleDistance}px)`;
+          })
+          .catch(() => {});
       }, 600);
     }
   }, []);
@@ -127,8 +130,9 @@ export const Home = ({ heroData }) => {
     ];
 
     // Start looping animations after initial transition
-    const animations = cloudAnimations.map(({ element, keyframes, options }) =>
-      element.animate(keyframes, { ...options, delay: 2100 }) // Delay to wait for CSS transition
+    const animations = cloudAnimations.map(
+      ({ element, keyframes, options }) =>
+        element.animate(keyframes, { ...options, delay: 2100 }) // Delay to wait for CSS transition
     );
 
     // Cleanup animations on unmount
@@ -161,7 +165,12 @@ export const Home = ({ heroData }) => {
               src={titleImage.src || "/placeholder.svg"}
               alt={titleImage.alt}
               className="title-image"
-              style={{ visibility: "hidden", width: "50%", height: "auto" }}
+              style={{
+                visibility: "hidden",
+                width: "50%",
+                height: "auto",
+                marginTop: "40px",
+              }}
             />
             <div className="countdown-container close-to-title">
               <Countdown targetDate={targetDate} />
