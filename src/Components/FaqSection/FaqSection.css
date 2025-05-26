@@ -1,0 +1,29 @@
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effect for FAQ items */
+.faq-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+/* Plus icon rotation animation */
+.plus-icon {
+  transition: transform 0.3s ease;
+}
+
+.plus-icon.open {
+  transform: rotate(45deg);
+} 

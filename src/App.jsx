@@ -15,6 +15,7 @@ import FriskyFont from "./fonts/Frisky.ttf";
 import MinecraftFont from "./fonts/Minecraftchmc.ttf";
 
 import { Loading } from "./Components/Loading/loading";
+import EventStats from "./Components/EventStats/EventStats";
 
 function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
@@ -72,6 +73,7 @@ function App() {
       <Prize />
       <Schedule />
       <Venue />
+      <EventStats />
       <Sponsors />
       <FaqSection />
       {/* <Judge/> */}
