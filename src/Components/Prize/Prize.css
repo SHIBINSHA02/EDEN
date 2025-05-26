@@ -15,7 +15,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.3; /* Slight transparency for the background */
+  opacity: 1; /* Slight transparency for the background */
 }
 
 /* Main content styles */
@@ -33,14 +33,14 @@
 
 /* Card styles */
 .prize-card {
-  background: rgba(76, 7, 70, 0.9); /* Semi-transparent dark background */
-  border-radius: 15px;
+  background: rgba(118, 43, 154, 0.9); 
+  border-radius: 20px;
   padding: 20px; /* Reduced padding */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow */
   width: 100%;
   max-width: 600px; /* Reduced width */
   font-family: "Minecraft", "Courier New", monospace;
-  text-align: center;
+  text-align: left;
   color: white;
   display: flex; /* Flexbox for left SVG and content */
   flex-direction: row; /* Align SVG and content horizontally */
@@ -68,6 +68,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: left-right;
 }
 
 /* Card title styles */
@@ -83,7 +84,7 @@
   text-shadow: 
     0 0 10px rgba(255, 255, 255, 0.8), /* Glow effect */
     0 0 20px rgba(255, 255, 255, 0.6);
-  text-align: center; /* Center-align the text */
+  text-align: left; /* Center-align the text */
   transform: translateX(-4rem); /* Shift the text slightly to the left */
 }
 
@@ -97,13 +98,13 @@
 .prize-title {
   font-family: "Frisky", sans-serif; /* Apply Frisky font */
   font-weight: 400; /* Font weight */
-  font-size: 30px; /* Font size */
+  font-size: 35px; /* Font size */
   line-height: 100%; /* Line height */
   letter-spacing: 0%; /* Letter spacing */
   color: white; /* Default text color */
   margin: 0;
   text-shadow:none; /* No glow by default */
-  text-align: center; /* Center-align the text */
+  text-align: left; 
 }
 
 .prize-title:hover {
@@ -127,18 +128,20 @@
 .prize-amount {
   font-family: "Frisky", sans-serif; /* Apply Frisky font */
   font-weight: 400; /* Font weight */
-  font-size: 40px; /* Font size */
+  font-size: 26px; /* Font size */
   line-height: 100%; /* Line height */
+  width: 20px; /* Width of the element */
   letter-spacing: 0%; /* Letter spacing */
   color: #e5e7eb; /* Light gray color */
-  margin-top: 0.25rem;
-  text-align: center; /* Center-align the text */
+  margin-top: 0.25rem; /* Top margin */
+  text-align: left; /* Align the text to the left */
 }
+
 
 /* Separator line */
 .separator-line {
   height: 1px;
-  background-color: #4b5563; /* Gray color */
+  background-color: #e7e8ea; /* Gray color */
   width: 75%;
   margin: 1rem auto; /* Reduced spacing */
 }

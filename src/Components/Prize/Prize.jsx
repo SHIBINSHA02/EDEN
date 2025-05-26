@@ -38,10 +38,6 @@ export const Prize = () => {
 
           {/* Card Content */}
           <div className="prize-card-content">
-            {/* Card Title */}
-            <div className="prize-title-container">
-              <h1 className="prize-card-title">PRIZE POOL</h1>
-            </div>
 
             {/* Winners Section */}
             <div
@@ -50,11 +46,11 @@ export const Prize = () => {
               onMouseLeave={() => setActivePrize("hot_ballon")}
             >
               <h2 className="prize-title text-gold">WINNERS</h2>
-              <p className="prize-amount">25,000 RS</p>
+              <p className="prize-amount">25,000RS</p>
             </div>
 
             <div className="separator-line"></div>
-            
+
             {/* 1st Runner Up */}
             <div
               className="prize-section"
@@ -62,10 +58,11 @@ export const Prize = () => {
               onMouseLeave={() => setActivePrize("hot_ballon")}
             >
               <h3 className="prize-title text-silver">1ST RUNNER UP</h3>
-              <p className="prize-amount">15,000 RS</p>
+              <p className="prize-amount">15,000RS</p>
             </div>
+
             <div className="separator-line"></div>
-            
+
             {/* 2nd Runner Up */}
             <div
               className="prize-section"
@@ -73,8 +70,8 @@ export const Prize = () => {
               onMouseLeave={() => setActivePrize("hot_ballon")}
             >
               <h3 className="prize-title text-bronze">2ND RUNNER UP</h3>
-              <p className="prize-amount">10,000 RS</p>
-            </div>  
+              <p className="prize-amount">10,000RS</p>
+            </div>
           </div>
         </div>
       </div>
