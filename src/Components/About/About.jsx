@@ -4,7 +4,7 @@ import './About.css';
 
 export const About = ({ description, buttonText }) => {
   const handleClick = () => {
-    window.location.href = "https://www.youtube.com/";
+    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUJcmljayByb2xs";
   };
 
   const handleDownload = () => {
