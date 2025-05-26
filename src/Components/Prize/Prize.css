@@ -97,12 +97,12 @@
 .prize-title {
   font-family: "Frisky", sans-serif; /* Apply Frisky font */
   font-weight: 400; /* Font weight */
-  font-size: 90px; /* Font size */
+  font-size: 30px; /* Font size */
   line-height: 100%; /* Line height */
   letter-spacing: 0%; /* Letter spacing */
   color: white; /* Default text color */
   margin: 0;
-  text-shadow: none; /* No glow by default */
+  text-shadow:none; /* No glow by default */
   text-align: center; /* Center-align the text */
 }
 
@@ -127,7 +127,7 @@
 .prize-amount {
   font-family: "Frisky", sans-serif; /* Apply Frisky font */
   font-weight: 400; /* Font weight */
-  font-size: 90px; /* Font size */
+  font-size: 40px; /* Font size */
   line-height: 100%; /* Line height */
   letter-spacing: 0%; /* Letter spacing */
   color: #e5e7eb; /* Light gray color */
