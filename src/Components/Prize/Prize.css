@@ -95,11 +95,15 @@
 
 /* Text glow effect */
 .prize-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 0.05em;
+  font-family: "Frisky", sans-serif; /* Apply Frisky font */
+  font-weight: 400; /* Font weight */
+  font-size: 90px; /* Font size */
+  line-height: 100%; /* Line height */
+  letter-spacing: 0%; /* Letter spacing */
+  color: white; /* Default text color */
   margin: 0;
-  text-shadow: none;
+  text-shadow: none; /* No glow by default */
+  text-align: center; /* Center-align the text */
 }
 
 .prize-title:hover {
@@ -121,9 +125,14 @@
 }
 
 .prize-amount {
-  font-size: 1.25rem;
-  color: #e5e7eb;
+  font-family: "Frisky", sans-serif; /* Apply Frisky font */
+  font-weight: 400; /* Font weight */
+  font-size: 90px; /* Font size */
+  line-height: 100%; /* Line height */
+  letter-spacing: 0%; /* Letter spacing */
+  color: #e5e7eb; /* Light gray color */
   margin-top: 0.25rem;
+  text-align: center; /* Center-align the text */
 }
 
 /* Separator line */

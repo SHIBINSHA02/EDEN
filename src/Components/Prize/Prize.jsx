@@ -52,7 +52,7 @@ export const Prize = () => {
               <h2 className="prize-title text-gold">WINNERS</h2>
               <p className="prize-amount">25,000 RS</p>
             </div>
-            
+
             <div className="separator-line"></div>
             
             {/* 1st Runner Up */}
@@ -64,7 +64,6 @@ export const Prize = () => {
               <h3 className="prize-title text-silver">1ST RUNNER UP</h3>
               <p className="prize-amount">15,000 RS</p>
             </div>
-            
             <div className="separator-line"></div>
             
             {/* 2nd Runner Up */}
@@ -75,7 +74,7 @@ export const Prize = () => {
             >
               <h3 className="prize-title text-bronze">2ND RUNNER UP</h3>
               <p className="prize-amount">10,000 RS</p>
-            </div>
+            </div>  
           </div>
         </div>
       </div>
