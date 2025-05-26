@@ -41,6 +41,7 @@
   padding: 0 15px;
   margin-bottom: 20px;
   letter-spacing: normal; /* Default letter spacing for desktop */
+  white-space: pre-wrap; /* Preserve line breaks */
 }
 
 .button-container {
@@ -98,6 +99,7 @@
     width: 95%;
     min-height: 80vh;
     padding: 30px; /* Increased padding for mobile */
+    align-items: stretch; /* Make content stretch to container width */
   }
 
   .about-content p {
@@ -105,24 +107,29 @@
     padding: 10px; /* Adjusted padding for mobile description */
     margin-bottom: 25px; /* Increased margin below description */
     letter-spacing: 0.05em; /* Increased letter spacing for mobile description */
+    text-align: left; /* Left align text on mobile */
   }
 
   .button-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px; /* Increased gap between buttons on mobile */
+    display: flex; /* Make button container a flex container */
+    flex-direction: row; /* Arrange items in a row */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Adjust gap between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
   }
 
   .about-content button.primary-button,
   .about-content button.secondary-button {
-    width: 100%;
-    font-size: 1.8rem; /* Increased font size for mobile buttons */
-    padding: 15px 20px; /* Increased padding for mobile buttons */
-    height: auto;
+    font-size: 1.8rem; /* Keep the font size the same as current mobile */
+    padding: 15px 20px; /* Keep the padding the same as current mobile */
+    height: auto; /* Allow height to adjust based on content */
+    width: auto; /* Allow width to adjust based on content */
+    min-width: 150px; /* Ensure a minimum width for each button */
   }
 
   .button-wrapper {
-    width: 100%;
+    width: auto; /* Adjust width to content */
+    margin: 0; /* Remove default margins that might affect inline layout */
   }
 }
 
@@ -165,7 +172,23 @@
 
   .about-content button.primary-button,
   .about-content button.secondary-button {
-    font-size: 1.6rem;
-    padding: 12px 18px;
+    font-size: 1.6rem; /* Keep the font size consistent */
+    padding: 12px 18px; /* Keep the padding consistent */
+    min-width: 120px; /* Adjust minimum width for smaller screens */
   }
+}
+
+.typing-animation {
+  white-space: pre-wrap; /* Preserve line breaks */
+  border-right: .15em solid rgb(166, 0, 255); /* Cursor effect */
+  overflow: hidden; /* Ensure the cursor stays within the text boundaries */
+}
+
+@keyframes blinking-cursor {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(162, 0, 255); }
+}
+
+.typing-animation {
+  animation: blinking-cursor .75s step-end infinite; /* Apply only the blinking animation */
 }
