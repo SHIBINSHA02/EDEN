@@ -1,0 +1,172 @@
+/* General container styles */
+.prize-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6b21a8, #4c1d95); /* Purple gradient background */
+}
+
+/* Background styles */
+.pixel-art-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 1; /* Slight transparency for the background */
+}
+
+/* Main content styles */
+.prize-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Reduced width */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Card styles */
+.prize-card {
+  background: rgba(118, 43, 154, 0.9); 
+  border-radius: 20px;
+  padding: 20px; /* Reduced padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  width: 100%;
+  max-width: 600px; /* Reduced width */
+  font-family: "Minecraft", "Courier New", monospace;
+  text-align: left;
+  color: white;
+  display: flex; /* Flexbox for left SVG and content */
+  flex-direction: row; /* Align SVG and content horizontally */
+  align-items: center;
+  position: relative;
+}
+
+/* Left image styles */
+.prize-left-image {
+  flex-shrink: 0; /* Prevent the image from shrinking */
+  width: 100px;
+  height: 100px;
+  margin-right: 20px; /* Space between the SVG and content */
+}
+
+.prize-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Card content styles */
+.prize-card-content {
+  flex: 1; /* Allow the content to take up remaining space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: left-right;
+}
+
+/* Card title styles */
+.prize-title-container {
+  margin-bottom: 1rem;
+  position: relative; /* Ensure positioning adjustments work */
+}
+
+.prize-card-title {
+  font-size: 2.5rem; /* Increased font size */
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8), /* Glow effect */
+    0 0 20px rgba(255, 255, 255, 0.6);
+  text-align: left; /* Center-align the text */
+  transform: translateX(-4rem); /* Shift the text slightly to the left */
+}
+
+/* Section spacing */
+.prize-section {
+  margin-bottom: 1rem; /* Reduced spacing */
+  transition: text-shadow 0.3s ease;
+}
+
+/* Text glow effect */
+.prize-title {
+  font-family: "Frisky", sans-serif; /* Apply Frisky font */
+  font-weight: 400; /* Font weight */
+  font-size: 35px; /* Font size */
+  line-height: 100%; /* Line height */
+  letter-spacing: 0%; /* Letter spacing */
+  color: white; /* Default text color */
+  margin: 0;
+  text-shadow:none; /* No glow by default */
+  text-align: left; 
+}
+
+.prize-title:hover {
+  text-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.8), /* Glow effect */
+    0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.prize-title.text-silver:hover {
+  text-shadow: 
+    0 0 10px rgba(192, 192, 192, 0.8), /* Silver glow */
+    0 0 20px rgba(192, 192, 192, 0.6);
+}
+
+.prize-title.text-bronze:hover {
+  text-shadow: 
+    0 0 10px rgba(205, 127, 51, 0.8), /* Bronze glow */
+    0 0 20px rgba(205, 127, 51, 0.6);
+}
+
+.prize-amount {
+  font-family: "Frisky", sans-serif; /* Apply Frisky font */
+  font-weight: 400; /* Font weight */
+  font-size: 26px; /* Font size */
+  line-height: 100%; /* Line height */
+  width: 20px; /* Width of the element */
+  letter-spacing: 0%; /* Letter spacing */
+  color: #e5e7eb; /* Light gray color */
+  margin-top: 0.25rem; /* Top margin */
+  text-align: left; /* Align the text to the left */
+}
+
+
+/* Separator line */
+.separator-line {
+  height: 1px;
+  background-color: #e7e8ea; /* Gray color */
+  width: 75%;
+  margin: 1rem auto; /* Reduced spacing */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .prize-card {
+    flex-direction: column; /* Stack SVG and content vertically on smaller screens */
+    align-items: center;
+  }
+
+  .prize-left-image {
+    margin-right: 0; /* Remove margin when stacked */
+    margin-bottom: 15px; /* Add spacing below the SVG */
+  }
+
+  .prize-card-title {
+    font-size: 1.5rem;
+  }
+
+  .prize-title {
+    font-size: 1.25rem;
+  }
+
+  .prize-amount {
+    font-size: 1rem;
+  }
+}
