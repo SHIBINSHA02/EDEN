@@ -4,7 +4,7 @@ import "./App.css";
 import { Home } from "./Components/Home/Home";
 import { About } from "./Components/About/About";
 import { Prize } from "./Components/Prize/Prize";
-import { Schedule } from "./Components/Schedule/Schedule";
+// import { Schedule } from "./Components/Schedule/Schedule";
 import { Venue } from "./Components/Venue/Venue";
 import { FaqSection } from "./Components/FaqSection/FaqSection";
 import { Sponsors } from "./Components/Sponsors/Sponsors";
@@ -71,7 +71,7 @@ function App() {
       />
 
       <Prize />
-      <Schedule />
+      {/* <Schedule /> */}
       <Venue />
       <EventStats />
       <Sponsors />
