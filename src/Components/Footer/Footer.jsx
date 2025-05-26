@@ -47,22 +47,6 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Quick Stats */}
-        <div className="footer-stats-minimal">
-          <div className="stat-minimal">
-            <span className="stat-number-minimal">48H</span>
-            <span className="stat-label-minimal">Duration</span>
-          </div>
-          <div className="stat-minimal">
-            <span className="stat-number-minimal">500+</span>
-            <span className="stat-label-minimal">Hackers</span>
-          </div>
-          <div className="stat-minimal">
-            <span className="stat-number-minimal">50K+</span>
-            <span className="stat-label-minimal">Prizes</span>
-          </div>
-        </div>
-
         {/* Social Links */}
         <div className="footer-social-minimal">
           <a
