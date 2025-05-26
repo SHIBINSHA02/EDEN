@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PixelArtBackground from "../Background/PixelArtbg";
+import "./FaqSection.css";
 
 const faqData = [
   {
@@ -30,21 +31,21 @@ export const FaqSection = () => {
         <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
       </div>
       
-      <div className="relative flex w-full max-w-screen-lg z-10 px-8 items-start">
-        {/* Left side: FAQ heading */}
-        <div className="w-1/3 flex justify-start items-start text-white text-6xl font-bold minecraft-font -ml-8">
+      <div className="relative flex flex-col md:flex-row w-full max-w-screen-lg z-10 px-4 md:px-8 items-start">
+        {/* FAQ heading */}
+        <div className="w-full md:w-1/3 flex justify-start items-start text-white text-5xl md:text-6xl font-bold minecraft-font mb-8 md:mb-0 pl-4 md:-ml-8">
           FAQ
         </div>
         
-        {/* Right side: FAQ items */}
-        <div className="w-2/3 flex flex-col items-start space-y-8 pl-8">
+        {/* FAQ items */}
+        <div className="w-full md:w-2/3 flex flex-col items-start space-y-8 md:pl-8">
           {faqData.map((faq, index) => (
             <div key={index} className="w-full text-white minecraft-font">
               <div 
                 className="flex justify-between items-center cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => toggleAnswer(index)}
               >
-                <span className="text-xl pr-8">{faq.question}</span>
+                <span className="text-lg md:text-xl pr-8">{faq.question}</span>
                 <span className="text-2xl transform transition-transform duration-300" style={{
                   transform: openIndex === index ? 'rotate(45deg)' : 'rotate(0deg)'
                 }}>
@@ -52,7 +53,7 @@ export const FaqSection = () => {
                 </span>
               </div>
               {openIndex === index && (
-                <div className="mt-4 text-gray-300 text-lg pl-2 pr-8 pb-4 animate-fadeIn">
+                <div className="mt-4 text-gray-300 text-base md:text-lg pl-2 pr-8 pb-4 animate-fadeIn">
                   {faq.answer}
                 </div>
               )}

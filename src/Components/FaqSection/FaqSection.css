@@ -26,4 +26,10 @@
 
 .plus-icon.open {
   transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+  .minecraft-font {
+    word-break: break-word;
+  }
 } 
