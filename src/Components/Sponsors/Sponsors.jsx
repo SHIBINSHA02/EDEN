@@ -68,7 +68,7 @@ export const Sponsors = () => {
               title="Click to see the full Red Bull experience"
             >
               {/* Red Bull gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-red-600 via-red-500 to-yellow-400 opacity-90"></div>
+              <div className="absolute inset-0  opacity-90"></div>
 
               {/* Animated energy waves */}
               <div className="absolute inset-0 opacity-30">

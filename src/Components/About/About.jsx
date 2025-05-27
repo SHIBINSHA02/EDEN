@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PixelArtBackground from '../Background/PixelArtbg';
 import './About.css';
 
 export const About = ({ description, buttonText }) => {
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < description.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText((prevText) => prevText + description[currentIndex]);
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      }, 50); // Adjust the speed of typing here (milliseconds)
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, description]);
+
   const handleClick = () => {
-    window.location.href = "https://www.youtube.com/";
+    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUJcmljayByb2xs";
   };
 
   const handleDownload = () => {
-    const pdfUrl = "./MODULE.pdf"; // Assumes schedule.pdf is in the public directory
+    const pdfUrl = "./MODDULE.pdf"; // Assumes schedule.pdf is in the public directory
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = 'MODULE.pdf'; // Corrected file name for download
+    link.download = 'MODDULE.pdf'; // Corrected file name for download
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -19,18 +32,15 @@ export const About = ({ description, buttonText }) => {
 
   return (
     <div className="about-container relative w-screen h-screen" id="about">
+      <div className="pixelated-violet-top"></div> {/* New div for the top effect */}
       <PixelArtBackground className="about-background" pixelSize={2} density={1} fadeDuration={3000} />
-      <div className="about-content absolute inset-0 flex justify-center items-center">
+      <div className="about-content">
         <div className="description">
-          <p>{description}</p>
+          <p className="typing-animation">{displayText}</p>
         </div>
         <div className="button-container">
-          <div className="button-wrapper">
-            <button className="primary-button" onClick={handleClick}>{buttonText}</button>
-          </div>
-          <div className="button-wrapper">
-            <button className="secondary-button" onClick={handleDownload}>See Schedule</button>
-          </div>
+          <button className="primary-button" onClick={handleClick}>{buttonText}</button>
+          <button className="secondary-button" onClick={handleDownload}>See Schedule</button>
         </div>
       </div>
     </div>

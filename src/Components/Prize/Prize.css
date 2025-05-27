@@ -1,0 +1,193 @@
+/* General container styles */
+.prize-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6b21a8, #4c1d95); /* Purple gradient background */
+}
+
+/* Background styles */
+.pixel-art-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.9; /* Slightly reduced opacity for background */
+}
+
+/* Main content styles */
+.prize-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 900px; /* Slightly increased for better spacing */
+  padding: 30px; /* Increased padding for breathing room */
+  box-sizing: border-box;
+}
+
+/* Card styles */
+.prize-card {
+  background: rgba(118, 43, 154, 0.9); 
+  border-radius: 20px;
+  padding: 30px; /* Increased padding for less congestion */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+  width: 100%;
+  max-width: 700px; /* Increased width for balance */
+  font-family: "Minecraft", "Courier New", monospace;
+  text-align: left;
+  color: white;
+  display: flex; /* Flexbox for left SVG and content */
+  flex-direction: row; /* Align SVG and content horizontally */
+  align-items: center;
+  position: relative;
+}
+
+/* Left image styles with white border */
+.prize-left-image {
+  flex-shrink: 0; /* Prevent the image from shrinking */
+  width: 120px; /* Slightly larger for balance */
+  height: 120px;
+  margin-right: 30px; /* Increased spacing between SVG and content */
+  border: 2px solid #ffffff; /* White border */
+  padding: 8px; /* Increased padding for better framing */
+  border-radius: 10px; /* Slightly rounded corners */
+  background: rgba(255, 255, 255, 0.15); /* Slightly stronger background */
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); /* Subtle white glow */
+}
+
+.prize-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Card content styles */
+.prize-card-content {
+  flex: 1; /* Allow the content to take up remaining space */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align content to the left */
+  padding: 0 30px; /* Increased padding for left-right balance */
+}
+
+/* Card title styles */
+.prize-title-container {
+  margin-bottom: 1.5rem; /* Increased spacing */
+  position: relative;
+}
+
+.prize-card-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6);
+  text-align: left;
+  transform: translateX(-4rem); /* Kept for consistency */
+}
+
+/* Section spacing */
+.prize-section {
+  margin-bottom: 1.5rem; /* Increased spacing for clarity */
+  transition: text-shadow 0.3s ease;
+  width: 100%; /* Ensure full width for alignment */
+}
+
+/* Text glow effect */
+.prize-title {
+  font-family: "Frisky", sans-serif;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: white;
+  margin: 0;
+  text-shadow: none;
+  text-align: left;
+}
+
+.prize-title:hover {
+  text-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.8), /* Gold glow */
+    0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.prize-title.text-silver:hover {
+  text-shadow: 
+    0 0 10px rgba(192, 192, 192, 0.8), /* Silver glow */
+    0 0 20px rgba(192, 192, 192, 0.6);
+}
+
+.prize-title.text-bronze:hover {
+  text-shadow: 
+    0 0 10px rgba(205, 127, 51, 0.8), /* Bronze glow */
+    0 0 20px rgba(205, 127, 51, 0.6);
+}
+
+.prize-amount {
+  font-family: "Frisky", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 100%;
+  width: auto;
+  letter-spacing: 0%;
+  color: #e5e7eb;
+  margin-top: 0.5rem; /* Slightly increased for spacing */
+  text-align: left;
+}
+
+/* Separator line */
+.separator-line {
+  height: 1px;
+  background-color: #e7e8ea;
+  width: 80%; /* Slightly wider for balance */
+  margin: 1.5rem auto; /* Increased spacing */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .prize-content {
+    padding: 20px; /* Adjusted for smaller screens */
+  }
+
+  .prize-card {
+    flex-direction: column; /* Stack SVG and content vertically */
+    align-items: center;
+    padding: 20px; /* Adjusted padding */
+  }
+
+  .prize-left-image {
+    margin-right: 0; /* Remove margin when stacked */
+    margin-bottom: 20px; /* Increased spacing below SVG */
+    width: 100px; /* Slightly smaller for mobile */
+    height: 100px;
+  }
+
+  .prize-card-content {
+    padding: 0 20px; /* Adjusted for mobile */
+  }
+
+  .prize-card-title {
+    font-size: 1.8rem; /* Adjusted for mobile */
+    transform: translateX(0); /* Remove shift on mobile */
+  }
+
+  .prize-title {
+    font-size: 1.5rem; /* Adjusted for mobile */
+  }
+
+  .prize-amount {
+    font-size: 1.2rem; /* Adjusted for mobile */
+  }
+
+  .separator-line {
+    margin: 1rem auto; /* Adjusted for mobile */
+  }
+}
