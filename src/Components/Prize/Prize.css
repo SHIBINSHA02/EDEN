@@ -98,7 +98,7 @@
 /* Section spacing */
 .prize-section {
   margin-top: 0.5rem;
-  transition: text-shadow 0.3s ease;
+  transition: text-shadow 0.3s ease; /* Keep for smooth glow transitions */
   width: 100%; /* Ensure full width for alignment */
 }
 
@@ -109,27 +109,34 @@
   font-size: 50px;
   line-height: 100%;
   letter-spacing: 0%;
-  color: white;
+  color: #fcfcfc; /* Matches footer’s purple palette for non-active state */
   margin: 0;
-  text-shadow: none;
   text-align: left;
+  text-shadow: 0 0 10px rgba(251, 251, 251, 0.6); /* Initial purple glow like social icons */
+  transition: text-shadow 0.3s ease, color 0.3s ease; /* Smooth transition for color and glow */
 }
 
-.prize-title:hover {
+/* Glow effect when active or on hover */
+.prize-title.text-gold.active,
+.prize-title.text-gold:hover {
+
   text-shadow: 
-    0 0 10px rgba(255, 215, 0, 0.8), /* Gold glow */
+    0 0 15px rgba(255, 215, 0, 0.8), /* Stronger gold glow like social icons */
     0 0 20px rgba(255, 215, 0, 0.6);
 }
 
+.prize-title.text-silver.active,
 .prize-title.text-silver:hover {
   text-shadow: 
-    0 0 10px rgba(192, 192, 192, 0.8), /* Silver glow */
+    0 0 15px rgba(192, 192, 192, 0.8), /* Stronger silver glow like social icons */
     0 0 20px rgba(192, 192, 192, 0.6);
 }
 
+.prize-title.text-bronze.active,
 .prize-title.text-bronze:hover {
+  
   text-shadow: 
-    0 0 10px rgba(205, 127, 51, 0.8), /* Bronze glow */
+    0 0 15px rgba(205, 127, 51, 0.8), /* Stronger bronze glow like social icons */
     0 0 20px rgba(205, 127, 51, 0.6);
 }
 
