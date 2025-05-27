@@ -1,13 +1,17 @@
 "use client"
-
 import { useState, useEffect } from "react"
 import PixelArtBackground from "../Background/PixelArtbg"
 import "./About.css"
+import Alert from "./Alerts.jsx"; // Updated to match corrected file name
 
 export const About = ({ description, buttonText }) => {
   const [displayText, setDisplayText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
   const [showCursor, setShowCursor] = useState(true)
+  const [showAlert, setShowAlert] = useState(null);
+
+  const currentDate = new Date();
+  const registrationStartDate = new Date("2025-06-01");
 
   useEffect(() => {
     if (currentIndex < description.length) {
@@ -27,9 +31,6 @@ export const About = ({ description, buttonText }) => {
     return () => clearInterval(cursorInterval)
   }, [])
 
-  const handleClick = () => {
-    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUJcmljayByb2xs"
-  }
 
   const handleDownload = () => {
     const pdfUrl = "./Eden.pdf"
@@ -41,9 +42,21 @@ export const About = ({ description, buttonText }) => {
     document.body.removeChild(link)
   }
 
-  
+  const handleAlertClick = () => {
+    if (currentDate < registrationStartDate) {
+      setShowAlert(<Alert message="Registration not started" />);
+      setTimeout(() => {
+        setShowAlert(null);
+      }, 3000); // Clear alert after 3 seconds
+    } else {
+      window.location.href = "https://www.example.com"; // Redirect URL
+    }
+  };
+
+
   return (
     <div className="about-container relative w-screen h-screen">
+      {showAlert}
       <div className="pixelated-violet-top"></div>
       <PixelArtBackground className="about-background" pixelSize={2} density={1} fadeDuration={3000} />
       <div className="about-content">
@@ -54,7 +67,7 @@ export const About = ({ description, buttonText }) => {
           </p>
         </div>
         <div className="button-container">
-          <button className="primary-button" onClick={handleClick}>
+          <button className="primary-button" onClick={handleAlertClick}>
             {buttonText}
           </button>
           <button className="secondary-button" onClick={handleDownload}>
