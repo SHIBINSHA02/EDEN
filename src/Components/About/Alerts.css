@@ -1,0 +1,10 @@
+/* Alert.css */
+.alert-notification {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #c786e5;
+    color: #fffeff;
+    border: 1px solid #e961eb;
+    border-radius: 4px;
+    z-index: 40;
+  }
