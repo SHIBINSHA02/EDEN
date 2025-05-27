@@ -54,21 +54,21 @@ export const Prize = () => {
   return (
     <div className="prize-container">
       {/* Background */}
-      <PixelArtBackground 
-        pixelSize={2} 
-        density={1} 
+      <PixelArtBackground
+        pixelSize={2}
+        density={1}
         fadeDuration={3000}
-        className="pixel-art-background" 
+        className="pixel-art-background"
       />
-      
+
       {/* Main Content */}
       <div className="prize-content">
         <div className="prize-card">
           {/* Left SVG with boundary box */}
           <div className="prize-left-image">
-            <img 
-              src={prizeImages[activePrize]} 
-              alt="Prize Icon" 
+            <img
+              src={prizeImages[activePrize]}
+              alt="Prize Icon"
               className="prize-image"
             />
           </div>
