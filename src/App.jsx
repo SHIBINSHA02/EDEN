@@ -4,7 +4,7 @@ import "./App.css";
 import { Home } from "./Components/Home/Home";
 import { About } from "./Components/About/About";
 import { Prize } from "./Components/Prize/Prize";
-import { Schedule } from "./Components/Schedule/Schedule";
+// import { Schedule } from "./Components/Schedule/Schedule";
 import { Venue } from "./Components/Venue/Venue";
 import { FaqSection } from "./Components/FaqSection/FaqSection";
 import { Sponsors } from "./Components/Sponsors/Sponsors";
@@ -15,6 +15,7 @@ import FriskyFont from "./fonts/Frisky.ttf";
 import MinecraftFont from "./fonts/Minecraftchmc.ttf";
 
 import { Loading } from "./Components/Loading/loading";
+import EventStats from "./Components/EventStats/EventStats";
 
 function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
@@ -70,8 +71,9 @@ function App() {
       />
 
       <Prize />
-      <Schedule />
+      {/* <Schedule /> */}
       <Venue />
+      <EventStats />
       <Sponsors />
       <FaqSection />
       {/* <Judge/> */}
