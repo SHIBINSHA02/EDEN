@@ -1,102 +1,102 @@
+.image-container {
+  position: relative;
+  width: 100vw; /* Changed from 100% to 100vw for full viewport width */
+  height: 30vh; /* Reduced height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0; /* Ensure no margins cause gaps */
+}
 
-  .image-container {
-    position: relative;
-    width: 100vw; /* Changed from 100% to 100vw for full viewport width */
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin: 0; /* Ensure no margins cause gaps */
+.pixel-art-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Changed from 100% to 100vw for full viewport width */
+  height: 100vh; /* Changed to 100vh for consistency */
+  z-index: 1;
+  right: 0; /* Ensure it stretches to the right edge */
+}
+
+.image-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.frame-image {
+  max-width: 45%;
+  height: auto;
+}
+
+/* Airship-specific styles */
+.airship-image {
+  position: absolute;
+  max-width: 35%;
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Floating animation */
+.floating {
+  animation: float 5s infinite ease-in-out;
+}
+
+/* Combine scale with translate in the animation */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(2); /* Respect inline or set scale here */
   }
-  
-  .pixel-art-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw; /* Changed from 100% to 100vw for full viewport width */
-    height: 100vh; /* Changed to 100vh for consistency */
-    z-index: 1;
-    right: 0; /* Ensure it stretches to the right edge */
+  50% {
+    transform: translate(
+        calc(var(--float-x-range) * 0.5), /* Simplified movement */
+        calc(var(--float-y-range) * 0.5)
+      ) scale(1.9); /* Maintain scale */
   }
-  .image-wrapper {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-  }
-  
-  .frame-image {
-    max-width: 45%;
-    height: auto;
-  }
-  
-  /* Airship-specific styles */
+}
+
+/* Desktop-specific positioning and visibility */
+@media (min-width: 769px) {
   .airship-image {
-    position: absolute;
-    max-width: 35%;
-    z-index: 4;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    top: 10%;
+    right: 5%;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
-  
-  /* Floating animation */
-  .floating {
-    animation: float 5s infinite ease-in-out;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .image-container {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    min-height: 100vh;
   }
-  
-  /* Combine scale with translate in the animation */
-  @keyframes float {
-    0%, 100% {
-      transform: translate(0, 0) scale(2); /* Respect inline or set scale here */
-    }
-    50% {
-      transform: translate(
-          calc(var(--float-x-range) * 0.5), /* Simplified movement */
-          calc(var(--float-y-range) * 0.5)
-        ) scale(1.9); /* Maintain scale */
-    }
+
+  .image-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
   }
-  
-  /* Desktop-specific positioning and visibility */
-  @media (min-width: 769px) {
-    .airship-image {
-      top: 10%;
-      right: 5%;
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
+
+  .frame-image {
+    max-width: 90%;
   }
-  
-  /* Mobile adjustments */
-  @media (max-width: 768px) {
-    .image-container {
-      flex-direction: column;
-      align-items: center;
-      height: auto;
-      min-height: 100vh;
-    }
-  
-    .image-wrapper {
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
-    }
-  
-    .frame-image {
-      max-width: 90%;
-    }
-  
-    .airship-image {
-      display: none;
-    }
-  
-    .date-image,
-    .venue-image {
-      width: 100%;
-      max-width: 90%;
-    }
+
+  .airship-image {
+    display: none;
   }
+
+  .date-image,
+  .venue-image {
+    width: 100%;
+    max-width: 90%;
+  }
+}
