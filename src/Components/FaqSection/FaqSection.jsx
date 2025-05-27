@@ -2,7 +2,7 @@ import PixelArtBackground from "../Background/PixelArtbg";
 
 export const FaqSection = () => {
   return (
-    <div className="relative w-screen h-screen flex justify-center items-center">
+    <div className="relative w-screen h-screen flex justify-center items-center" id="faq">
       
       <div className="absolute inset-0 z-0">
          <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />

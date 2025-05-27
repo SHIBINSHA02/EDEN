@@ -4,21 +4,36 @@ import "./Navbar.css";
 export const Navbar = ({ items }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const handleClick = (link) => {
+    setIsMenuOpen(false);
+
+    // Smooth scroll to the target element
+    const element = document.querySelector(link);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   return (
     <nav className="navbar">
-      <button className="navbar-toggle" onClick={toggleMenu}>
+      <button
+        className="navbar-toggle"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
         ☰
       </button>
       <ul className={isMenuOpen ? "active" : ""}>
         {items.map((item, idx) => (
           <li key={idx}>
-            <a href={item.link} onClick={() => setIsMenuOpen(false)}>
+            <button
+              className="nav-link"
+              onClick={() => handleClick(item.link)}
+            >
               {item.label}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
