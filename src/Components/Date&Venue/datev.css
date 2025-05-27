@@ -1,22 +1,24 @@
-.image-container {
+
+  .image-container {
     position: relative;
-    width: 100%;
+    width: 100vw; /* Changed from 100% to 100vw for full viewport width */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    margin: 0; /* Ensure no margins cause gaps */
   }
   
   .pixel-art-background {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw; /* Changed from 100% to 100vw for full viewport width */
+    height: 100vh; /* Changed to 100vh for consistency */
     z-index: 1;
+    right: 0; /* Ensure it stretches to the right edge */
   }
-  
   .image-wrapper {
     position: relative;
     z-index: 2;
