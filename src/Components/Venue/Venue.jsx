@@ -48,22 +48,16 @@ export const Venue = () => {
       {/* Main Content */}
       <div className="content-container">
         {/* Event Title */}
-        <h1 className="event-title">EDEN 2025 Venue</h1>
+        <h1 className="event-title">EDEN 2025</h1>
 
         {/* Venue Details Section */}
         <section className="venue-details">
-          <h2 className="section-title">Event Details</h2>
+          
           <div className="details-grid">
-            <p className="detail-item">
-              <span className="detail-label">Venue:</span>{" "}
-              <span className="detail-content">Conference Hall, KV Institute of Management and Information Studies</span>
-            </p>
+            
             <p className="detail-item">
               <span className="detail-label">Address:</span>{" "}
               <span className="detail-content">545 Sathy Main Road, Kurumbapalayam-PO, Coimbatore, Tamil Nadu - 641107, India</span>
-            </p>
-            <p className="detail-item">
-              <span className="detail-label">Date:</span> May 23, 2025
             </p>
             <p className="detail-item">
               <span className="detail-label">Contact:</span>{" "}

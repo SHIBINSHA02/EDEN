@@ -154,12 +154,11 @@
 .map-container {
   width: 100%;
   max-width: 64rem; /* Ensure map doesn't exceed container */
-  height: 12rem;
+  aspect-ratio: 16 / 9; /* Maintain a responsive aspect ratio for the map */
   background-color: #1f2937;
   border-radius: 15px;
   overflow: hidden;
 }
-
 .logistics-section {
   width: 100%;
   max-width: 64rem;
