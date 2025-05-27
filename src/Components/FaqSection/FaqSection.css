@@ -1,3 +1,112 @@
+/* Typography */
+.frisky-font {
+  font-family: "Frisky", cursive; /* Fallback if Frisky font is unavailable */
+  font-weight: 100; /* Bold weight */
+  color: #ffffff;
+}
+
+.minecraft-font {
+  font-family: 'VT323', monospace; /* Minecraft-style font for FAQ items */
+  font-weight: 400;
+}
+
+/* FAQ Section Layout */
+.faq-section {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 6rem 2rem; /* Increased padding for less congestion */
+  background: linear-gradient(135deg, #6b21a8, #4c1d95); /* Consistent with Prize component */
+}
+
+.faq-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.9; /* Slightly transparent background */
+}
+
+.faq-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px; /* Increased for better spacing */
+  width: 100%;
+  z-index: 10;
+  padding: 0 2rem; /* Added padding for balance */
+  box-sizing: border-box;
+}
+
+/* FAQ Heading */
+.faq-heading {
+  width: 100%;
+  font-size: 3rem; /* Slightly larger for prominence */
+  margin-bottom: 3rem; /* Increased for spacing */
+  padding-left: 1.5rem; /* Adjusted for alignment */
+}
+
+/* FAQ Items */
+.faq-items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* Increased gap for breathing room */
+}
+
+/* FAQ Item */
+.faq-item {
+  width: 100%;
+  color: #ffffff;
+}
+
+/* FAQ Question */
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.faq-question:hover {
+  opacity: 0.8;
+}
+
+.faq-question-text {
+  font-size: 1.5rem; /* Increased for readability */
+  padding-right: 3rem; /* Increased for spacing */
+}
+
+/* Plus Icon */
+.plus-icon {
+  font-size: 1.75rem; /* Slightly larger for visibility */
+  transition: transform 0.3s ease;
+}
+
+.plus-icon.open {
+  transform: rotate(45deg);
+}
+
+/* FAQ Answer */
+.faq-answer {
+  margin-top: 1.5rem; /* Increased for spacing */
+  color: #d1d5db; /* Light gray for contrast */
+  font-size: 1.8rem; /* Slightly larger for readability */
+  padding-left: 1rem; /* Increased for indentation */
+  padding-right: 3rem; /* Increased for balance */
+  padding-bottom: 1.5rem; /* Increased for spacing */
+}
+
+/* Divider */
+.faq-divider {
+  border-bottom: 1px solid #c084fc;
+  margin-top: 1rem; /* Increased for spacing */
+}
+
+/* Animations */
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-in-out;
 }
@@ -13,23 +122,69 @@
   }
 }
 
-/* Hover effect for FAQ items */
-.faq-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-}
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  .faq-container {
+    flex-direction: row;
+    padding: 0 3rem; /* Increased for desktop */
+  }
 
-/* Plus icon rotation animation */
-.plus-icon {
-  transition: transform 0.3s ease;
-}
+  .faq-heading {
+    width: 30%; /* Adjusted for balance */
+    font-size: 3.5rem; /* Slightly larger for desktop */
+    margin-bottom: 0;
+    padding-left: 0;
+    margin-left: -1.5rem; /* Adjusted for alignment */
+  }
 
-.plus-icon.open {
-  transform: rotate(45deg);
+  .faq-items {
+    width: 70%; /* Adjusted for balance */
+    padding-left: 3rem; /* Increased for spacing */
+  }
+
+  .faq-question-text {
+    font-size: 2rem; /* Slightly larger for desktop */
+  }
+
+  .faq-answer {
+    font-size: 1.25rem; /* Slightly larger for desktop */
+  }
 }
 
 @media (max-width: 768px) {
+  .frisky-font,
   .minecraft-font {
     word-break: break-word;
   }
-} 
+
+  .faq-section {
+    padding: 4rem 1.5rem; /* Adjusted for mobile */
+  }
+
+  .faq-container {
+    padding: 0 1rem; /* Adjusted for mobile */
+  }
+
+  .faq-heading {
+    font-size: 2.5rem; /* Adjusted for mobile */
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .faq-question-text {
+    font-size: 1.7rem; /* Adjusted for mobile */
+    padding-right: 2rem;
+    font-weight: 400;
+  }
+
+  .faq-answer {
+    font-size: 1.7rem; /* Adjusted for mobile */
+    padding-left: 0.5rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .faq-items {
+    gap: 2rem; /* Adjusted for mobile */
+  }
+}
