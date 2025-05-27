@@ -41,6 +41,7 @@ export const About = ({ description, buttonText }) => {
     document.body.removeChild(link)
   }
 
+  
   return (
     <div className="about-container relative w-screen h-screen">
       <div className="pixelated-violet-top"></div>
