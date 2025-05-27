@@ -3,18 +3,8 @@
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
-  margin: 0; /* Ensure no margins cause gaps */
 }
 
-.about-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  right: 0; /* Ensure it stretches to the right edge */
-}
 .pixelated-violet-top {
   position: absolute;
   top: 0;
@@ -35,6 +25,14 @@
   pointer-events: none;
 }
 
+.about-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
 
 .about-content {
   position: absolute;
