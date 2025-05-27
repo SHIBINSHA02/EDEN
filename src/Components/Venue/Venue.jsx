@@ -56,34 +56,29 @@ export const Venue = () => {
             <p className="detail-item">
               <span className="detail-label">Address:</span>{" "}
               <span className="detail-content">
-                545 Sathy Main Road, Kurumbapalayam-PO, Coimbatore, Tamil Nadu
-                - 641107, India
+              Marian Engineering College,Kazhakuttom, Thiruvananthapuram - 695582,Kerala,India
               </span>
             </p>
             <p className="detail-item">
               <span className="detail-label">Contact:</span>
               <br />
               <span className="detail-content">
-                <a href="tel:+914222666666" className="link">
-                  +91 422 266 6666
+                <a href="tel:+919496482580" className="link">
+                  +91 9496482580
                 </a>{" "}
-                (Event Coordinator)
+                (Chief Operations Officer)
                 <br />
-                <a href="tel:+914222667777" className="link">
-                  +91 422 266 7777
+                <a href="tel:+918617741675" className="link">
+                  +91 8617741675
                 </a>{" "}
-                (General Inquiries)
+                (Chief Finance Officer)
               </span>
             </p>
             <p className="detail-item">
               <span className="detail-label">Email:</span>{" "}
               <span className="detail-content">
-                <a href="mailto:events@kvimis.ac.in" className="link">
-                  events@kvimis.ac.in
-                </a>
-                ,{" "}
-                <a href="mailto:info@kvimis.ac.in" className="link">
-                  info@kvimis.ac.in
+                <a href="marianiedc@gmail.com" className="link">
+                  marianiedc@gmail.com
                 </a>
               </span>
             </p>
@@ -95,7 +90,7 @@ export const Venue = () => {
           <h2 className="section-title text-center">Location</h2>
           <div className="map-container">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.765047136255!2d77.02887631480175!3d11.104614692087832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8f7b7a7b7a7b7%3A0x7b7b7b7b7b7b7b7b!2sKV%20Institute%20of%20Management%20and%20Information%20Studies!5e0!3m2!1sen!2sin!4v1634567890123!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.3762157324804!2d76.8584222854584!3d8.559774704159627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05be4db228e865%3A0x86e82fcb1e3e3ad0!2sMarian%20Engineering%20College!5e0!3m2!1sen!2sin!4v1748373637896!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
