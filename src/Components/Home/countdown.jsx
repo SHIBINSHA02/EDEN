@@ -39,6 +39,7 @@ const Countdown = ({ targetDate }) => {
 
   return (
     <div className={`countdown-container ${isLoaded ? "loaded-final" : ""}`}>
+      <div className="countdown-title">Be Ready for the challenge</div>
       <div className="timer">
         <div className="time-units">
           <div className="time-unit">

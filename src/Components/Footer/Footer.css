@@ -4,11 +4,10 @@
   background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
   color: white;
   overflow: hidden;
-  font-family: "Frisky","Minecraft", "Courier New", monospace;
+  font-family: "Minecraft", "Courier New", monospace;
   padding: 40px 0 20px;
   min-height: 200px;
   image-rendering: pixelated;
-  width: 100vw; /* Ensure full viewport width */
 }
 
 .minimal-footer::before {
@@ -56,7 +55,7 @@
   position: absolute;
   font-size: 16px;
   font-weight: bold;
-  font-family:"Minecraftchmc", monospace;
+  font-family: "Minecraft", monospace;
   animation: plusFloat 8s ease-in-out infinite;
   image-rendering: pixelated;
 }
@@ -195,8 +194,8 @@
 
 .social-icon-minimal {
   font-size: 0.9rem;
-  font-weight: 200;
-  font-family: "Minecraftchmc", monospace;
+  font-weight: bold;
+  font-family: "Minecraft", monospace;
   text-transform: lowercase;
   z-index: 1;
   position: relative;
@@ -354,7 +353,6 @@
 
   .footer-copyright-minimal p {
     font-size: 0.8rem;
-    text-align: center;
   }
 
   .footer-badge-minimal {
@@ -444,3 +442,5 @@
     font-size: 10px;
   }
 }
+
+/* Clean minimal footer - all old styles removed */

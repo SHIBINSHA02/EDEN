@@ -14,6 +14,20 @@
   box-sizing: border-box;
 }
 
+/* Countdown title styling */
+.countdown-title {
+  font-family: "frisky", "Orbitron", monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.8),
+    0 0 40px rgba(139, 92, 246, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
 /* Style for the timer display */
 .countdown-container .timer {
   width: 30vw;
@@ -130,6 +144,18 @@
   }
 }
 
+@keyframes titleGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(192, 132, 252, 0.8),
+      0 0 40px rgba(139, 92, 246, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(192, 132, 252, 1),
+      0 0 60px rgba(139, 92, 246, 0.8), 0 0 80px rgba(168, 85, 247, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
 /* Apply transition for smooth positioning */
 .countdown-container.loaded-final {
   transition: top 1500ms ease-in-out, transform 1000ms ease-in-out;
@@ -138,6 +164,11 @@
 
 /* Responsive styles for larger screens */
 @media (min-width: 769px) {
+  .countdown-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
   .countdown-container .timer {
     width: 50vw;
     font-size: 4.5rem;
@@ -160,6 +191,11 @@
 
 /* Responsive styles for tablets */
 @media (max-width: 768px) and (min-width: 481px) {
+  .countdown-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
   .countdown-container {
     top: 200%;
     transform: translateX(-50%) scale(0.9);
@@ -192,6 +228,11 @@
 
 /* Responsive styles for mobile phones */
 @media (max-width: 480px) {
+  .countdown-title {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
   .countdown-container {
     top: 200%;
     transform: translateX(-50%) scale(0.85);
@@ -243,6 +284,11 @@
 
 /* Responsive styles for very small screens */
 @media (max-width: 360px) {
+  .countdown-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
   .countdown-container {
     transform: translateX(-50%) scale(0.8);
   }

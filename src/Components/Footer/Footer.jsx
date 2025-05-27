@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import PixelArtBackground from "../Background/PixelArtbg";
 import "./Footer.css";
-import { FaLinkedinIn, FaInstagram, FaTwitter, FaEnvelope } from "react-icons/fa";
+import {
+  FaLinkedinIn,
+  FaInstagram,
+  FaTwitter,
+  FaEnvelope,
+} from "react-icons/fa";
 
 export const Footer = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -18,7 +23,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="minimal-footer">
+    <footer id="contact" className="minimal-footer">
       <PixelArtBackground pixelSize={2} density={0.8} fadeDuration={3000} />
 
       {/* Floating Plus Signs */}
