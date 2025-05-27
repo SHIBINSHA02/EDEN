@@ -36,7 +36,6 @@ export const Venue = () => {
             initialPlusSigns={40}
             className="background-canvas"
             onError={() => {
-              console.error("PixelArtBackground failed to render in Venue");
               setBackgroundError(true);
             }}
           />
@@ -49,24 +48,26 @@ export const Venue = () => {
       {/* Main Content */}
       <div className="content-container">
         {/* Event Title */}
-        <h1 className="event-title">Hackathon 2025 Venue</h1>
+        <h1 className="event-title">EDEN 2025</h1>
 
         {/* Venue Details Section */}
         <section className="venue-details">
           <div className="details-grid">
             <p className="detail-item">
               <span className="detail-label">Address:</span>{" "}
-              <span className="detail-content">545 Sathy Main Road, Kurumbapalayam-PO, Coimbatore, Tamil Nadu - 641107, India</span>
+              <span className="detail-content">
+                545 Sathy Main Road, Kurumbapalayam-PO, Coimbatore, Tamil Nadu
+                - 641107, India
+              </span>
             </p>
             <p className="detail-item">
-              <span className="detail-label">Contact:</span>{" "}
+              <span className="detail-label">Contact:</span>
               <br />
               <span className="detail-content">
                 <a href="tel:+914222666666" className="link">
                   +91 422 266 6666
                 </a>{" "}
-      
-                (Event Coordinator),{" "}
+                (Event Coordinator)
                 <br />
                 <a href="tel:+914222667777" className="link">
                   +91 422 266 7777
@@ -76,13 +77,15 @@ export const Venue = () => {
             </p>
             <p className="detail-item">
               <span className="detail-label">Email:</span>{" "}
-              <a href="mailto:events@kvimis.ac.in" className="link">
-                events@kvimis.ac.in
-              </a>
-              ,{" "}
-              <a href="mailto:info@kvimis.ac.in" className="link">
-                info@kvimis.ac.in
-              </a>
+              <span className="detail-content">
+                <a href="mailto:events@kvimis.ac.in" className="link">
+                  events@kvimis.ac.in
+                </a>
+                ,{" "}
+                <a href="mailto:info@kvimis.ac.in" className="link">
+                  info@kvimis.ac.in
+                </a>
+              </span>
             </p>
           </div>
         </section>
@@ -104,6 +107,7 @@ export const Venue = () => {
         </section>
 
         {/* Logistics Section */}
+        {/* You can add more sections here */}
 
         {/* Call to Action */}
       </div>

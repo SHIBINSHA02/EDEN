@@ -142,7 +142,7 @@ export const Home = ({ heroData }) => {
   }, []);
 
   return (
-    <div id="home" className="home-container">
+    <div className="home-container">
       <PixelArtBackground
         pixelSize={2}
         density={1.9}

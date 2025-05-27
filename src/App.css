@@ -1,16 +1,5 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Smooth scrolling for the entire page */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Ensure sections have proper spacing for navbar offset */
-section,
-div[id] {
-  scroll-margin-top: 100px; /* Adjust based on navbar height */
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
