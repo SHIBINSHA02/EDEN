@@ -1,4 +1,3 @@
-
 .event-stats-section {
   height: 24rem;
   width: 100vw;
@@ -23,6 +22,7 @@
   flex-direction: column;
   align-items: center;
   padding: 0 1rem;
+  text-align: center; /* Center text within the container */
 }
 
 .stat-value {
@@ -109,34 +109,30 @@
   filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
   transform: scale(1.05);
 }
-
 @media (max-width: 768px) {
   .stats-content {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
     gap: 1.5rem;
+    padding-left: 1rem; /* Reduce padding */
+    padding-right: 1rem; /* Reduce padding */
+  }
+
+  .stat-container {
+    padding: 0; /* Remove horizontal padding for individual stats */
   }
 
   .stat-value {
-    font-size: 3rem;
-    margin-bottom: 0.2rem;
+    font-size: 2.5rem; /* Slightly smaller font size for value */
+    margin-bottom: 0.1rem;
   }
 
   .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* Slightly smaller font size for label */
   }
 
   .cloud {
-    width: 100px;
-  }
-
-  .cloud-left {
-    left: 5%;
-  }
-
-  .cloud-right {
-    right: 5%;
-    top: 8rem;
+    display: none; /* Hides clouds on phone UI */
   }
 }

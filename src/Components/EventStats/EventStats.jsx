@@ -9,12 +9,12 @@ const EventStats = () => {
     <div className="event-stats-section">
       {/* Pixel Art Background */}
       <div className="background-container">
-        <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
+        <PixelArtBackground pixelSize={2} density={0.5} fadeDuration={3000} />
       </div>
 
       {/* Left Cloud */}
       <img src={cloud1} alt="cloud" className="cloud cloud-left" />
-      
+
       {/* Right Cloud */}
       <img src={cloud2} alt="cloud" className="cloud cloud-right" />
 
