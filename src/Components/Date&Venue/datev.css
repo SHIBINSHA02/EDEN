@@ -1,0 +1,59 @@
+/* datev.css */
+.image-container {
+    position: relative; /* Ensure the container is positioned relative */
+    width: 100%; /* Full width */
+    height: 100vh; /* Full viewport height; adjust if needed */
+    display: flex; /* Inline layout for desktop */
+    justify-content: center; /* Center images horizontally */
+    align-items: center; /* Center images vertically */
+  }
+  
+  .pixel-art-background {
+    position: absolute; /* Position the background absolutely */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    z-index: 1; /* Ensure background is behind images */
+  }
+  
+  .image-wrapper {
+    position: relative; /* Position the wrapper relative to the container */
+    z-index: 2; /* Ensure images are above the background */
+    display: flex; /* Ensure images are flex items */
+    justify-content: center; /* Center images within wrapper */
+    align-items: center; /* Center images vertically */
+    gap: 3rem; /* Space between images on desktop */
+  }
+  
+  .frame-image {
+    max-width: 45%; /* Limit image width on desktop for better control */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  /* Responsive adjustments for mobile */
+  @media (max-width: 768px) {
+    .image-container {
+      flex-direction: column; /* Block layout for mobile */
+      align-items: center; /* Center images horizontally */
+      height: auto; /* Allow container to grow with content */
+      min-height: 100vh; /* Ensure at least full viewport height */
+    }
+  
+    .image-wrapper {
+      flex-direction: column; /* Ensure block layout within wrapper */
+      gap: 1rem; /* Smaller gap for mobile */
+      width: 100%; /* Full width for wrapper */
+    }
+  
+    .frame-image {
+      max-width: 90%; /* Slightly larger images on mobile for prominence */
+    }
+  
+    /* Optional: Add specific styling for date and venue images */
+    .date-image,
+    .venue-image {
+      width: 100%; /* Full width within max-width constraint */
+      max-width: 90%; /* Ensure images are prominent but constrained */
+    }
+  }

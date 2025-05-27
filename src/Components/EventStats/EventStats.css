@@ -1,0 +1,138 @@
+.event-stats-section {
+  height: 24rem;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
+  padding-top: 2rem;
+  font-family: "Frisky", monospace; /* Custom pixel-style font */
+}
+
+.background-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.stat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+  text-align: center; /* Center text within the container */
+}
+
+.stat-value {
+  display: block;
+  font-size: 4rem;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: 2px;
+  margin-bottom: 0.25rem;
+  text-shadow: 2px 2px 0 #000000;
+  font-family: "Frisky", monospace;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.875rem;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0 #000000;
+  opacity: 0.9;
+  font-family: "Frisky", monospace;
+}
+
+.stats-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  max-width: 80rem; /* Equivalent to max-w-5xl */
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0) scale(3);
+  }
+  50% {
+    transform: translateY(-15px) scale(3);
+  }
+  100% {
+    transform: translateY(0) scale(3);
+  }
+}
+
+@keyframes floatAnimationFlipped {
+  0% {
+    transform: translateY(0) scale(3);
+  }
+  50% {
+    transform: translateY(-15px) scale(3);
+  }
+  100% {
+    transform: translateY(0) scale(3);
+  }
+}
+
+.cloud {
+  position: absolute;
+  width: 160px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.cloud-left {
+  left:0.5%;
+  top: 6rem;
+  animation: floatAnimation 6s ease-in-out infinite;
+}
+
+.cloud-right {
+  right: 2%;
+  top: 17rem;
+  animation: floatAnimationFlipped 8s ease-in-out infinite;
+}
+
+.cloud:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  .stats-content {
+    flex-direction: column;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 1.5rem;
+    padding-left: 1rem; /* Reduce padding */
+    padding-right: 1rem; /* Reduce padding */
+  }
+
+  .stat-container {
+    padding: 0; /* Remove horizontal padding for individual stats */
+  }
+
+  .stat-value {
+    font-size: 2.5rem; /* Slightly smaller font size for value */
+    margin-bottom: 0.1rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem; /* Slightly smaller font size for label */
+  }
+
+  .cloud {
+    display: none; /* Hides clouds on phone UI */
+  }
+}

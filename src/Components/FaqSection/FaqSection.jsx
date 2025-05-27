@@ -1,46 +1,64 @@
+import { useState } from "react";
 import PixelArtBackground from "../Background/PixelArtbg";
+import "./FaqSection.css";
+
+const faqData = [
+  {
+    question: "What is EDEN Hackathon?",
+    answer: "EDEN Hackathon is a 24-hour coding competition where participants collaborate to build innovative solutions. With a prize pool of 50K and 100 participants, it's one of the most exciting hackathons of the year!"
+  },
+  {
+    question: "How can I participate in the hackathon?",
+    answer: "You can participate by registering through our website. Form a team of 2-4 members or join as an individual. Make sure to register before the deadline to secure your spot!"
+  },
+  {
+    question: "What are the prizes and judging criteria?",
+    answer: "The total prize pool is 50K, distributed across different categories including Best Overall, Most Innovative, and Best Technical Implementation. Projects are judged based on innovation, technical complexity, completeness, and presentation."
+  }
+];
 
 export const FaqSection = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleAnswer = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <div className="relative w-screen h-screen flex justify-center items-center">
-      
-      <div className="absolute inset-0 z-0">
-         <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
+    <div className="faq-section">
+      <div className="faq-background">
+        <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
       </div>
       
-      <div className="relative flex w-full max-w-screen-lg h-full z-10 px-8 py-16 items-start">
-        {/* Left side: FAQ heading */}
-        <div className="w-1/3 flex justify-start items-start text-white text-6xl font-bold minecraft-font mt-[-4rem] -ml-8">
+      <div className="faq-container">
+        {/* FAQ heading with Frisky font */}
+        <div className="faq-heading frisky-font">
           FAQ
         </div>
         
-        <div className="w-2/3 flex flex-col items-start space-y-8 pl-8">
-          {/* FAQ Item 1 */}
-          <div className="w-full text-white text-xl minecraft-font">
-            <div className="flex justify-between items-center">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-              <span className="text-2xl">+</span>
+        {/* FAQ items */}
+        <div className="faq-items">
+          {faqData.map((faq, index) => (
+            <div key={index} className="faq-item minecraft-font">
+              <div 
+                className="faq-question"
+                onClick={() => toggleAnswer(index)}
+              >
+                <span className="faq-question-text">{faq.question}</span>
+                <span className={`plus-icon ${openIndex === index ? 'open' : ''}`}>
+                  +
+                </span>
+              </div>
+              {openIndex === index && (
+                <div className="faq-answer animate-fadeIn">
+                  {faq.answer}
+                </div>
+              )}
+              <div className="faq-divider"></div>
             </div>
-            <div className="border-b border-purple-400 mt-3"></div>
-          </div>
-          {/* FAQ Item 2 */}
-          <div className="w-full text-white text-xl minecraft-font">
-            <div className="flex justify-between items-center">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-              <span className="text-2xl">+</span>
-            </div>
-            <div className="border-b border-purple-400 mt-3"></div>
-          </div>
-          {/* FAQ Item 3 */}
-          <div className="w-full text-white text-xl minecraft-font">
-            <div className="flex justify-between items-center">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-              <span className="text-2xl">+</span>
-            </div>
-            <div className="border-b border-purple-400 mt-3"></div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
   );
-}; 
+};

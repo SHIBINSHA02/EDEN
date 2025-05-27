@@ -4,17 +4,19 @@ import "./App.css";
 import { Home } from "./Components/Home/Home";
 import { About } from "./Components/About/About";
 import { Prize } from "./Components/Prize/Prize";
-import { Schedule } from "./Components/Schedule/Schedule";
+// import { Schedule } from "./Components/Schedule/Schedule";
 import { Venue } from "./Components/Venue/Venue";
 import { Faq } from "./Components/FAQ/Faq";
 import { Sponsors } from "./Components/Sponsors/Sponsors";
 import { Footer } from "./Components/Footer/Footer";
-import { Team } from "./Components/Team/Team";
+// import { Team } from "./Components/Team/Team";
 import { Navbar } from "./Components/Navbar/Navbar";
 import FriskyFont from "./fonts/Frisky.ttf";
 import MinecraftFont from "./fonts/Minecraftchmc.ttf";
 
 import { Loading } from "./Components/Loading/loading";
+import EventStats from "./Components/EventStats/EventStats";
+import DateVenue from "./Components/Date&Venue/datev";
 
 function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
@@ -68,14 +70,15 @@ function App() {
         description={data.hero.description}
         buttonText={data.hero.buttonText}
       />
-
+      <DateVenue />
       <Prize />
-      <Schedule />
+      {/* <Schedule /> */}
       <Venue />
+      <EventStats />
       <Sponsors />
       <Faq />
       {/* <Judge/> */}
-      <Team />
+      {/* <Team /> */}
       <Footer />
     </>
   );

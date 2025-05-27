@@ -1,4 +1,3 @@
-
 .navbar {
   width: 100%;
   display: flex;
@@ -83,8 +82,10 @@
       display: none;
       flex-direction: column;
       width: auto;
-      background: rgba(255, 255, 255, 0); /* Fully transparent background */
-      border: none;
+      background: rgba(43, 27, 53, 0.655);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgb(225, 183, 252);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       border-radius: 12px;
       padding: 0rem 2%;
       max-width: 90%;
@@ -105,8 +106,8 @@
     }
   
     .navbar a {
-      font-size: 1.9rem;
-      padding: 0.75rem;
+      font-size: 2.4rem;
+      padding: 1rem;
       width: 100%;
       text-align: center;
     }
@@ -115,17 +116,14 @@
       display: block;
       position: absolute;
       right: 1rem;
-      top: 1rem;
     }
 }
   
 @media (max-width: 480px) {
     .navbar {
-      padding: 1rem 0;
+      padding: 1.8rem 0;
     }
-  
-    .navbar a {
-      font-size: 0.9rem;
-      padding: 0.5rem;
+    .navbar-toggle {
+      font-size: 2rem;
     }
 }
