@@ -15,7 +15,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 1; /* Slight transparency for the background */
+  opacity: 0.9; /* Slightly reduced opacity for background */
 }
 
 /* Main content styles */
@@ -26,8 +26,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 800px; /* Reduced width */
-  padding: 20px;
+  max-width: 900px; /* Slightly increased for better spacing */
+  padding: 30px; /* Increased padding for breathing room */
   box-sizing: border-box;
 }
 
@@ -35,10 +35,10 @@
 .prize-card {
   background: rgba(118, 43, 154, 0.9); 
   border-radius: 20px;
-  padding: 20px; /* Reduced padding */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  padding: 30px; /* Increased padding for less congestion */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
   width: 100%;
-  max-width: 600px; /* Reduced width */
+  max-width: 700px; /* Increased width for balance */
   font-family: "Minecraft", "Courier New", monospace;
   text-align: left;
   color: white;
@@ -48,12 +48,17 @@
   position: relative;
 }
 
-/* Left image styles */
+/* Left image styles with white border */
 .prize-left-image {
   flex-shrink: 0; /* Prevent the image from shrinking */
-  width: 100px;
-  height: 100px;
-  margin-right: 20px; /* Space between the SVG and content */
+  width: 120px; /* Slightly larger for balance */
+  height: 120px;
+  margin-right: 30px; /* Increased spacing between SVG and content */
+  border: 2px solid #ffffff; /* White border */
+  padding: 8px; /* Increased padding for better framing */
+  border-radius: 10px; /* Slightly rounded corners */
+  background: rgba(255, 255, 255, 0.15); /* Slightly stronger background */
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); /* Subtle white glow */
 }
 
 .prize-image {
@@ -67,49 +72,50 @@
   flex: 1; /* Allow the content to take up remaining space */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: left-right;
+  align-items: flex-start; /* Align content to the left */
+  padding: 0 30px; /* Increased padding for left-right balance */
 }
 
 /* Card title styles */
 .prize-title-container {
-  margin-bottom: 1rem;
-  position: relative; /* Ensure positioning adjustments work */
+  margin-bottom: 1.5rem; /* Increased spacing */
+  position: relative;
 }
 
 .prize-card-title {
-  font-size: 2.5rem; /* Increased font size */
+  font-size: 2.5rem;
   font-weight: bold;
   color: #ffffff;
   text-shadow: 
-    0 0 10px rgba(255, 255, 255, 0.8), /* Glow effect */
+    0 0 10px rgba(255, 255, 255, 0.8),
     0 0 20px rgba(255, 255, 255, 0.6);
-  text-align: left; /* Center-align the text */
-  transform: translateX(-4rem); /* Shift the text slightly to the left */
+  text-align: left;
+  transform: translateX(-4rem); /* Kept for consistency */
 }
 
 /* Section spacing */
 .prize-section {
-  margin-bottom: 1rem; /* Reduced spacing */
+  margin-bottom: 1.5rem; /* Increased spacing for clarity */
   transition: text-shadow 0.3s ease;
+  width: 100%; /* Ensure full width for alignment */
 }
 
 /* Text glow effect */
 .prize-title {
-  font-family: "Frisky", sans-serif; /* Apply Frisky font */
-  font-weight: 400; /* Font weight */
-  font-size: 35px; /* Font size */
-  line-height: 100%; /* Line height */
-  letter-spacing: 0%; /* Letter spacing */
-  color: white; /* Default text color */
+  font-family: "Frisky", sans-serif;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: white;
   margin: 0;
-  text-shadow:none; /* No glow by default */
-  text-align: left; 
+  text-shadow: none;
+  text-align: left;
 }
 
 .prize-title:hover {
   text-shadow: 
-    0 0 10px rgba(255, 215, 0, 0.8), /* Glow effect */
+    0 0 10px rgba(255, 215, 0, 0.8), /* Gold glow */
     0 0 20px rgba(255, 215, 0, 0.6);
 }
 
@@ -126,47 +132,62 @@
 }
 
 .prize-amount {
-  font-family: "Frisky", sans-serif; /* Apply Frisky font */
-  font-weight: 400; /* Font weight */
-  font-size: 26px; /* Font size */
-  line-height: 100%; /* Line height */
-  width: 20px; /* Width of the element */
-  letter-spacing: 0%; /* Letter spacing */
-  color: #e5e7eb; /* Light gray color */
-  margin-top: 0.25rem; /* Top margin */
-  text-align: left; /* Align the text to the left */
+  font-family: "Frisky", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 100%;
+  width: auto;
+  letter-spacing: 0%;
+  color: #e5e7eb;
+  margin-top: 0.5rem; /* Slightly increased for spacing */
+  text-align: left;
 }
-
 
 /* Separator line */
 .separator-line {
   height: 1px;
-  background-color: #e7e8ea; /* Gray color */
-  width: 75%;
-  margin: 1rem auto; /* Reduced spacing */
+  background-color: #e7e8ea;
+  width: 80%; /* Slightly wider for balance */
+  margin: 1.5rem auto; /* Increased spacing */
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .prize-content {
+    padding: 20px; /* Adjusted for smaller screens */
+  }
+
   .prize-card {
-    flex-direction: column; /* Stack SVG and content vertically on smaller screens */
+    flex-direction: column; /* Stack SVG and content vertically */
     align-items: center;
+    padding: 20px; /* Adjusted padding */
   }
 
   .prize-left-image {
     margin-right: 0; /* Remove margin when stacked */
-    margin-bottom: 15px; /* Add spacing below the SVG */
+    margin-bottom: 20px; /* Increased spacing below SVG */
+    width: 100px; /* Slightly smaller for mobile */
+    height: 100px;
+  }
+
+  .prize-card-content {
+    padding: 0 20px; /* Adjusted for mobile */
   }
 
   .prize-card-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Adjusted for mobile */
+    transform: translateX(0); /* Remove shift on mobile */
   }
 
   .prize-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem; /* Adjusted for mobile */
   }
 
   .prize-amount {
-    font-size: 1rem;
+    font-size: 1.2rem; /* Adjusted for mobile */
+  }
+
+  .separator-line {
+    margin: 1rem auto; /* Adjusted for mobile */
   }
 }
