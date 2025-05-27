@@ -6,7 +6,7 @@ import { About } from "./Components/About/About";
 import { Prize } from "./Components/Prize/Prize";
 import { Schedule } from "./Components/Schedule/Schedule";
 import { Venue } from "./Components/Venue/Venue";
-import { FaqSection } from "./Components/FaqSection/FaqSection";
+import { Faq } from "./Components/FAQ/Faq";
 import { Sponsors } from "./Components/Sponsors/Sponsors";
 import { Footer } from "./Components/Footer/Footer";
 import { Team } from "./Components/Team/Team";
@@ -73,7 +73,7 @@ function App() {
       <Schedule />
       <Venue />
       <Sponsors />
-      <FaqSection />
+      <Faq />
       {/* <Judge/> */}
       <Team />
       <Footer />
