@@ -14,7 +14,7 @@ export const About = ({ description, buttonText }) => {
       const timeout = setTimeout(() => {
         setDisplayText((prevText) => prevText + description[currentIndex])
         setCurrentIndex((prevIndex) => prevIndex + 1)
-      }, 0.7) // Faster typing speed
+      }, 2) // Faster typing speed
       return () => clearTimeout(timeout)
     }
   }, [currentIndex, description])
