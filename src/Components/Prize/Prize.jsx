@@ -108,6 +108,7 @@ export const Prize = () => {
               <h3 className="prize-title text-bronze">2ND RUNNER UP</h3>
               <p className="prize-amount">10,000RS</p>
             </div>
+            <div className="separator-line"></div>
           </div>
         </div>
       </div>
