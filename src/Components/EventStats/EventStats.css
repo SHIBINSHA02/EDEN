@@ -1,3 +1,4 @@
+
 .event-stats-section {
   height: 24rem;
   width: 100vw;
@@ -8,6 +9,13 @@
   overflow: hidden;
   background: transparent;
   padding-top: 2rem;
+  font-family: "Frisky", monospace; /* Custom pixel-style font */
+}
+
+.background-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .stat-container {
@@ -18,46 +26,62 @@
 }
 
 .stat-value {
+  display: block;
   font-size: 4rem;
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
   line-height: 1;
   letter-spacing: 2px;
-  margin-bottom: 0.75rem;
-  text-shadow: 2px 2px 0 #000;
+  margin-bottom: 0.25rem;
+  text-shadow: 2px 2px 0 #000000;
+  font-family: "Frisky", monospace;
 }
 
 .stat-label {
+  display: block;
   font-size: 0.875rem;
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 0 #000;
+  text-shadow: 1px 1px 0 #000000;
   opacity: 0.9;
+  font-family: "Frisky", monospace;
+}
+
+.stats-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  max-width: 80rem; /* Equivalent to max-w-5xl */
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 @keyframes floatAnimation {
   0% {
-    transform: translateY(0) scaleX(1);
+    transform: translateY(0) scale(3);
   }
   50% {
-    transform: translateY(-15px) scaleX(1);
+    transform: translateY(-15px) scale(3);
   }
   100% {
-    transform: translateY(0) scaleX(1);
+    transform: translateY(0) scale(3);
   }
 }
 
 @keyframes floatAnimationFlipped {
   0% {
-    transform: translateY(0) scaleX(-1);
+    transform: translateY(0) scale(3);
   }
   50% {
-    transform: translateY(-15px) scaleX(-1);
+    transform: translateY(-15px) scale(3);
   }
   100% {
-    transform: translateY(0) scaleX(-1);
+    transform: translateY(0) scale(3);
   }
 }
 
@@ -70,28 +94,35 @@
 }
 
 .cloud-left {
-  left: 12%;
+  left:0.5%;
   top: 6rem;
   animation: floatAnimation 6s ease-in-out infinite;
 }
 
 .cloud-right {
-  right: 12%;
+  right: 2%;
   top: 17rem;
   animation: floatAnimationFlipped 8s ease-in-out infinite;
 }
 
-
 .cloud:hover {
-  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.5));
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
   transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
+  .stats-content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
   .stat-value {
     font-size: 3rem;
+    margin-bottom: 0.2rem;
   }
-  
+
   .stat-label {
     font-size: 0.8rem;
   }
@@ -99,13 +130,13 @@
   .cloud {
     width: 100px;
   }
-  
+
   .cloud-left {
     left: 5%;
   }
-  
+
   .cloud-right {
     right: 5%;
     top: 8rem;
   }
-} 
+}

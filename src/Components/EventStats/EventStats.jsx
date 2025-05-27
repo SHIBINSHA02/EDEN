@@ -6,9 +6,9 @@ const cloud2 = "/cloud2.svg";
 
 const EventStats = () => {
   return (
-    <div className="event-stats-section relative w-full h-96 flex items-start justify-center overflow-hidden">
+    <div className="event-stats-section">
       {/* Pixel Art Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="background-container">
         <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
       </div>
 
@@ -19,27 +19,27 @@ const EventStats = () => {
       <img src={cloud2} alt="cloud" className="cloud cloud-right" />
 
       {/* Stats Content */}
-      <div className="relative z-10 flex w-full max-w-5xl justify-between items-start px-16">
+      <div className="stats-content">
         {/* 24 HOURS */}
-        <div className="flex flex-col items-center stat-container">
-          <span className="stat-value minecraft-font">24</span>
-          <span className="stat-label minecraft-font">HOURS</span>
+        <div className="stat-container">
+          <span className="stat-value">24</span>
+          <span className="stat-label">HOURS</span>
         </div>
 
         {/* 50K PRIZE POOL */}
-        <div className="flex flex-col items-center stat-container">
-          <span className="stat-value minecraft-font">50K</span>
-          <span className="stat-label minecraft-font">PRIZE POOL</span>
+        <div className="stat-container">
+          <span className="stat-value">50K</span>
+          <span className="stat-label">PRIZE POOL</span>
         </div>
 
         {/* 100 PARTICIPANTS */}
-        <div className="flex flex-col items-center stat-container">
-          <span className="stat-value minecraft-font">100</span>
-          <span className="stat-label minecraft-font">PARTICIPANTS</span>
+        <div className="stat-container">
+          <span className="stat-value">100</span>
+          <span className="stat-label">PARTICIPANTS</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default EventStats; 
+export default EventStats;
