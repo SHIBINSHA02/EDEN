@@ -14,7 +14,7 @@ export const About = ({ description, buttonText }) => {
       const timeout = setTimeout(() => {
         setDisplayText((prevText) => prevText + description[currentIndex])
         setCurrentIndex((prevIndex) => prevIndex + 1)
-      }, 0.5) // Faster typing speed
+      }, 3) // Faster typing speed
       return () => clearTimeout(timeout)
     }
   }, [currentIndex, description])
@@ -32,10 +32,10 @@ export const About = ({ description, buttonText }) => {
   }
 
   const handleDownload = () => {
-    const pdfUrl = "./MODDULE.pdf"
+    const pdfUrl = "./EDEN.pdf"
     const link = document.createElement("a")
     link.href = pdfUrl
-    link.download = "MODDULE.pdf"
+    link.download = "EDEN.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
