@@ -35,7 +35,7 @@ export const About = ({ description, buttonText }) => {
     const pdfUrl = "./EDEN.pdf"
     const link = document.createElement("a")
     link.href = pdfUrl
-    link.download = "EDEN.pdf"
+    link.download = "./EDEN.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
