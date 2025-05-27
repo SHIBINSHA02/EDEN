@@ -1,17 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PixelArtBackground from "../Background/PixelArtbg";
 import "./Prize.css";
 
 export const Prize = () => {
-  // State to track the currently hovered prize pool
-  const [activePrize, setActivePrize] = useState("hot_ballon");
+  // State to track the currently displayed prize image
+  const [activePrize, setActivePrize] = useState("winner");
+  // State to track if animation should run
+  const [isAnimating, setIsAnimating] = useState(true);
 
   // Map prize pool sections to their respective SVGs
   const prizeImages = {
-    hot_ballon: "/hot_ballon.svg",
     winner: "/1Price.svg",
     runner1: "/2Price.svg",
     runner2: "/3Price.svg",
+  };
+
+  // Array of prize keys for cycling
+  const prizeOrder = ["winner", "runner1", "runner2"];
+
+  // Animation loop with 2s per image (1s display + 1s delay)
+  useEffect(() => {
+    let timeout;
+    const cyclePrize = () => {
+      if (isAnimating) {
+        setActivePrize((prev) => {
+          const currentIndex = prizeOrder.indexOf(prev);
+          const nextIndex = (currentIndex + 1) % prizeOrder.length;
+          return prizeOrder[nextIndex];
+        });
+        // Schedule the next change: 2000ms per image
+        timeout = setTimeout(cyclePrize, 2000);
+      }
+    };
+
+    if (isAnimating) {
+      timeout = setTimeout(cyclePrize, 2000); // Initial call
+    }
+
+    return () => clearTimeout(timeout); // Cleanup on unmount or when isAnimating changes
+  }, [isAnimating]);
+
+  // Handle hover to pause animation and set specific prize
+  const handleMouseEnter = (prize) => {
+    setIsAnimating(false);
+    setActivePrize(prize);
+  };
+
+  // Handle mouse leave to resume animation
+  const handleMouseLeave = () => {
+    setIsAnimating(true);
   };
 
   return (
@@ -27,7 +64,7 @@ export const Prize = () => {
       {/* Main Content */}
       <div className="prize-content">
         <div className="prize-card">
-          {/* Left SVG */}
+          {/* Left SVG with boundary box */}
           <div className="prize-left-image">
             <img 
               src={prizeImages[activePrize]} 
@@ -38,12 +75,11 @@ export const Prize = () => {
 
           {/* Card Content */}
           <div className="prize-card-content">
-
             {/* Winners Section */}
             <div
               className="prize-section"
-              onMouseEnter={() => setActivePrize("winner")}
-              onMouseLeave={() => setActivePrize("hot_ballon")}
+              onMouseEnter={() => handleMouseEnter("winner")}
+              onMouseLeave={handleMouseLeave}
             >
               <h2 className="prize-title text-gold">WINNERS</h2>
               <p className="prize-amount">25,000RS</p>
@@ -54,8 +90,8 @@ export const Prize = () => {
             {/* 1st Runner Up */}
             <div
               className="prize-section"
-              onMouseEnter={() => setActivePrize("runner1")}
-              onMouseLeave={() => setActivePrize("hot_ballon")}
+              onMouseEnter={() => handleMouseEnter("runner1")}
+              onMouseLeave={handleMouseLeave}
             >
               <h3 className="prize-title text-silver">1ST RUNNER UP</h3>
               <p className="prize-amount">15,000RS</p>
@@ -66,8 +102,8 @@ export const Prize = () => {
             {/* 2nd Runner Up */}
             <div
               className="prize-section"
-              onMouseEnter={() => setActivePrize("runner2")}
-              onMouseLeave={() => setActivePrize("hot_ballon")}
+              onMouseEnter={() => handleMouseEnter("runner2")}
+              onMouseLeave={handleMouseLeave}
             >
               <h3 className="prize-title text-bronze">2ND RUNNER UP</h3>
               <p className="prize-amount">10,000RS</p>
