@@ -188,3 +188,39 @@
     gap: 2rem; /* Adjusted for mobile */
   }
 }
+
+/* Show More Button */
+.faq-show-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem; /* Space above the button */
+}
+
+.show-more-button {
+  background: linear-gradient(135deg, #c084fc, #7c3aed); /* Gradient matching theme */
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 8px; /* Rounded corners */
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.show-more-button:hover {
+  opacity: 0.8;
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.show-more-button:focus {
+  outline: 2px solid #ffffff; /* Focus outline for accessibility */
+  outline-offset: 2px;
+}
+
+/* Responsive Adjustments for Button */
+@media (max-width: 768px) {
+  .show-more-button {
+    font-size: 1.2rem; /* Smaller font for mobile */
+    padding: 0.5rem 1rem;
+  }
+}

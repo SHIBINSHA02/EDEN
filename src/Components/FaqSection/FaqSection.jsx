@@ -72,31 +72,38 @@ const faqData = [
     answer: "Yes! Eden begins with entrepreneurship talks, industry interactions, and networking sessions on Day 1 to inspire and prepare participants before the 24-hour hackathon kicks off on Day 2."
   }
 ];
-
 export const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   const toggleAnswer = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  const toggleShowMore = () => {
+    setShowAll(!showAll);
+  };
+
+  // Determine how many FAQs to display
+  const visibleFaqs = showAll ? faqData : faqData.slice(0, 7);
 
   return (
     <div className="faq-section">
       <div className="faq-background">
         <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
       </div>
-      
+
       <div className="faq-container">
         {/* FAQ heading with Frisky font */}
         <div className="faq-heading frisky-font">
           FAQ
         </div>
-        
+
         {/* FAQ items */}
         <div className="faq-items">
-          {faqData.map((faq, index) => (
+          {visibleFaqs.map((faq, index) => (
             <div key={index} className="faq-item minecraft-font">
-              <div 
+              <div
                 className="faq-question"
                 onClick={() => toggleAnswer(index)}
               >
@@ -113,6 +120,17 @@ export const FaqSection = () => {
               <div className="faq-divider"></div>
             </div>
           ))}
+          {/* Show More/Show Less Button */}
+          {faqData.length > 7 && (
+            <div className="faq-show-more">
+              <button
+                className="show-more-button minecraft-font"
+                onClick={toggleShowMore}
+              >
+                {showAll ? "Show Less" : "Show More"}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
