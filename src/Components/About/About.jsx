@@ -32,10 +32,10 @@ export const About = ({ description, buttonText }) => {
   }
 
   const handleDownload = () => {
-    const pdfUrl = "./EDEN.pdf"
+    const pdfUrl = "./Eden.pdf"
     const link = document.createElement("a")
     link.href = pdfUrl
-    link.download = "./EDEN.pdf"
+    link.download = "./Eden.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
