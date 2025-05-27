@@ -5,6 +5,26 @@
   overflow-x: hidden;
 }
 
+.pixelated-violet-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Adjust the height of the top section as needed */
+  background-color: transparent;
+  background-image: repeating-radial-gradient(
+      circle,
+      rgba(196, 0, 231, 0.599) 0px,
+      rgba(156, 39, 176, 0.3) 5px,
+      transparent 5px,
+      transparent 10px
+    ),
+    linear-gradient(to bottom, rgb(27,22,76) 0%, rgba(195, 17, 211, 0) 100%);
+  background-size: 10px 10px, 100% 100%; /* Apply size to both layers */
+  background-blend-mode: multiply; /* The key to making it fade */
+  z-index: 3; /* Ensure it's on top */
+  pointer-events: none;
+}
 .about-background {
   position: fixed;
   top: 0;
@@ -19,13 +39,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
-  z-index: 2; /* Ensure content is above background */
-  width: 85%; /* Default width */
-  max-width: 1200px; /* Prevent excessive stretching */
-  background: rgba(118, 43, 154, 0.3); /* #762b9a with 30% opacity */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 85%;
+  max-width: 1200px;
   padding: 30px;
   border-radius: 15px;
   box-sizing: border-box;
@@ -40,6 +60,7 @@
   padding: 0 15px;
   margin-bottom: 20px;
   letter-spacing: normal; /* Default letter spacing for desktop */
+  white-space: pre-wrap; /* Preserve line breaks */
 }
 
 .button-container {
@@ -95,25 +116,39 @@
     width: 95%;
     min-height: 80vh;
     padding: 30px; /* Increased padding for mobile */
+    align-items: stretch; /* Make content stretch to container width */
   }
 
   .about-content p {
-    font-size: 1.5rem; /* Smaller font size for mobile */
-    padding: 0 10px;
+    font-size: 1.8rem; /* Increased font size for mobile description */
+    padding: 10px; /* Adjusted padding for mobile description */
+    margin-bottom: 25px; /* Increased margin below description */
+    letter-spacing: 0.05em; /* Increased letter spacing for mobile description */
+    text-align: left; /* Left align text on mobile */
   }
 
   .button-container {
-    gap: 15px; /* Reduced gap */
-    flex-direction: row; /* Keep inline, wrap if needed */
+    display: flex; /* Make button container a flex container */
+    flex-direction: row; /* Arrange items in a row */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Adjust gap between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+
   }
 
   .about-content button.primary-button,
   .about-content button.secondary-button {
-    width: 80%; /* Wider button relative to container */
-    max-width: 250px; /* Cap width */
-    height: 80px; /* Slightly shorter */
-    font-size: 1.5rem; /* Smaller font size */
-    padding: 8px 16px; /* Adjusted padding */
+    font-size: 1.8rem; /* Keep the font size the same as current mobile */
+    padding: 15px 20px; /* Keep the padding the same as current mobile */
+    height: auto; /* Allow height to adjust based on content */
+    width: auto; /* Allow width to adjust based on content */
+    min-width: 150px; /* Ensure a minimum width for each button */
+  }
+
+  .button-wrapper {
+    width: auto; /* Adjust width to content */
+    margin: 0; /* Remove default margins that might affect inline layout */
+
   }
 }
 
@@ -162,10 +197,24 @@
 
   .about-content button.primary-button,
   .about-content button.secondary-button {
-    width: 90%; /* Full width relative to container */
-    max-width: 200px; /* Smaller max width */
-    height: 70px; /* Shorter button */
-    font-size: 1.2rem; /* Smaller font size */
-    padding: 6px 12px; /* Reduced padding */
+    font-size: 1.6rem; /* Keep the font size consistent */
+    padding: 12px 18px; /* Keep the padding consistent */
+    min-width: 120px; /* Adjust minimum width for smaller screens */
+
   }
+}
+
+.typing-animation {
+  white-space: pre-wrap; /* Preserve line breaks */
+  border-right: .15em solid rgb(166, 0, 255); /* Cursor effect */
+  overflow: hidden; /* Ensure the cursor stays within the text boundaries */
+}
+
+@keyframes blinking-cursor {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(162, 0, 255); }
+}
+
+.typing-animation {
+  animation: blinking-cursor .75s step-end infinite; /* Apply only the blinking animation */
 }

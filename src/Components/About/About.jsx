@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PixelArtBackground from '../Background/PixelArtbg';
 import './About.css';
 
 export const About = ({ description, buttonText }) => {
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < description.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText((prevText) => prevText + description[currentIndex]);
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      }, 50); // Adjust the speed of typing here (milliseconds)
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, description]);
+
   const handleClick = () => {
     window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUJcmljayByb2xs";
   };
@@ -19,10 +32,11 @@ export const About = ({ description, buttonText }) => {
 
   return (
     <div className="about-container relative w-screen h-screen">
+      <div className="pixelated-violet-top"></div> {/* New div for the top effect */}
       <PixelArtBackground className="about-background" pixelSize={2} density={1} fadeDuration={3000} />
       <div className="about-content">
         <div className="description">
-          <p>{description}</p>
+          <p className="typing-animation">{displayText}</p>
         </div>
         <div className="button-container">
           <button className="primary-button" onClick={handleClick}>{buttonText}</button>
