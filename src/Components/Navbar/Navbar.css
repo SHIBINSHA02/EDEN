@@ -37,7 +37,7 @@
   font-size: 2rem;
   text-decoration: none;
   padding: 0 1rem;
-  font-family: 'Minecraft', sans-serif; /* Use the Minecraft font */
+  font-family: "Minecraft", sans-serif; /* Use the Minecraft font */
   font-weight: 500; /* Set the font weight to 500 */
   letter-spacing: 0.05rem;
   transition: color 0.2s ease; /* Smooth transition for color change */
@@ -50,7 +50,7 @@
 }
 
 .navbar a::after {
-  content: ''; /* Create a pseudo-element for the underline */
+  content: ""; /* Create a pseudo-element for the underline */
   display: block;
   height: 2px; /* Thickness of the underline */
   background: #b678e6; /* Color of the underline */
@@ -78,52 +78,65 @@
 
 /* Mobile styles */
 @media (max-width: 768px) {
-    .navbar ul {
-      display: none;
-      flex-direction: column;
-      width: auto;
-      background: rgba(43, 27, 53, 0.655);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgb(225, 183, 252);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      padding: 0rem 2%;
-      max-width: 90%;
-      max-height: 70vh;
-      overflow-y: auto;
-      position: absolute;
-      right: 1rem;
-      top: 60px;
-    }
-  
-    .navbar ul.active {
-      display: flex;
-    }
-  
-    .navbar li {
-      width: 100%;
-      justify-content: center;
-    }
-  
-    .navbar a {
-      font-size: 2.4rem;
-      padding: 1rem;
-      width: 100%;
-      text-align: center;
-    }
-  
-    .navbar-toggle {
-      display: block;
-      position: absolute;
-      right: 1rem;
-    }
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    width: auto;
+    background: rgba(43, 27, 53, 0.655);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgb(225, 183, 252);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    max-width: 70%;
+    max-height: 60vh;
+    overflow-y: auto;
+    position: absolute;
+    right: 1rem;
+    top: 50px;
+  }
+
+  .navbar ul.active {
+    display: flex;
+  }
+
+  .navbar li {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar a {
+    font-size: 1.6rem;
+    padding: 0.6rem 0.8rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-toggle {
+    display: block;
+    position: absolute;
+    right: 1rem;
+  }
 }
-  
+
 @media (max-width: 480px) {
-    .navbar {
-      padding: 1.8rem 0;
-    }
-    .navbar-toggle {
-      font-size: 2rem;
-    }
+  .navbar {
+    padding: 1.2rem 0;
+  }
+
+  .navbar ul {
+    max-width: 65%;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    top: 45px;
+  }
+
+  .navbar a {
+    font-size: 1.4rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .navbar-toggle {
+    font-size: 1.8rem;
+  }
 }

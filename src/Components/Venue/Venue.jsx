@@ -36,6 +36,7 @@ export const Venue = () => {
             initialPlusSigns={40}
             className="background-canvas"
             onError={() => {
+              console.error("PixelArtBackground failed to render in Venue");
               setBackgroundError(true);
             }}
           />
@@ -48,7 +49,7 @@ export const Venue = () => {
       {/* Main Content */}
       <div className="content-container">
         {/* Event Title */}
-        <h1 className="event-title">EDEN 2025</h1>
+        <h1 className="event-title">Hackathon 2025 Venue</h1>
 
         {/* Venue Details Section */}
         <section className="venue-details">
