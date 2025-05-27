@@ -16,6 +16,7 @@ import MinecraftFont from "./fonts/Minecraftchmc.ttf";
 
 import { Loading } from "./Components/Loading/loading";
 import EventStats from "./Components/EventStats/EventStats";
+import DateVenue from "./Components/Date&Venue/datev";
 
 function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
@@ -69,7 +70,7 @@ function App() {
         description={data.hero.description}
         buttonText={data.hero.buttonText}
       />
-
+      <DateVenue />
       <Prize />
       {/* <Schedule /> */}
       <Venue />
