@@ -41,6 +41,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transition: transform 0.3s ease-in-out; /* Smooth transition for other transforms */
 }
 
 /* Floating animation */
@@ -55,9 +56,9 @@
   }
   50% {
     transform: translate(
-        calc(var(--float-x-range) * 0.5), /* Simplified movement */
-        calc(var(--float-y-range) * 0.5)
-      ) scale(1.9); /* Maintain scale */
+      calc(var(--float-x-range) * 0.5), /* Simplified movement */
+      calc(var(--float-y-range) * 0.5)
+    ) scale(1.9); /* Maintain scale */
   }
 }
 
@@ -71,7 +72,6 @@
   }
 }
 
-/* Mobile adjustments */
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .image-container {
@@ -115,13 +115,26 @@
   .airship-image {
     display: block; /* Make it visible */
     position: absolute;
-    top: 30%; /* Adjust top position to move it upwards */
+    top: 45%; /* Adjust top position to move it upwards */
     left: 30%; /* Adjust left position to move it to the left */
-    transform: translate(-50%, -50%) scale(1.9); /* Center it based on its new top-left point */
-    max-width: 50%; /* Adjust size as needed */
+    transform: translate(-50%, -50%) scale(1.9) rotate(30deg); /* Initial rotation */
+    max-width: 20%; /* Adjust size as needed */
     z-index: 3; /* Ensure it's above the background */
     opacity: 1 !important; /* Override desktop opacity */
     visibility: visible !important; /* Override desktop visibility */
+    animation: float-mobile 5s infinite ease-in-out; /* Apply mobile-specific animation */
+  }
+
+  @keyframes float-mobile {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1.9) rotate(30deg); /* Include rotation */
+    }
+    50% {
+      transform: translate(
+        calc(-50% + (var(--float-x-range) * 0.3)), /* Adjust movement */
+        calc(-50% + (var(--float-y-range) * 0.3)) /* Adjust movement */
+      ) scale(1.8) rotate(40deg); /* Slight rotation change */
+    }
   }
 
   .date-image {
