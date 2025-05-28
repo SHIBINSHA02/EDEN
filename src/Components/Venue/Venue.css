@@ -424,11 +424,11 @@
   }
 
   .detail-label {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .detail-content {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .map-container {
@@ -489,16 +489,16 @@
   }
 
   .detail-item {
-    font-size: 1.2rem;
+    font-size: 2rem;
     padding: 0 15px;
   }
 
   .detail-label {
-    font-size: 1.6rem;
+    font-size: 2.3rem;
   }
 
   .detail-content {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 
   .map-container {
