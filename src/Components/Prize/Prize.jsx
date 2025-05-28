@@ -10,9 +10,9 @@ export const Prize = () => {
 
   // Map prize pool sections to their respective SVGs
   const prizeImages = {
-    winner: "/1Price.svg",
-    runner1: "/2Price.svg",
-    runner2: "/3Price.svg",
+    winner: "./1Price.svg",
+    runner1: "./2Price.svg",
+    runner2: "./3Price.svg",
   };
 
   // Array of prize keys for cycling
