@@ -529,3 +529,67 @@
     margin: 30px auto;
   }
 }
+
+/* Floating and moving animation for rocket.svg */
+.desktop-image {
+  position: absolute;
+  top: 50%;
+  right: 80%;
+  width: 20%;
+  height: auto;
+  z-index: 15;
+  display: none;
+  border: none !important; /* Increased specificity to override any external styles */
+  outline: none; /* Remove any browser outline */
+  transform: translateX(50%); /* Kept from previous to ensure visibility */
+  animation: floatInSpace 6s ease-in-out infinite, moveRocket 12s ease-in-out infinite; /* Combined animations */
+}
+
+/* Show image only on desktop screens (above 1024px) */
+@media (min-width: 1025px) {
+  .desktop-image {
+    display: block;
+  }
+}
+
+/* Keyframes for floating and rotation effect */
+@keyframes floatInSpace {
+  0% {
+    transform: translateX(50%) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(50%) translateY(-15px) rotate(5deg); /* Sample rotation, adjust as needed */
+  }
+  100% {
+    transform: translateX(50%) translateY(0) rotate(0deg);
+  }
+}
+
+/* Keyframes for positional movement */
+@keyframes moveRocket {
+  0% {
+    top: 50%;
+    right: 80%;
+    transform: rotate(0deg);
+  }
+  25% {
+    top: 30%;
+    right: 60%;
+    transform: rotate(25deg); /* Sample rotation, adjust as needed */
+  }
+  50% {
+    top: 30%;
+    right: 40%;
+    transform: rotate(15deg); /* Sample rotation, adjust as needed */
+  }
+  75% {
+    top: 0%;
+    right: 10%;
+    transform: rotate(30deg); /* Sample rotation, adjust as needed */
+  }
+  100% {
+    top: 50%;
+    right: 80%;
+    transform: rotate(0deg);
+  }
+}
