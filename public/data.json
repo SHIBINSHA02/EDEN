@@ -3,8 +3,8 @@
     { "label": "Home", "link": "#home" },
     { "label": "About", "link": "#about" },
     { "label": "Sponsors", "link": "#sponsors" },
-    { "label": "Contact Us", "link": "#contact" },
-    { "label": "FAQs", "link": "#faq" }
+    { "label": "FAQs", "link": "#faq" },
+    { "label": "Contact Us", "link": "#contact" }
   ],
   "hero": {
     "title": "EDEN 4.0",
@@ -97,12 +97,6 @@
   "sponsors": {
     "titleSponsors": [
       {
-        "name": "CareStack",
-        "image": "/sponsers/CareStack/CareStack.svg",
-        "alt": "CareStack",
-        "website": "https://www.carestack.com"
-      },
-      {
         "name": "DCUBE AI",
         "image": "/sponsers/DCUBE Ai/DCUBE Ai.png",
         "alt": "DCUBE AI",
@@ -135,10 +129,10 @@
     ],
     "communityPartners": [
       {
-        "name": "Community Partner 1",
-        "image": "/images/community1.png",
-        "alt": "Community Partner 1",
-        "website": "#"
+        "name": "CareStack",
+        "image": "/sponsers/CareStack/CareStack.svg",
+        "alt": "CareStack",
+        "website": "https://www.carestack.com"
       },
       {
         "name": "Community Partner 2",

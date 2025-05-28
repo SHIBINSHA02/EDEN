@@ -21,48 +21,84 @@ export const Sponsors = ({ sponsorsData }) => {
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
             TITLE SPONSORS
           </h2>
-          {/* Dynamic grid layout based on number of sponsors */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-            {titleSponsors.map((sponsor, index) => (
-              <div
-                key={index}
-                className={`sponsor-box ${
-                  sponsor.name === "CareStack" ? "carestack-box" : ""
-                } ${sponsor.name === "DCUBE AI" ? "dcube-box" : ""} ${
-                  sponsor.name === "iTRAITZ" ? "itraitz-box" : ""
-                } ${sponsor.name === "KaiSemi" ? "kaisemi-box" : ""} ${
-                  sponsor.name === "SEMentor" ? "sementor-box" : ""
-                } ${
-                  sponsor.name === "Seqato" ? "seqato-box" : ""
-                } aspect-[3/2] rounded-lg shadow-lg ${
-                  sponsor.name !== "CareStack" &&
-                  sponsor.name !== "DCUBE AI" &&
-                  sponsor.name !== "iTRAITZ" &&
-                  sponsor.name !== "KaiSemi" &&
-                  sponsor.name !== "SEMentor" &&
-                  sponsor.name !== "Seqato"
-                    ? "hover:bg-purple-500"
-                    : ""
-                } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
-                onClick={() => {
-                  if (sponsor.website && sponsor.website !== "#") {
-                    window.open(
-                      sponsor.website,
-                      "_blank",
-                      "noopener,noreferrer"
-                    );
-                  }
-                }}
-                title={`Visit ${sponsor.name} website`}
-              >
-                <img
-                  src={sponsor.image}
-                  alt={sponsor.alt}
-                  className="max-w-full max-h-full object-contain"
-                  style={{ filter: "brightness(1.1)" }}
-                />
-              </div>
-            ))}
+          <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+            {/* First row - 3 sponsors */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+              {titleSponsors.slice(0, 3).map((sponsor, index) => (
+                <div
+                  key={index}
+                  className={`sponsor-box ${
+                    sponsor.name === "DCUBE AI" ? "dcube-box" : ""
+                  } ${
+                    sponsor.name === "iTRAITZ" ? "itraitz-box" : ""
+                  } ${sponsor.name === "KaiSemi" ? "kaisemi-box" : ""} ${
+                    sponsor.name === "SEMentor" ? "sementor-box" : ""
+                  } ${
+                    sponsor.name === "Seqato" ? "seqato-box" : ""
+                  } aspect-[3/2] rounded-lg shadow-lg ${
+                    sponsor.name !== "DCUBE AI" &&
+                    sponsor.name !== "iTRAITZ" &&
+                    sponsor.name !== "KaiSemi" &&
+                    sponsor.name !== "SEMentor" &&
+                    sponsor.name !== "Seqato"
+                      ? "hover:bg-purple-500"
+                      : ""
+                  } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
+                  onClick={() => {
+                    if (sponsor.website && sponsor.website !== "#") {
+                      window.open(sponsor.website, "_blank", "noopener,noreferrer");
+                    }
+                  }}
+                  title={`Visit ${sponsor.name} website`}
+                >
+                  <img
+                    src={sponsor.image}
+                    alt={sponsor.alt}
+                    className="max-w-full max-h-full object-contain"
+                    style={{ filter: "brightness(1.1)" }}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Second row - 2 sponsors */}
+            <div className="flex justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+              {titleSponsors.slice(3, 5).map((sponsor, index) => (
+                <div
+                  key={index + 3}
+                  className={`sponsor-box ${
+                    sponsor.name === "DCUBE AI" ? "dcube-box" : ""
+                  } ${
+                    sponsor.name === "iTRAITZ" ? "itraitz-box" : ""
+                  } ${sponsor.name === "KaiSemi" ? "kaisemi-box" : ""} ${
+                    sponsor.name === "SEMentor" ? "sementor-box" : ""
+                  } ${
+                    sponsor.name === "Seqato" ? "seqato-box" : ""
+                  } aspect-[3/2] rounded-lg shadow-lg ${
+                    sponsor.name !== "DCUBE AI" &&
+                    sponsor.name !== "iTRAITZ" &&
+                    sponsor.name !== "KaiSemi" &&
+                    sponsor.name !== "SEMentor" &&
+                    sponsor.name !== "Seqato"
+                      ? "hover:bg-purple-500"
+                      : ""
+                  } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer w-full max-w-[calc(33.333%-1rem)]`}
+                  onClick={() => {
+                    if (sponsor.website && sponsor.website !== "#") {
+                      window.open(sponsor.website, "_blank", "noopener,noreferrer");
+                    }
+                  }}
+                  title={`Visit ${sponsor.name} website`}
+                >
+                  <img
+                    src={sponsor.image}
+                    alt={sponsor.alt}
+                    className="max-w-full max-h-full object-contain"
+                    style={{ filter: "brightness(1.1)" }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -75,7 +111,15 @@ export const Sponsors = ({ sponsorsData }) => {
             {communityPartners.map((partner, index) => (
               <div
                 key={index}
-                className="sponsor-box aspect-[3/2] rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300 flex items-center justify-center p-4 cursor-pointer"
+                className={`sponsor-box aspect-[3/2] rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300 flex items-center justify-center p-4 cursor-pointer ${
+                  partner.name === "CareStack" ? "carestack-box" : ""
+                } ${
+                  partner.name === "iTRAITZ" ? "itraitz-box" : ""
+                } ${partner.name === "KaiSemi" ? "kaisemi-box" : ""} ${
+                  partner.name === "SEMentor" ? "sementor-box" : ""
+                } ${
+                  partner.name === "Seqato" ? "seqato-box" : ""
+                }`}
                 onClick={() => {
                   if (partner.website && partner.website !== "#") {
                     window.open(
