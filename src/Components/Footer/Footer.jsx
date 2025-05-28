@@ -43,7 +43,7 @@ export const Footer = () => {
           <div className="brand-logo-minimal">
             <div className="logo-text-minimal">EDEN 4.0</div>
             <div className="logo-tagline">
-              Innovation • Collaboration • Excellence
+              Innovate • Collaborate • Transform
             </div>
           </div>
         </div>
