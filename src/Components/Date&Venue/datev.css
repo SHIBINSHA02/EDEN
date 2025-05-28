@@ -64,7 +64,7 @@
 /* Desktop-specific positioning and visibility */
 @media (min-width: 769px) {
   .airship-image {
-    top: 10%;
+    top: -6%;
     right: 5%;
     opacity: 1 !important;
     visibility: visible !important;
