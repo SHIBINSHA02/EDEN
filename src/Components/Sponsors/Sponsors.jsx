@@ -31,16 +31,12 @@ export const Sponsors = ({ sponsorsData }) => {
                     sponsor.name === "DCUBE AI" ? "dcube-box" : ""
                   } ${
                     sponsor.name === "iTRAITZ" ? "itraitz-box" : ""
-                  } ${sponsor.name === "KaiSemi" ? "kaisemi-box" : ""} ${
-                    sponsor.name === "SEMentor" ? "sementor-box" : ""
-                  } ${
-                    sponsor.name === "Seqato" ? "seqato-box" : ""
+                  } ${sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
+
                   } aspect-[3/2] rounded-lg shadow-lg ${
                     sponsor.name !== "DCUBE AI" &&
                     sponsor.name !== "iTRAITZ" &&
-                    sponsor.name !== "KaiSemi" &&
-                    sponsor.name !== "SEMentor" &&
-                    sponsor.name !== "Seqato"
+                    sponsor.name !== "KaiSemi"
                       ? "hover:bg-purple-500"
                       : ""
                   } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
@@ -67,17 +63,10 @@ export const Sponsors = ({ sponsorsData }) => {
                 <div
                   key={index + 3}
                   className={`sponsor-box ${
-                    sponsor.name === "DCUBE AI" ? "dcube-box" : ""
-                  } ${
-                    sponsor.name === "iTRAITZ" ? "itraitz-box" : ""
-                  } ${sponsor.name === "KaiSemi" ? "kaisemi-box" : ""} ${
                     sponsor.name === "SEMentor" ? "sementor-box" : ""
                   } ${
                     sponsor.name === "Seqato" ? "seqato-box" : ""
                   } aspect-[3/2] rounded-lg shadow-lg ${
-                    sponsor.name !== "DCUBE AI" &&
-                    sponsor.name !== "iTRAITZ" &&
-                    sponsor.name !== "KaiSemi" &&
                     sponsor.name !== "SEMentor" &&
                     sponsor.name !== "Seqato"
                       ? "hover:bg-purple-500"
@@ -103,11 +92,11 @@ export const Sponsors = ({ sponsorsData }) => {
         </div>
 
         {/* Community Partner Section */}
-        <div className="mb-12 sm:mb-16 w-full max-w-4xl">
+        <div className="mb-12 sm:mb-16 w-full max-w-3xl">
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
             COMMUNITY PARTNERS
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center flex">
             {communityPartners.map((partner, index) => (
               <div
                 key={index}
