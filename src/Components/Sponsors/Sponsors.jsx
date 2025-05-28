@@ -22,22 +22,18 @@ export const Sponsors = ({ sponsorsData }) => {
             TITLE SPONSORS
           </h2>
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-            {/* First row - 3 sponsors */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+            {/* Desktop: First row (3), Mobile: First row (2) */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
               {titleSponsors.slice(0, 3).map((sponsor, index) => (
                 <div
                   key={index}
-                  className={`sponsor-box ${
+                  className={`sponsor-box w-full ${
                     sponsor.name === "DCUBE AI" ? "dcube-box" : ""
                   } ${sponsor.name === "iTRAITZ" ? "itraitz-box" : ""} ${
                     sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
-                  } aspect-[3/2] rounded-lg shadow-lg ${
-                    sponsor.name !== "DCUBE AI" &&
-                    sponsor.name !== "iTRAITZ" &&
-                    sponsor.name !== "KaiSemi"
-                      ? "hover:bg-purple-500"
-                      : ""
-                  } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
+                  } aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer ${
+                    index === 2 ? "hidden lg:flex" : ""
+                  }`}
                   onClick={() => {
                     if (sponsor.website && sponsor.website !== "#") {
                       window.open(
@@ -59,39 +55,75 @@ export const Sponsors = ({ sponsorsData }) => {
               ))}
             </div>
 
-            {/* Second row - 2 sponsors */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-              {titleSponsors.slice(3, 5).map((sponsor, index) => (
-                <div
-                  key={index + 3}
-                  className={`sponsor-box ${
-                    sponsor.name === "SEMentor" ? "sementor-box" : ""
-                  } ${
-                    sponsor.name === "Seqato" ? "seqato-box" : ""
-                  } aspect-[3/2] rounded-lg shadow-lg ${
-                    sponsor.name !== "SEMentor" && sponsor.name !== "Seqato"
-                      ? "hover:bg-purple-500"
-                      : ""
-                  } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer w-full sm:w-auto lg:w-full lg:max-w-[calc(33.333%-1rem)]`}
-                  onClick={() => {
-                    if (sponsor.website && sponsor.website !== "#") {
-                      window.open(
-                        sponsor.website,
-                        "_blank",
-                        "noopener,noreferrer"
-                      );
-                    }
-                  }}
-                  title={`Visit ${sponsor.name} website`}
-                >
-                  <img
-                    src={sponsor.image}
-                    alt={sponsor.alt}
-                    className="max-w-full max-h-full object-contain"
-                    style={{ filter: "brightness(1.1)" }}
-                  />
-                </div>
-              ))}
+            {/* Desktop: Second row (2), Mobile: Second row (2) */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+              <div className="col-span-2 grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 w-full lg:w-2/3 mx-auto">
+                {titleSponsors.slice(3, 5).map((sponsor, index) => (
+                  <div
+                    key={index + 3}
+                    className={`sponsor-box w-full ${
+                      sponsor.name === "SEMentor" ? "sementor-box" : ""
+                    } ${sponsor.name === "Seqato" ? "seqato-box" : ""} ${
+                      sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
+                    } aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
+                    onClick={() => {
+                      if (sponsor.website && sponsor.website !== "#") {
+                        window.open(
+                          sponsor.website,
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }
+                    }}
+                    title={`Visit ${sponsor.name} website`}
+                  >
+                    <img
+                      src={sponsor.image}
+                      alt={sponsor.alt}
+                      className="max-w-full max-h-full object-contain"
+                      style={{ filter: "brightness(1.1)" }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile only: Third row (1) */}
+            <div className="lg:hidden flex justify-center">
+              <div className="w-1/2">
+                {titleSponsors[2] && (
+                  <div
+                    key={5}
+                    className={`sponsor-box w-full ${
+                      titleSponsors[2].name === "SEMentor" ? "sementor-box" : ""
+                    } ${
+                      titleSponsors[2].name === "Seqato" ? "seqato-box" : ""
+                    } ${
+                      titleSponsors[2].name === "KaiSemi" ? "kaisemi-box" : ""
+                    } aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
+                    onClick={() => {
+                      if (
+                        titleSponsors[2].website &&
+                        titleSponsors[2].website !== "#"
+                      ) {
+                        window.open(
+                          titleSponsors[2].website,
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }
+                    }}
+                    title={`Visit ${titleSponsors[2].name} website`}
+                  >
+                    <img
+                      src={titleSponsors[2].image}
+                      alt={titleSponsors[2].alt}
+                      className="max-w-full max-h-full object-contain"
+                      style={{ filter: "brightness(1.1)" }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -101,7 +133,7 @@ export const Sponsors = ({ sponsorsData }) => {
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 frisky-font tracking-wider">
             COMMUNITY PARTNERS
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center flex">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center">
             {communityPartners.map((partner, index) => (
               <div
                 key={index}
