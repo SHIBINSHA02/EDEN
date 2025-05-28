@@ -97,7 +97,7 @@
 
 .section-title {
   font-family: 'Minecraftchmc', 'Minecraft', 'VT323', sans-serif;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
   margin: 0 0 10px 0;
   padding: 0 15px;
@@ -116,7 +116,7 @@
 
 .detail-item {
   font-family: 'Minecraftchmc', 'Minecraft', 'VT323', sans-serif;
-  font-size: 1.3rem; /* Reduced from 2rem for better proportionality */
+  font-size: 2rem; /* Reduced from 2rem for better proportionality */
   font-weight: 400; /* Lighter weight for readability */
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Softer shadow */
   padding: 0 15px;
@@ -129,12 +129,12 @@
 .detail-label {
   font-family: 'Minecraftchmc', 'Minecraft', 'VT323', sans-serif;
   font-weight: 600; /* Reduced from 700 to balance with content */
-  font-size: 1.6rem; /* Reduced from 3rem for better hierarchy */
+  font-size: 2rem; /* Reduced from 3rem for better hierarchy */
   color: #ffffff;
 }
 
 .detail-content {
-  font-size: 1.3rem; /* Reduced from 2rem to match detail-item */
+  font-size: 2rem; /* Reduced from 2rem to match detail-item */
   font-weight: 400;
   color: #e5e7eb;
 }
@@ -347,16 +347,16 @@
   }
 
   .detail-item {
-    font-size: 1.1rem;
+    font-size: 2rem;
     padding: 0 10px;
   }
 
   .detail-label {
-    font-size: 1.4rem;
+    font-size:2rem;
   }
 
   .detail-content {
-    font-size: 1.1rem;
+    font-size: 2rem;
   }
 
   .map-container {
@@ -375,7 +375,7 @@
   }
 
   .cta-text {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     padding: 0 10px;
     margin-bottom: 20px;
   }
@@ -419,16 +419,16 @@
   }
 
   .detail-item {
-    font-size: 1.15rem;
+    font-size: 2rem;
     padding: 0 12px;
   }
 
   .detail-label {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .detail-content {
-    font-size: 1.15rem;
+    font-size: 1.5rem;
   }
 
   .map-container {
@@ -489,16 +489,16 @@
   }
 
   .detail-item {
-    font-size: 1.2rem;
+    font-size: 2rem;
     padding: 0 15px;
   }
 
   .detail-label {
-    font-size: 1.6rem;
+    font-size: 2.3rem;
   }
 
   .detail-content {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 
   .map-container {

@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 20;
+  z-index: 30;
   backdrop-filter: blur(10px); /* 10% blur effect */
 }
 
