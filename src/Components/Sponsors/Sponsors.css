@@ -38,6 +38,141 @@ h2 {
   transform: translateY(-4px) scale(1.02);
 }
 
+/* DCUBE AI specific styling with tech/AI theme colors */
+.sponsor-box.dcube-box {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 123, 255, 0.95),
+    /* Modern blue */ rgba(13, 110, 253, 0.9),
+    /* Deeper blue */ rgba(102, 16, 242, 0.9) /* Purple accent */
+  );
+  border: 2px solid #007bff; /* Blue border */
+  box-shadow: 0 8px 32px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.dcube-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 123, 255, 1),
+    /* Full opacity blue */ rgba(13, 110, 253, 0.95),
+    /* Slightly more opaque blue */ rgba(102, 16, 242, 1)
+      /* Full opacity purple */
+  );
+  border-color: #6610f2; /* Purple border on hover */
+  box-shadow: 0 12px 40px rgba(0, 123, 255, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* iTRAITZ specific styling with corporate orange/red theme colors */
+.sponsor-box.itraitz-box {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 87, 34, 0.95),
+    /* Orange */ rgba(244, 67, 54, 0.9),
+    /* Red */ rgba(183, 28, 28, 0.9) /* Dark red */
+  );
+  border: 2px solid #ff5722; /* Orange border */
+  box-shadow: 0 8px 32px rgba(255, 87, 34, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.itraitz-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 87, 34, 1),
+    /* Full opacity orange */ rgba(244, 67, 54, 0.95),
+    /* Slightly more opaque red */ rgba(183, 28, 28, 1)
+      /* Full opacity dark red */
+  );
+  border-color: #b71c1c; /* Dark red border on hover */
+  box-shadow: 0 12px 40px rgba(255, 87, 34, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* KaiSemi Control Systems specific styling with professional purple/indigo theme colors */
+.sponsor-box.kaisemi-box {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.95),
+    /* Purple */ rgba(79, 70, 229, 0.9),
+    /* Indigo */ rgba(55, 48, 163, 0.9) /* Dark indigo */
+  );
+  border: 2px solid #7c3aed; /* Purple border */
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.kaisemi-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 1),
+    /* Full opacity purple */ rgba(79, 70, 229, 0.95),
+    /* Slightly more opaque indigo */ rgba(55, 48, 163, 1)
+      /* Full opacity dark indigo */
+  );
+  border-color: #3730a3; /* Dark indigo border on hover */
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* SEMentor specific styling with educational amber/yellow theme colors */
+.sponsor-box.sementor-box {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.95),
+    /* Amber */ rgba(217, 119, 6, 0.9),
+    /* Dark amber */ rgba(146, 64, 14, 0.9) /* Brown amber */
+  );
+  border: 2px solid #f59e0b; /* Amber border */
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.sementor-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 1),
+    /* Full opacity amber */ rgba(217, 119, 6, 0.95),
+    /* Slightly more opaque dark amber */ rgba(146, 64, 14, 1)
+      /* Full opacity brown amber */
+  );
+  border-color: #92400e; /* Brown amber border on hover */
+  box-shadow: 0 12px 40px rgba(245, 158, 11, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Seqato specific styling with modern teal/cyan theme colors */
+.sponsor-box.seqato-box {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 184, 166, 0.95),
+    /* Teal */ rgba(13, 148, 136, 0.9),
+    /* Dark teal */ rgba(15, 118, 110, 0.9) /* Deep teal */
+  );
+  border: 2px solid #14b8a6; /* Teal border */
+  box-shadow: 0 8px 32px rgba(20, 184, 166, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.seqato-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 184, 166, 1),
+    /* Full opacity teal */ rgba(13, 148, 136, 0.95),
+    /* Slightly more opaque dark teal */ rgba(15, 118, 110, 1)
+      /* Full opacity deep teal */
+  );
+  border-color: #0f766e; /* Deep teal border on hover */
+  box-shadow: 0 12px 40px rgba(20, 184, 166, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
 /* Default sponsor box styling for other sponsors */
 .sponsor-box {
   background: linear-gradient(
