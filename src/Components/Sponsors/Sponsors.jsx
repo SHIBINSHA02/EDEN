@@ -18,7 +18,7 @@ export const Sponsors = ({ sponsorsData }) => {
       <div className="relative flex flex-col justify-center items-center z-10 px-4 sm:px-6 md:px-8 py-12 sm:py-16">
         {/* Title Sponsors Section */}
         <div className="mb-12 sm:mb-16 w-full max-w-6xl">
-          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
+          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 frisky-font tracking-wider">
             TITLE SPONSORS
           </h2>
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-12">
@@ -69,8 +69,7 @@ export const Sponsors = ({ sponsorsData }) => {
                   } ${
                     sponsor.name === "Seqato" ? "seqato-box" : ""
                   } aspect-[3/2] rounded-lg shadow-lg ${
-                    sponsor.name !== "SEMentor" &&
-                    sponsor.name !== "Seqato"
+                    sponsor.name !== "SEMentor" && sponsor.name !== "Seqato"
                       ? "hover:bg-purple-500"
                       : ""
                   } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer w-full sm:w-auto lg:w-full lg:max-w-[calc(33.333%-1rem)]`}
@@ -99,7 +98,7 @@ export const Sponsors = ({ sponsorsData }) => {
 
         {/* Community Partner Section */}
         <div className="mb-12 sm:mb-16 w-full max-w-3xl">
-          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 frisky-font tracking-wider">
             COMMUNITY PARTNERS
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center flex">
@@ -137,7 +136,7 @@ export const Sponsors = ({ sponsorsData }) => {
 
         {/* Energy Partner Section - Red Bull Special */}
         <div className="w-full max-w-2xl relative">
-          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 firsky-font tracking-wider">
             ENERGY PARTNER
           </h2>
 
