@@ -26,7 +26,11 @@ export const Sponsors = ({ sponsorsData }) => {
             {titleSponsors.map((sponsor, index) => (
               <div
                 key={index}
-                className="sponsor-box aspect-[3/2] rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300 flex items-center justify-center p-4 cursor-pointer"
+                className={`sponsor-box ${
+                  sponsor.name === "CareStack" ? "carestack-box" : ""
+                } aspect-[3/2] rounded-lg shadow-lg ${
+                  sponsor.name !== "CareStack" ? "hover:bg-purple-500" : ""
+                } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
                 onClick={() => {
                   if (sponsor.website && sponsor.website !== "#") {
                     window.open(
@@ -97,17 +101,6 @@ export const Sponsors = ({ sponsorsData }) => {
               style={{
                 animation:
                   "floatLeft 6s ease-in-out infinite, glowPulse 4s ease-in-out infinite alternate",
-              }}
-            />
-            {/* Right spacepatti */}
-            <img
-              src="/spacepatti.svg"
-              alt="Space Patti Right"
-              className="absolute right-[-40%] top-[50%] transform -translate-y-1/2 w-[30%] h-auto opacity-80 z-0 animate-float-right filter drop-shadow-lg"
-              style={{
-                animation:
-                  "floatRight 7s ease-in-out infinite, glowPulse 4s ease-in-out infinite alternate",
-                animationDelay: "1s",
               }}
             />
           </div>

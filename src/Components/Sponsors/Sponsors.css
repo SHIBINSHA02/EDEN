@@ -11,7 +11,34 @@
 h2 {
   font-family: "Frisky", "Minecra";
 }
-/* Sponsor box styling */
+
+/* CareStack specific styling with brand colors */
+.sponsor-box.carestack-box {
+  background: linear-gradient(
+    135deg,
+    rgba(66, 186, 120, 0.95),
+    /* #42BA78 - CareStack green */ rgba(5, 64, 107, 0.9)
+      /* #05406B - CareStack dark blue */
+  );
+  border: 2px solid #42ba78; /* Green border */
+  box-shadow: 0 8px 32px rgba(66, 186, 120, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.carestack-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(66, 186, 120, 1),
+    /* Full opacity green */ rgba(5, 64, 107, 0.95)
+      /* Slightly more opaque blue */
+  );
+  border-color: #05406b; /* Dark blue border on hover */
+  box-shadow: 0 12px 40px rgba(66, 186, 120, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Default sponsor box styling for other sponsors */
 .sponsor-box {
   background: linear-gradient(
     135deg,

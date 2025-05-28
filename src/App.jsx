@@ -21,6 +21,7 @@ import DateVenue from "./Components/Date&Venue/datev";
 function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [data, setData] = useState(null);
+  const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     // Load the Frisky font
@@ -56,9 +57,22 @@ function App() {
     };
 
     fetchData();
+
+    // Ensure loading screen shows for minimum 3 seconds
+    const minLoadingTime = setTimeout(() => {
+      setShowLoading(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(minLoadingTime);
+    };
   }, []);
 
-  if (!isFontLoaded || !data) {
+  // Show loading screen if:
+  // 1. Still within minimum 3 second period, OR
+  // 2. Fonts haven't loaded yet, OR
+  // 3. Data hasn't loaded yet
+  if (showLoading || !isFontLoaded || !data) {
     return <Loading />;
   }
 
