@@ -125,6 +125,12 @@
         "image": "/sponsers/SEMentor/SEMentor.png",
         "alt": "SEMentor",
         "website": "https://www.sementor.com"
+      },
+      {
+        "name": "Seqato",
+        "image": "/sponsers/Seqato/Seqato.png",
+        "alt": "Seqato",
+        "website": "https://www.seqato.com"
       }
     ],
     "communityPartners": [
