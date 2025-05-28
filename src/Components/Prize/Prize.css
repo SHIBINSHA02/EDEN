@@ -172,13 +172,14 @@
     flex-direction: column; /* Stack SVG and content vertically */
     align-items: center;
     padding: 20px; /* Adjusted padding */
+    width: 100%;
+
   }
 
-  .prize-left-image {
-    margin-right: 0; /* Remove margin when stacked */
+  .prize-left-image { /* Remove margin when stacked */
     margin-bottom: 20px; /* Increased spacing below SVG */
-    width: 100px; /* Slightly smaller for mobile */
-    height: 100px;
+    width: 120px; /* Slightly smaller for mobile */
+    height: 120px;
   }
 
   .prize-card-content {
@@ -200,6 +201,14 @@
 
   .separator-line {
     margin: 1rem auto; /* Adjusted for mobile */
+  }
+  .prize-section{
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
 
