@@ -29,10 +29,8 @@ export const Sponsors = ({ sponsorsData }) => {
                   key={index}
                   className={`sponsor-box ${
                     sponsor.name === "DCUBE AI" ? "dcube-box" : ""
-                  } ${
-                    sponsor.name === "iTRAITZ" ? "itraitz-box" : ""
-                  } ${sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
-
+                  } ${sponsor.name === "iTRAITZ" ? "itraitz-box" : ""} ${
+                    sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
                   } aspect-[3/2] rounded-lg shadow-lg ${
                     sponsor.name !== "DCUBE AI" &&
                     sponsor.name !== "iTRAITZ" &&
@@ -42,7 +40,11 @@ export const Sponsors = ({ sponsorsData }) => {
                   } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
                   onClick={() => {
                     if (sponsor.website && sponsor.website !== "#") {
-                      window.open(sponsor.website, "_blank", "noopener,noreferrer");
+                      window.open(
+                        sponsor.website,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
                     }
                   }}
                   title={`Visit ${sponsor.name} website`}
@@ -58,7 +60,7 @@ export const Sponsors = ({ sponsorsData }) => {
             </div>
 
             {/* Second row - 2 sponsors */}
-            <div className="flex justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
               {titleSponsors.slice(3, 5).map((sponsor, index) => (
                 <div
                   key={index + 3}
@@ -71,10 +73,14 @@ export const Sponsors = ({ sponsorsData }) => {
                     sponsor.name !== "Seqato"
                       ? "hover:bg-purple-500"
                       : ""
-                  } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer w-full max-w-[calc(33.333%-1rem)]`}
+                  } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer w-full sm:w-auto lg:w-full lg:max-w-[calc(33.333%-1rem)]`}
                   onClick={() => {
                     if (sponsor.website && sponsor.website !== "#") {
-                      window.open(sponsor.website, "_blank", "noopener,noreferrer");
+                      window.open(
+                        sponsor.website,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
                     }
                   }}
                   title={`Visit ${sponsor.name} website`}
@@ -102,11 +108,9 @@ export const Sponsors = ({ sponsorsData }) => {
                 key={index}
                 className={`sponsor-box aspect-[3/2] rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300 flex items-center justify-center p-4 cursor-pointer ${
                   partner.name === "CareStack" ? "carestack-box" : ""
-                } ${
-                  partner.name === "iTRAITZ" ? "itraitz-box" : ""
-                } ${partner.name === "KaiSemi" ? "kaisemi-box" : ""} ${
-                  partner.name === "SEMentor" ? "sementor-box" : ""
-                } ${
+                } ${partner.name === "iTRAITZ" ? "itraitz-box" : ""} ${
+                  partner.name === "KaiSemi" ? "kaisemi-box" : ""
+                } ${partner.name === "SEMentor" ? "sementor-box" : ""} ${
                   partner.name === "Seqato" ? "seqato-box" : ""
                 }`}
                 onClick={() => {
