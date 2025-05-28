@@ -17,7 +17,9 @@ const EventStats = () => {
 
       {/* Right Cloud */}
       <img src={cloud2} alt="cloud" className="cloud cloud-right" />
-
+      {window.innerWidth < 768 && (
+  <img src="./spacepatti.svg" alt="spacedog" className="spacepatti" />
+)}
       {/* Stats Content */}
       <div className="stats-content">
         {/* 24 HOURS */}

@@ -117,6 +117,7 @@
     gap: 1.5rem;
     padding-left: 1rem; /* Reduce padding */
     padding-right: 1rem; /* Reduce padding */
+
   }
 
   .stat-container {
@@ -129,10 +130,29 @@
   }
 
   .stat-label {
-    font-size: 0.7rem; /* Slightly smaller font size for label */
+    font-size: 0.7rem; 
+    padding-bottom: 1rem;/* Slightly smaller font size for label */
+    
   }
 
   .cloud {
     display: none; /* Hides clouds on phone UI */
+  }
+  .spacepatti { /* Assuming 'spacepatti' is the class for your dog image */
+    position: absolute;
+    top: 30%; /* Adjust as needed */
+    right: -10%; /* Adjust as needed */
+    width: 50%; /* Adjust the width as a percentage */
+    max-width: none; /* Override any previous max-width */
+    z-index: 5; /* Ensure it's above other elements if needed */
+    animation: float-dog 3s infinite ease-in-out;
+  }
+  @keyframes float-dog {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px); /* Adjust the floating height */
+    }
   }
 }
