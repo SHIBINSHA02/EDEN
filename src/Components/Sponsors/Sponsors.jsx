@@ -82,11 +82,37 @@ export const Sponsors = ({ sponsorsData }) => {
         </div>
 
         {/* Energy Partner Section - Red Bull Special */}
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-2xl relative">
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
             ENERGY PARTNER
           </h2>
-          <div className="flex justify-center">
+
+          {/* Spacepatti images - desktop only */}
+          <div className="hidden lg:block">
+            {/* Left spacepatti - mirrored */}
+            <img
+              src="/spacepatti.svg"
+              alt="Space Patti Left"
+              className="absolute left-[-40%] top-[50%] transform -translate-y-1/2 w-[30%] h-auto opacity-80 z-0 animate-float-left filter drop-shadow-lg"
+              style={{
+                animation:
+                  "floatLeft 6s ease-in-out infinite, glowPulse 4s ease-in-out infinite alternate",
+              }}
+            />
+            {/* Right spacepatti */}
+            <img
+              src="/spacepatti.svg"
+              alt="Space Patti Right"
+              className="absolute right-[-40%] top-[50%] transform -translate-y-1/2 w-[30%] h-auto opacity-80 z-0 animate-float-right filter drop-shadow-lg"
+              style={{
+                animation:
+                  "floatRight 7s ease-in-out infinite, glowPulse 4s ease-in-out infinite alternate",
+                animationDelay: "1s",
+              }}
+            />
+          </div>
+
+          <div className="flex justify-center relative z-10">
             <div
               className="redbull-sponsor-box aspect-[3/2] w-full max-w-sm relative overflow-hidden rounded-lg cursor-pointer group"
               onClick={() => {

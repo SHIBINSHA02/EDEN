@@ -191,6 +191,66 @@ h2 {
     0 0 20px rgba(238, 0, 255, 0.431);
 }
 
+/* Space-like animations for spacepatti images */
+@keyframes floatLeft {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0) rotate(-2deg) scale(-1, 1)
+      scale(1);
+  }
+  25% {
+    transform: translateY(-60%) translateX(0) rotate(-1deg) scale(-1, 1)
+      scale(1.02);
+  }
+  50% {
+    transform: translateY(-40%) translateX(0) rotate(-3deg) scale(-1, 1)
+      scale(0.98);
+  }
+  75% {
+    transform: translateY(-55%) translateX(0) rotate(0deg) scale(-1, 1)
+      scale(1.01);
+  }
+}
+
+@keyframes floatRight {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0) rotate(2deg) scale(1);
+  }
+  30% {
+    transform: translateY(-45%) translateX(4px) rotate(3deg) scale(1.01);
+  }
+  60% {
+    transform: translateY(-65%) translateX(-3px) rotate(1deg) scale(0.99);
+  }
+  90% {
+    transform: translateY(-40%) translateX(2px) rotate(4deg) scale(1.02);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3))
+      drop-shadow(0 0 20px rgba(168, 85, 247, 0.1));
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6))
+      drop-shadow(0 0 30px rgba(168, 85, 247, 0.3));
+  }
+}
+
+/* Spacepatti specific animations */
+.animate-float-left {
+  animation: floatLeft 6s ease-in-out infinite,
+    glowPulse 4s ease-in-out infinite alternate;
+}
+
+.animate-float-right {
+  animation: floatRight 7s ease-in-out infinite,
+    glowPulse 4s ease-in-out infinite alternate;
+  animation-delay: 1s;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .sponsors-section {
