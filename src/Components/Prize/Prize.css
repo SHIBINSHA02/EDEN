@@ -202,3 +202,47 @@
     margin: 1rem auto; /* Adjusted for mobile */
   }
 }
+
+/* Append to Prize.css */
+/* Append to Prize.css */
+
+.astroman {
+  position: absolute;
+  top: 1%;
+  left: 60%;
+  width: 30%;
+  height: auto;
+  z-index: 3;
+  animation: floatAstroman 3s infinite ease-in-out; /* Added floating animation */
+}
+
+/* Floating animation for Astroman */
+@keyframes floatAstroman {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px); /* Adjust the -5px for the float height */
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .astroman {
+    top: 70%;
+    left: 80%;
+    width: 30%;
+    height: auto;
+    animation: floatAstromanMobile 3s infinite ease-in-out; /* Added mobile float */
+  }
+}
+
+/* Floating animation for Astroman on mobile (can be the same or different) */
+@keyframes floatAstromanMobile {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px); /* Slightly smaller float for mobile */
+  }
+}
