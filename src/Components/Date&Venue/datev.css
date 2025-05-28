@@ -73,20 +73,19 @@
 
 /* Mobile adjustments */
 /* Mobile adjustments */
-/* Mobile adjustments */
 @media (max-width: 768px) {
   .image-container {
     position: relative; /* For absolute positioning of children */
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Overall alignment to the right */
-    min-height: 100vh; /* Ensure it takes at least the full viewport height */
+    align-items: center; /* Center items horizontally */
+    min-height: 100vh;
     height: auto;
   }
 
   .pixel-art-background {
     z-index: -1;
-    position: fixed; /* Cover the entire viewport */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -98,15 +97,15 @@
     flex-direction: column;
     gap: 2rem;
     width: 90%;
-    align-items: flex-end;
-    /* No specific vertical alignment here, will rely on individual item positioning */
-    position: absolute; /* Take it out of the normal flow for positioning */
+    align-items: flex-end; /* Keep date and venue on the right */
+    position: absolute;
     top: 0;
-    left: 0;
+    left: auto; /* Allow auto margin on the left */
+    right: auto; /* Allow auto margin on the right */
     height: 80%;
-    padding: 20px; /* Add some padding around the edges */
-    box-sizing: border-box; /* Include padding in the height */
-    justify-content: space-between; /* Distribute space vertically */
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: space-between; /* Distribute date and venue vertically */
   }
 
   .frame-image {
@@ -114,7 +113,15 @@
   }
 
   .airship-image {
-    display: none;
+    display: block; /* Make it visible */
+    position: absolute;
+    top: 30%; /* Adjust top position to move it upwards */
+    left: 30%; /* Adjust left position to move it to the left */
+    transform: translate(-50%, -50%) scale(1.9); /* Center it based on its new top-left point */
+    max-width: 50%; /* Adjust size as needed */
+    z-index: 3; /* Ensure it's above the background */
+    opacity: 1 !important; /* Override desktop opacity */
+    visibility: visible !important; /* Override desktop visibility */
   }
 
   .date-image {
