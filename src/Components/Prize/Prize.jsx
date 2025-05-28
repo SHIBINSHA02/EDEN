@@ -54,21 +54,21 @@ export const Prize = () => {
   return (
     <div className="prize-container">
       {/* Background */}
-      <PixelArtBackground 
-        pixelSize={2} 
-        density={1} 
+      <PixelArtBackground
+        pixelSize={2}
+        density={1}
         fadeDuration={3000}
-        className="pixel-art-background" 
+        className="pixel-art-background"
       />
-      
+
       {/* Main Content */}
       <div className="prize-content">
         <div className="prize-card">
           {/* Left SVG with boundary box */}
           <div className="prize-left-image">
-            <img 
-              src={prizeImages[activePrize]} 
-              alt="Prize Icon" 
+            <img
+              src={prizeImages[activePrize]}
+              alt="Prize Icon"
               className="prize-image"
             />
           </div>
@@ -81,7 +81,9 @@ export const Prize = () => {
               onMouseEnter={() => handleMouseEnter("winner")}
               onMouseLeave={handleMouseLeave}
             >
-              <h2 className="prize-title text-gold">WINNERS</h2>
+              <h2 className={`prize-title text-gold ${activePrize === "winner" ? "active" : ""}`}>
+                WINNERS
+              </h2>
               <p className="prize-amount">25,000RS</p>
             </div>
 
@@ -93,7 +95,9 @@ export const Prize = () => {
               onMouseEnter={() => handleMouseEnter("runner1")}
               onMouseLeave={handleMouseLeave}
             >
-              <h3 className="prize-title text-silver">1ST RUNNER UP</h3>
+              <h3 className={`prize-title text-silver ${activePrize === "runner1" ? "active" : ""}`}>
+                1ST RUNNER UP
+              </h3>
               <p className="prize-amount">15,000RS</p>
             </div>
 
@@ -105,9 +109,12 @@ export const Prize = () => {
               onMouseEnter={() => handleMouseEnter("runner2")}
               onMouseLeave={handleMouseLeave}
             >
-              <h3 className="prize-title text-bronze">2ND RUNNER UP</h3>
+              <h3 className={`prize-title text-bronze ${activePrize === "runner2" ? "active" : ""}`}>
+                2ND RUNNER UP
+              </h3>
               <p className="prize-amount">10,000RS</p>
             </div>
+            <div className="separator-line"></div>
           </div>
         </div>
       </div>

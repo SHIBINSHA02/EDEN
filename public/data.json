@@ -1,17 +1,17 @@
 {
-    "navbar": [
-      {"label": "Home", "link": "#home"},
-      {"label": "About", "link": "#about"},
-      {"label": "Sponsors", "link": "#sponsors"},
-      {"label": "Contact Us", "link": "#contact"},
-      {"label": "FAQs", "link": "#faq"}
-    ],
-    "hero": {
-      "title": "EDEN 4.0",
-      
-      "subtitle": "Innovate • Collaborate • Transform",
-      "image":{
-        "heroImage": {
+  "navbar": [
+    { "label": "Home", "link": "#home" },
+    { "label": "About", "link": "#about" },
+    { "label": "Sponsors", "link": "#sponsors" },
+    { "label": "Contact Us", "link": "#contact" },
+    { "label": "FAQs", "link": "#faq" }
+  ],
+  "hero": {
+    "title": "EDEN 4.0",
+
+    "subtitle": "Innovate • Collaborate • Transform",
+    "image": {
+      "heroImage": {
         "src": "/main.svg",
         "alt": "Hero section featured image"
       },
@@ -31,41 +31,137 @@
         "src": "/cloud3.svg",
         "alt": "Cloud 3"
       }
-      
+    },
+
+    "description": "Eden 4.0 is a 3-day state-level hackathon hosted by Marian Engineering College in collaboration with Inspira Marian IEDC and MuLearn MCE. Day 1 features entrepreneurial talks, industry interaction, networking, and cultural events. The 24-hour hackathon takes place on Day 2, followed by judging and award announcements on Day 3. Eden challenges students to solve real-world industry problems through innovative tech solutions in a competitive, high-energy environment.",
+    "buttonText": "Register Now!"
+  },
+  "prizePool": [
+    { "title": "1st Prize", "desc": "Details here", "link": "#" },
+    { "title": "2nd Prize", "desc": "Details here", "link": "#" },
+    { "title": "3rd Prize", "desc": "Details here", "link": "#" }
+  ],
+  "schedule": {
+    "date": "June 7th",
+    "slots": [
+      {
+        "start": "9am",
+        "end": "10am",
+        "label": "Opening Ceremony",
+        "location": "Main Hall"
       },
-      
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus ac lacus a imperdiet. Integer ac elementum nisi. Aliquam at interdum justo. Nunc nisl mi, semper feugiat maximus id, venenatis ac ante. Cras eu nulla ut diam vulputate fringilla. Phasellus enim dui, fringilla ac velit vel, imperdiet sollicitudin nunc. Morbi ac ultricies leo.",
-      "buttonText": "Register Now!"
-    },
-    "prizePool": [
-      {"title": "1st Prize", "desc": "Details here", "link": "#"},
-      {"title": "2nd Prize", "desc": "Details here", "link": "#"},
-      {"title": "3rd Prize", "desc": "Details here", "link": "#"}
+      {
+        "start": "10am",
+        "end": "11am",
+        "label": "Workshop 1: Intro to React",
+        "location": "Room A"
+      },
+      {
+        "start": "11am",
+        "end": "12pm",
+        "label": "Workshop 2: Pixel Art",
+        "location": "Room B"
+      },
+      {
+        "start": "12pm",
+        "end": "1pm",
+        "label": "Lunch Break",
+        "location": "Cafeteria"
+      },
+      {
+        "start": "1pm",
+        "end": "2pm",
+        "label": "Session A: Game Dev",
+        "location": "Room C"
+      },
+      {
+        "start": "2pm",
+        "end": "3pm",
+        "label": "Session B: AI Panel",
+        "location": "Auditorium"
+      },
+      {
+        "start": "3pm",
+        "end": "4pm",
+        "label": "Panel Discussion: Future of Tech",
+        "location": "Main Hall"
+      },
+      {
+        "start": "4pm",
+        "end": "5pm",
+        "label": "Closing & Awards",
+        "location": "Main Hall"
+      }
+    ]
+  },
+  "sponsors": {
+    "titleSponsors": [
+      {
+        "name": "CareStack",
+        "image": "/sponsers/CareStack/CareStack.svg",
+        "alt": "CareStack",
+        "website": "https://www.carestack.com"
+      },
+      {
+        "name": "DCUBE AI",
+        "image": "/sponsers/DCUBE Ai/DCUBE Ai.png",
+        "alt": "DCUBE AI",
+        "website": "https://www.dcube.ai"
+      },
+      {
+        "name": "iTRAITZ",
+        "image": "/sponsers/iTRAITZ/iTRAITZ.png",
+        "alt": "iTRAITZ",
+        "website": "https://www.itraitz.com"
+      },
+      {
+        "name": "KaiSemi",
+        "image": "/sponsers/KaiSemi Control Systems/KaiSemi Control Systems.png",
+        "alt": "KaiSemi Control Systems",
+        "website": "https://www.kaisemi.com"
+      },
+      {
+        "name": "SEMentor",
+        "image": "/sponsers/SEMentor/SEMentor.png",
+        "alt": "SEMentor",
+        "website": "https://www.sementor.com"
+      },
+      {
+        "name": "Seqato",
+        "image": "/sponsers/Seqato/Seqato.png",
+        "alt": "Seqato",
+        "website": "https://www.seqato.com"
+      }
     ],
-    "schedule": {
-      "date": "June 7th",
-      "slots": [
-        {"start": "9am", "end": "10am", "label": "Opening Ceremony", "location": "Main Hall"},
-        {"start": "10am", "end": "11am", "label": "Workshop 1: Intro to React", "location": "Room A"},
-        {"start": "11am", "end": "12pm", "label": "Workshop 2: Pixel Art", "location": "Room B"},
-        {"start": "12pm", "end": "1pm", "label": "Lunch Break", "location": "Cafeteria"},
-        {"start": "1pm", "end": "2pm", "label": "Session A: Game Dev", "location": "Room C"},
-        {"start": "2pm", "end": "3pm", "label": "Session B: AI Panel", "location": "Auditorium"},
-        {"start": "3pm", "end": "4pm", "label": "Panel Discussion: Future of Tech", "location": "Main Hall"},
-        {"start": "4pm", "end": "5pm", "label": "Closing & Awards", "location": "Main Hall"}
-      ]
-    },
-    "sponsors": {
-      "titleSponsors": ["/images/sponsor1.png", "/images/sponsor2.png", "/images/sponsor3.png", "/images/sponsor4.png", "/images/sponsor5.png", "/images/sponsor6.png"],
-      "communityPartners": ["/images/community1.png", "/images/community2.png"],
-      "energyPartners": ["/images/energy1.png"]
-    },
-    "contact": {
-      "heading": "Contact Us",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus ac lacus a imperdiet. Integer ac elementum nisi. Aliqua"
-    },
-    "faq": {
-      "heading": "FAQ",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus ac lacus a imperdiet. Integer ac elementum nisi. Aliqua"
-    }
+    "communityPartners": [
+      {
+        "name": "Community Partner 1",
+        "image": "/images/community1.png",
+        "alt": "Community Partner 1",
+        "website": "#"
+      },
+      {
+        "name": "Community Partner 2",
+        "image": "/images/community2.png",
+        "alt": "Community Partner 2",
+        "website": "#"
+      }
+    ],
+    "energyPartners": [
+      {
+        "name": "Red Bull",
+        "image": "/Red Bull.svg",
+        "alt": "Red Bull",
+        "website": "https://www.redbull.com"
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus ac lacus a imperdiet. Integer ac elementum nisi. Aliqua"
+  },
+  "faq": {
+    "heading": "FAQ",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus ac lacus a imperdiet. Integer ac elementum nisi. Aliqua"
   }
+}

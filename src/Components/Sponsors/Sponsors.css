@@ -8,12 +8,43 @@
   padding: 4rem 0;
   box-sizing: border-box;
 }
-h2{
-  font-family: "Frisky","Minecra";
+h2 {
+  font-family: "Frisky", "Minecra";
 }
-/* Sponsor box styling */
+
+/* CareStack specific styling with brand colors */
+.sponsor-box.carestack-box {
+  background: linear-gradient(
+    135deg,
+    rgba(66, 186, 120, 0.95),
+    /* #42BA78 - CareStack green */ rgba(5, 64, 107, 0.9)
+      /* #05406B - CareStack dark blue */
+  );
+  border: 2px solid #42ba78; /* Green border */
+  box-shadow: 0 8px 32px rgba(66, 186, 120, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.carestack-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(66, 186, 120, 1),
+    /* Full opacity green */ rgba(5, 64, 107, 0.95)
+      /* Slightly more opaque blue */
+  );
+  border-color: #05406b; /* Dark blue border on hover */
+  box-shadow: 0 12px 40px rgba(66, 186, 120, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Default sponsor box styling for other sponsors */
 .sponsor-box {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(248, 250, 252, 0.9)
+  );
   border: 2px solid #a855f7;
   box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
   transition: all 0.3s ease;
@@ -21,10 +52,14 @@ h2{
 }
 
 .sponsor-box:hover {
-  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1),
+    rgba(248, 250, 252, 0.95)
+  );
   border-color: #9333ea;
   box-shadow: 0 12px 40px rgba(139, 92, 246, 0.5);
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
 }
 
 /* Minecraft font styling */
@@ -36,9 +71,14 @@ h2{
 
 /* Red Bull Energy Partner Special Styling */
 .redbull-sponsor-box {
-  background: linear-gradient(135deg, rgba(59, 7, 100, 0.8), rgba(30, 58, 138, 0.8)); /* Dark purple to dark blue */
+  background: linear-gradient(
+    135deg,
+    rgba(59, 7, 100, 0.8),
+    rgba(30, 58, 138, 0.8)
+  ); /* Dark purple to dark blue */
   border: 2px solid #a855f7;
-  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4), 0 0 20px rgba(171, 71, 255, 0.697);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4),
+    0 0 20px rgba(171, 71, 255, 0.697);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -46,7 +86,8 @@ h2{
 
 .redbull-sponsor-box:hover {
   border-color: #9333ea;
-  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.6), 0 0 30px rgba(171, 71, 255, 0.5);
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.6),
+    0 0 30px rgba(171, 71, 255, 0.5);
   transform: translateY(-4px) scale(1.02);
 }
 
@@ -58,8 +99,8 @@ h2{
   background: linear-gradient(
     45deg,
     transparent,
-    rgba(139, 92, 246, 0.3), /* Purple */
-    transparent
+    rgba(139, 92, 246, 0.3),
+    /* Purple */ transparent
   );
   animation: energyFlow 3s ease-in-out infinite;
 }
@@ -77,8 +118,8 @@ h2{
   background: linear-gradient(
     45deg,
     transparent,
-    rgba(30, 58, 138, 0.2), /* Dark blue */
-    transparent
+    rgba(30, 58, 138, 0.2),
+    /* Dark blue */ transparent
   );
 }
 
@@ -89,8 +130,8 @@ h2{
   background: linear-gradient(
     45deg,
     transparent,
-    rgba(76, 29, 149, 0.2), /* Darker purple */
-    transparent
+    rgba(76, 29, 149, 0.2),
+    /* Darker purple */ transparent
   );
 }
 
@@ -175,6 +216,66 @@ h2{
 .text-shadow-red {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(58, 4, 78, 0.5),
     0 0 20px rgba(238, 0, 255, 0.431);
+}
+
+/* Space-like animations for spacepatti images */
+@keyframes floatLeft {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0) rotate(-2deg) scale(-1, 1)
+      scale(1);
+  }
+  25% {
+    transform: translateY(-60%) translateX(0) rotate(-1deg) scale(-1, 1)
+      scale(1.02);
+  }
+  50% {
+    transform: translateY(-40%) translateX(0) rotate(-3deg) scale(-1, 1)
+      scale(0.98);
+  }
+  75% {
+    transform: translateY(-55%) translateX(0) rotate(0deg) scale(-1, 1)
+      scale(1.01);
+  }
+}
+
+@keyframes floatRight {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0) rotate(2deg) scale(1);
+  }
+  30% {
+    transform: translateY(-45%) translateX(4px) rotate(3deg) scale(1.01);
+  }
+  60% {
+    transform: translateY(-65%) translateX(-3px) rotate(1deg) scale(0.99);
+  }
+  90% {
+    transform: translateY(-40%) translateX(2px) rotate(4deg) scale(1.02);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3))
+      drop-shadow(0 0 20px rgba(168, 85, 247, 0.1));
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6))
+      drop-shadow(0 0 30px rgba(168, 85, 247, 0.3));
+  }
+}
+
+/* Spacepatti specific animations */
+.animate-float-left {
+  animation: floatLeft 6s ease-in-out infinite,
+    glowPulse 4s ease-in-out infinite alternate;
+}
+
+.animate-float-right {
+  animation: floatRight 7s ease-in-out infinite,
+    glowPulse 4s ease-in-out infinite alternate;
+  animation-delay: 1s;
 }
 
 /* Responsive adjustments */

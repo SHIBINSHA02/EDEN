@@ -1,48 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import PixelArtBackground from '../Background/PixelArtbg';
-import './About.css';
+"use client"
+import { useState, useEffect } from "react"
+import PixelArtBackground from "../Background/PixelArtbg"
+import "./About.css"
+import Alert from "./Alerts.jsx"; // Updated to match corrected file name
 
 export const About = ({ description, buttonText }) => {
-  const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("")
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [showCursor, setShowCursor] = useState(true)
+  const [showAlert, setShowAlert] = useState(null);
+
+  const currentDate = new Date();
+  const registrationStartDate = new Date("2025-06-01");
 
   useEffect(() => {
     if (currentIndex < description.length) {
       const timeout = setTimeout(() => {
-        setDisplayText((prevText) => prevText + description[currentIndex]);
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 50); // Adjust the speed of typing here (milliseconds)
-      return () => clearTimeout(timeout);
+        setDisplayText((prevText) => prevText + description[currentIndex])
+        setCurrentIndex((prevIndex) => prevIndex + 1)
+      }, 3) // Faster typing speed
+      return () => clearTimeout(timeout)
     }
-  }, [currentIndex, description]);
+  }, [currentIndex, description])
 
-  const handleClick = () => {
-    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUJcmljayByb2xs";
-  };
+  // Cursor blinking effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev)
+    }, 500)
+    return () => clearInterval(cursorInterval)
+  }, [])
+
 
   const handleDownload = () => {
-    const pdfUrl = "./MODDULE.pdf"; // Assumes schedule.pdf is in the public directory
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = 'MODDULE.pdf'; // Corrected file name for download
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const pdfUrl = "./Eden.pdf"
+    const link = document.createElement("a")
+    link.href = pdfUrl
+    link.download = "./Eden.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const handleAlertClick = () => {
+    if (currentDate < registrationStartDate) {
+      setShowAlert(<Alert message="Registration not started" />);
+      setTimeout(() => {
+        setShowAlert(null);
+      }, 3000); // Clear alert after 3 seconds
+    } else {
+      window.location.href = "https://www.example.com"; // Redirect URL
+    }
   };
+
 
   return (
     <div className="about-container relative w-screen h-screen" id="about">
+      {showAlert}
       <div className="pixelated-violet-top"></div> {/* New div for the top effect */}
       <PixelArtBackground className="about-background" pixelSize={2} density={1} fadeDuration={3000} />
       <div className="about-content">
         <div className="description">
-          <p className="typing-animation">{displayText}</p>
+          <p className="typing-text">
+            {displayText}
+            <span className={`typing-cursor ${showCursor ? "visible" : "hidden"}`}>|</span>
+          </p>
         </div>
         <div className="button-container">
-          <button className="primary-button" onClick={handleClick}>{buttonText}</button>
-          <button className="secondary-button" onClick={handleDownload}>See Schedule</button>
+          <button className="primary-button" onClick={handleAlertClick}>
+            {buttonText}
+          </button>
+          <button className="secondary-button" onClick={handleDownload}>
+            See Schedule
+          </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

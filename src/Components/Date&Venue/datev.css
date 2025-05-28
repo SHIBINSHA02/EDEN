@@ -1,59 +1,102 @@
-/* datev.css */
 .image-container {
-    position: relative; /* Ensure the container is positioned relative */
-    width: 100%; /* Full width */
-    height: 100vh; /* Full viewport height; adjust if needed */
-    display: flex; /* Inline layout for desktop */
-    justify-content: center; /* Center images horizontally */
-    align-items: center; /* Center images vertically */
+  position: relative;
+  width: 100vw; /* Changed from 100% to 100vw for full viewport width */
+  height: 30vh; /* Reduced height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0; /* Ensure no margins cause gaps */
+}
+
+.pixel-art-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Changed from 100% to 100vw for full viewport width */
+  height: 100vh; /* Changed to 100vh for consistency */
+  z-index: 1;
+  right: 0; /* Ensure it stretches to the right edge */
+}
+
+.image-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.frame-image {
+  max-width: 45%;
+  height: auto;
+}
+
+/* Airship-specific styles */
+.airship-image {
+  position: absolute;
+  max-width: 35%;
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Floating animation */
+.floating {
+  animation: float 5s infinite ease-in-out;
+}
+
+/* Combine scale with translate in the animation */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(2); /* Respect inline or set scale here */
   }
-  
-  .pixel-art-background {
-    position: absolute; /* Position the background absolutely */
-    top: 0; /* Align to the top */
-    left: 0; /* Align to the left */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    z-index: 1; /* Ensure background is behind images */
+  50% {
+    transform: translate(
+        calc(var(--float-x-range) * 0.5), /* Simplified movement */
+        calc(var(--float-y-range) * 0.5)
+      ) scale(1.9); /* Maintain scale */
   }
-  
+}
+
+/* Desktop-specific positioning and visibility */
+@media (min-width: 769px) {
+  .airship-image {
+    top: 10%;
+    right: 5%;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .image-container {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    min-height: 100vh;
+  }
+
   .image-wrapper {
-    position: relative; /* Position the wrapper relative to the container */
-    z-index: 2; /* Ensure images are above the background */
-    display: flex; /* Ensure images are flex items */
-    justify-content: center; /* Center images within wrapper */
-    align-items: center; /* Center images vertically */
-    gap: 3rem; /* Space between images on desktop */
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
   }
-  
+
   .frame-image {
-    max-width: 45%; /* Limit image width on desktop for better control */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 90%;
   }
-  
-  /* Responsive adjustments for mobile */
-  @media (max-width: 768px) {
-    .image-container {
-      flex-direction: column; /* Block layout for mobile */
-      align-items: center; /* Center images horizontally */
-      height: auto; /* Allow container to grow with content */
-      min-height: 100vh; /* Ensure at least full viewport height */
-    }
-  
-    .image-wrapper {
-      flex-direction: column; /* Ensure block layout within wrapper */
-      gap: 1rem; /* Smaller gap for mobile */
-      width: 100%; /* Full width for wrapper */
-    }
-  
-    .frame-image {
-      max-width: 90%; /* Slightly larger images on mobile for prominence */
-    }
-  
-    /* Optional: Add specific styling for date and venue images */
-    .date-image,
-    .venue-image {
-      width: 100%; /* Full width within max-width constraint */
-      max-width: 90%; /* Ensure images are prominent but constrained */
-    }
+
+  .airship-image {
+    display: none;
   }
+
+  .date-image,
+  .venue-image {
+    width: 100%;
+    max-width: 90%;
+  }
+}

@@ -1,8 +1,13 @@
 import PixelArtBackground from "../Background/PixelArtbg";
 import RedBullCan from "./RedBullCan";
 import "./Sponsors.css";
+import PropTypes from "prop-types";
 
-export const Sponsors = () => {
+export const Sponsors = ({ sponsorsData }) => {
+  // Use data from props - no fallback for title sponsors to ensure data.json is the single source of truth
+  const titleSponsors = sponsorsData?.titleSponsors || [];
+  const communityPartners = sponsorsData?.communityPartners || [];
+
   return (
     <div
       className="relative w-screen overflow-hidden sponsors-section"
@@ -16,20 +21,34 @@ export const Sponsors = () => {
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
             TITLE SPONSORS
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12 mb-8">
-            {[...Array(3)].map((_, index) => (
+          {/* Dynamic grid layout based on number of sponsors */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+            {titleSponsors.map((sponsor, index) => (
               <div
                 key={index}
-                className="sponsor-box aspect-[3/2] bg-purple-600 rounded-lg shadow-lg hover:bg-purple-500 transition-colors duration-300"
-              />
-            ))}
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-            {[...Array(3)].map((_, index) => (
-              <div
-                key={index + 3}
-                className="sponsor-box aspect-[3/2] bg-purple-600 rounded-lg shadow-lg hover:bg-purple-500 transition-colors duration-300"
-              />
+                className={`sponsor-box ${
+                  sponsor.name === "CareStack" ? "carestack-box" : ""
+                } aspect-[3/2] rounded-lg shadow-lg ${
+                  sponsor.name !== "CareStack" ? "hover:bg-purple-500" : ""
+                } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
+                onClick={() => {
+                  if (sponsor.website && sponsor.website !== "#") {
+                    window.open(
+                      sponsor.website,
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }
+                }}
+                title={`Visit ${sponsor.name} website`}
+              >
+                <img
+                  src={sponsor.image}
+                  alt={sponsor.alt}
+                  className="max-w-full max-h-full object-contain"
+                  style={{ filter: "brightness(1.1)" }}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -37,24 +56,56 @@ export const Sponsors = () => {
         {/* Community Partner Section */}
         <div className="mb-12 sm:mb-16 w-full max-w-4xl">
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
-            COMMUNITY PARTNER
+            COMMUNITY PARTNERS
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center">
-            {[...Array(2)].map((_, index) => (
+            {communityPartners.map((partner, index) => (
               <div
                 key={index}
-                className="sponsor-box aspect-[3/2] bg-purple-600 rounded-lg shadow-lg hover:bg-purple-500 transition-colors duration-300"
-              />
+                className="sponsor-box aspect-[3/2] rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300 flex items-center justify-center p-4 cursor-pointer"
+                onClick={() => {
+                  if (partner.website && partner.website !== "#") {
+                    window.open(
+                      partner.website,
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }
+                }}
+                title={`Visit ${partner.name} website`}
+              >
+                <img
+                  src={partner.image}
+                  alt={partner.alt}
+                  className="max-w-full max-h-full object-contain"
+                  style={{ filter: "brightness(1.1)" }}
+                />
+              </div>
             ))}
           </div>
         </div>
 
         {/* Energy Partner Section - Red Bull Special */}
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-2xl relative">
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 minecraft-font tracking-wider">
             ENERGY PARTNER
           </h2>
-          <div className="flex justify-center">
+
+          {/* Spacepatti images - desktop only */}
+          <div className="hidden lg:block">
+            {/* Left spacepatti - mirrored */}
+            <img
+              src="/spacepatti.svg"
+              alt="Space Patti Left"
+              className="absolute left-[-40%] top-[50%] transform -translate-y-1/2 w-[30%] h-auto opacity-80 z-0 animate-float-left filter drop-shadow-lg"
+              style={{
+                animation:
+                  "floatLeft 6s ease-in-out infinite, glowPulse 4s ease-in-out infinite alternate",
+              }}
+            />
+          </div>
+
+          <div className="flex justify-center relative z-10">
             <div
               className="redbull-sponsor-box aspect-[3/2] w-full max-w-sm relative overflow-hidden rounded-lg cursor-pointer group"
               onClick={() => {
@@ -122,6 +173,27 @@ export const Sponsors = () => {
       </div>
     </div>
   );
+};
+
+Sponsors.propTypes = {
+  sponsorsData: PropTypes.shape({
+    titleSponsors: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        alt: PropTypes.string.isRequired,
+        website: PropTypes.string,
+      })
+    ),
+    communityPartners: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        alt: PropTypes.string.isRequired,
+        website: PropTypes.string,
+      })
+    ),
+  }),
 };
 
 export default Sponsors;
