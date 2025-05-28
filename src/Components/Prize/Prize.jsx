@@ -118,6 +118,7 @@ export const Prize = () => {
           </div>
         </div>
       </div>
+      <img src="./astroman.svg" alt="Astroman" className="astroman" />
     </div>
   );
 };
