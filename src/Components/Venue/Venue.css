@@ -531,6 +531,7 @@
 }
 
 /* Floating and moving animation for rocket.svg */
+/* Floating and moving animation for rocket.svg */
 .desktop-image {
   position: absolute;
   top: 50%;
@@ -542,7 +543,7 @@
   border: none !important; /* Increased specificity to override any external styles */
   outline: none; /* Remove any browser outline */
   transform: translateX(50%); /* Kept from previous to ensure visibility */
-  animation: floatInSpace 6s ease-in-out infinite, moveRocket 12s ease-in-out infinite; /* Combined animations */
+  animation: floatInSpace 6s ease-in-out infinite, moveRocket 12s ease-in-out infinite; /* Both animations loop infinitely */
 }
 
 /* Show image only on desktop screens (above 1024px) */
@@ -552,44 +553,50 @@
   }
 }
 
-/* Keyframes for floating and rotation effect */
+/* Keyframes for floating effect */
 @keyframes floatInSpace {
   0% {
-    transform: translateX(50%) translateY(0) rotate(0deg);
+    transform: translateX(50%) translateY(0);
   }
   50% {
-    transform: translateX(50%) translateY(-15px) rotate(5deg); /* Sample rotation, adjust as needed */
+    transform: translateX(50%) translateY(-15px);
   }
   100% {
-    transform: translateX(50%) translateY(0) rotate(0deg);
+    transform: translateX(50%) translateY(0);
   }
 }
 
-/* Keyframes for positional movement */
+/* Keyframes for positional movement with rotation */
+/* Keyframes for positional movement with rotation, entering and exiting outside margin */
 @keyframes moveRocket {
   0% {
-    top: 50%;
-    right: 80%;
+    top: 60%;
+    right: 100%; /* Start outside the right edge of the viewport */
     transform: rotate(0deg);
   }
-  25% {
-    top: 30%;
-    right: 60%;
-    transform: rotate(25deg); /* Sample rotation, adjust as needed */
+  20% {
+    top: 50%;
+    right: 80%; /* First defined position */
+    transform: rotate(0deg);
   }
-  50% {
+  40% {
     top: 30%;
-    right: 40%;
-    transform: rotate(15deg); /* Sample rotation, adjust as needed */
+    right: 60%; /* Second defined position */
+    transform: rotate(25deg); /* Kept from provided CSS, adjust as needed */
   }
-  75% {
+  60% {
+    top: 30%;
+    right: 40%; /* Third defined position */
+    transform: rotate(15deg); /* Kept from provided CSS, adjust as needed */
+  }
+  80% {
     top: 0%;
-    right: 10%;
-    transform: rotate(30deg); /* Sample rotation, adjust as needed */
+    right: 10%; /* Final defined position */
+    transform: rotate(30deg); /* Kept from provided CSS, adjust as needed */
   }
   100% {
-    top: 50%;
-    right: 80%;
-    transform: rotate(0deg);
+    top: -20%; /* Exit above the top edge of the viewport */
+    right: -20%; /* Exit past the left edge of the viewport */
+    transform: rotate(30deg); /* Maintain final rotation */
   }
 }
