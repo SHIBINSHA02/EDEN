@@ -1,7 +1,6 @@
 import React from 'react';
 import './datev.css';
 import PixelArtBackground from '../Background/PixelArtbg';
-
 const DateVenue = () => {
   return (
     <div className="image-container">
@@ -12,8 +11,8 @@ const DateVenue = () => {
         className="pixel-art-background"
       />
       <img
-        src="./airship.svg"
-        alt="airship"
+        src={window.innerWidth < 768 ? './rocket2.svg':'./airship.svg'}
+        alt={window.innerWidth < 768 ? "rocket" : "airship"}
         className="airship-image floating"
         style={{
           '--float-y-range': '10px',
