@@ -229,20 +229,22 @@
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .astroman {
-    top: 70%;
-    left: 80%;
-    width: 30%;
+    top: 0%;
+    left: -10%;
+    width: 80%;
     height: auto;
+    transform: rotate(100deg) translateY(0px); /* Combined rotate and initial translateY */
     animation: floatAstromanMobile 3s infinite ease-in-out; /* Added mobile float */
   }
 }
 
 /* Floating animation for Astroman on mobile (can be the same or different) */
 @keyframes floatAstromanMobile {
-  0%, 100% {
-    transform: translateY(0px);
+  0%,
+  100% {
+    transform: rotate(96deg) translateY(0px); /* Combined rotate and translateY */
   }
   50% {
-    transform: translateY(-8px); /* Slightly smaller float for mobile */
+    transform: rotate(100deg) translateY(-8px); /* Combined rotate and translateY */
   }
 }
