@@ -108,6 +108,13 @@ export const Venue = () => {
 
         {/* Call to Action */}
       </div>
+
+      {/* Desktop Image */}
+      <img
+        src="./rocket.svg" // Replace with your image URL
+        alt="Event Image"
+        className="desktop-image"
+      />
     </div>
   );
 };

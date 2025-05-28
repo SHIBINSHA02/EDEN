@@ -37,7 +37,7 @@ export const Loading = () => {
       <div className="minimal-loading-content">
         {/* Simple Logo */}
         <div className="minimal-logo">
-          <h1 className="logo-text">EDEN 4.0</h1>
+          <img src="/title.svg" alt="EDEN 4.0" className="logo-image" />
         </div>
 
         {/* Minimal Loading Bar */}

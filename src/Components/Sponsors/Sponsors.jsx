@@ -28,8 +28,21 @@ export const Sponsors = ({ sponsorsData }) => {
                 key={index}
                 className={`sponsor-box ${
                   sponsor.name === "CareStack" ? "carestack-box" : ""
+                } ${sponsor.name === "DCUBE AI" ? "dcube-box" : ""} ${
+                  sponsor.name === "iTRAITZ" ? "itraitz-box" : ""
+                } ${sponsor.name === "KaiSemi" ? "kaisemi-box" : ""} ${
+                  sponsor.name === "SEMentor" ? "sementor-box" : ""
+                } ${
+                  sponsor.name === "Seqato" ? "seqato-box" : ""
                 } aspect-[3/2] rounded-lg shadow-lg ${
-                  sponsor.name !== "CareStack" ? "hover:bg-purple-500" : ""
+                  sponsor.name !== "CareStack" &&
+                  sponsor.name !== "DCUBE AI" &&
+                  sponsor.name !== "iTRAITZ" &&
+                  sponsor.name !== "KaiSemi" &&
+                  sponsor.name !== "SEMentor" &&
+                  sponsor.name !== "Seqato"
+                    ? "hover:bg-purple-500"
+                    : ""
                 } transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
                 onClick={() => {
                   if (sponsor.website && sponsor.website !== "#") {
