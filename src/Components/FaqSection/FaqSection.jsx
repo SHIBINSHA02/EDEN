@@ -132,6 +132,19 @@ export const FaqSection = () => {
             </div>
           )}
         </div>
+
+        {/* Planet image - desktop only */}
+        <div className="hidden lg:block">
+          <img
+            src="/planet.svg"
+            alt="Pink Planet"
+            className="absolute left-[-15%] top-[200px] transform -translate-y-auto w-[500px] h-[500px] opacity-80 z-0 filter drop-shadow-lg"
+            style={{
+              animation:
+                "ease-in-out infinite, glowPulse 2s ease-in-out infinite alternate",
+            }}
+          />
+        </div>
       </div>
     </div>
   );
