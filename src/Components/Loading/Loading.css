@@ -24,15 +24,11 @@
   margin-bottom: 3rem;
 }
 
-.logo-text {
-  font-size: 3.5rem;
-  font-weight: bold;
-  margin: 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  background: linear-gradient(45deg, #a855f7, #c084fc, #e879f9);
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+.logo-image {
+  width: 300px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
   animation: glow 2s ease-in-out infinite alternate;
 }
 
@@ -79,10 +75,10 @@
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.3));
   }
   to {
-    text-shadow: 0 0 40px rgba(168, 85, 247, 0.8);
+    filter: drop-shadow(0 0 40px rgba(168, 85, 247, 0.8));
   }
 }
 
@@ -100,8 +96,11 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .logo-text {
-    font-size: 2.5rem;
+  .logo-image {
+    width: 60vw;
+    max-width: 250px;
+    height: auto;
+    aspect-ratio: 2.5;
   }
 
   .minimal-progress-container {
