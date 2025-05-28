@@ -75,7 +75,7 @@ function App() {
       {/* <Schedule /> */}
       <Venue />
       <EventStats />
-      <Sponsors />
+      <Sponsors sponsorsData={data.sponsors} />
       <FaqSection />
       {/* <Judge/> */}
       {/* <Team /> */}
