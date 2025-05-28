@@ -88,7 +88,7 @@ export const FaqSection = () => {
   const visibleFaqs = showAll ? faqData : faqData.slice(0, 7);
 
   return (
-    <div className="faq-section">
+    <div className="faq-section" id="faq">
       <div className="faq-background">
         <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
       </div>

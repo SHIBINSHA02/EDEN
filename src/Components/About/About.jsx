@@ -55,9 +55,9 @@ export const About = ({ description, buttonText }) => {
 
 
   return (
-    <div className="about-container relative w-screen h-screen">
+    <div className="about-container relative w-screen h-screen" id="about">
       {showAlert}
-      <div className="pixelated-violet-top"></div>
+      <div className="pixelated-violet-top"></div> {/* New div for the top effect */}
       <PixelArtBackground className="about-background" pixelSize={2} density={1} fadeDuration={3000} />
       <div className="about-content">
         <div className="description">

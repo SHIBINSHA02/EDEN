@@ -76,6 +76,27 @@
   padding: 0.5rem;
 }
 
+.nav-link {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2rem;
+  font-family: 'Minecraft', sans-serif;
+  font-weight: 500;
+  padding: 0rem 1rem;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #b678e6;
+  text-shadow: 0 0 15px rgba(182, 120, 230, 0.4);
+  transform: translateY(-2px);
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .navbar ul {

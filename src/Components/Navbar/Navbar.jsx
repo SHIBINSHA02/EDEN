@@ -4,42 +4,36 @@ import "./Navbar.css";
 export const Navbar = ({ items }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleNavClick = (e, link) => {
-    e.preventDefault();
+  const handleClick = (link) => {
     setIsMenuOpen(false);
 
-    // Remove the # from the link to get the element ID
-    const targetId = link.replace("#", "");
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      // Calculate offset for fixed navbar (adjust this value based on your navbar height)
-      const navbarHeight = 100; // Adjust this value as needed
-      const elementPosition = targetElement.offsetTop;
-      const offsetPosition = elementPosition - navbarHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
+    // Smooth scroll to the target element
+    const element = document.querySelector(link);
+    if (element) {
+      element.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
     }
   };
 
   return (
     <nav className="navbar">
-      <button className="navbar-toggle" onClick={toggleMenu}>
+      <button
+        className="navbar-toggle"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
         ☰
       </button>
       <ul className={isMenuOpen ? "active" : ""}>
         {items.map((item, idx) => (
           <li key={idx}>
-            <a href={item.link} onClick={(e) => handleNavClick(e, item.link)}>
+            <button
+              className="nav-link"
+              onClick={() => handleClick(item.link)}
+            >
               {item.label}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
