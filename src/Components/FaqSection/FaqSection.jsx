@@ -8,24 +8,28 @@ const faqData = [
     answer: "EDEN Hackathon is a 24-hour coding competition where participants collaborate to build innovative solutions. With a prize pool of 50K and 100 participants, it's one of the most exciting hackathons of the year!"
   },
   {
-    question: "How can I participate in the hackathon?",
-    answer: "You can participate by registering through our website. Form a team of 2-4 members or join as an individual. Make sure to register before the deadline to secure your spot!"
+    question: "Who can participate in EDEN?",
+    answer: "EDEN is open to all students—whether you're from Marian Engineering College or any other institution across the state. If you’re passionate about solving real-world problems using tech, you’re welcome!"
+  },
+  {
+    question: "I’ve never participated in a hackathon before. Can I still join?",
+    answer: " Absolutely! EDEN welcomes beginners and experienced participants alike. It's a great opportunity to learn, collaborate, and grow."
+  },
+  {
+    question: "How can I register for EDEN?",
+    answer: "Registrations will open on June 1. Keep an eye on our official website or social media handles for the form and deadlines."
+  },
+  {
+    question: "Do I need to come with a team?",
+    answer: "Yes. A team must have between 3 and 5 members. Make sure to register together with your team!"
   },
   {
     question: "What are the prizes and judging criteria?",
     answer: "The total prize pool is 50K, distributed across different categories including Best Overall, Most Innovative, and Best Technical Implementation. Projects are judged based on innovation, technical complexity, completeness, and presentation."
   },
   {
-    question: "Who can participate in Eden?",
-    answer: "Eden is open to all students—whether you're from Marian Engineering College or any other institution across the state. If you’re passionate about solving real-world problems using tech, you’re welcome!"
-  },
-  {
-    question: "Is Eden an online or offline event?",
-    answer: "Eden is a 3-day in-person event hosted at Marian Engineering College. The 24-hour hackathon takes place on Day 2, with entrepreneurial and industry interaction sessions, networking, and cultural events on Day 1, followed by judging and winner announcements on Day 3."
-  },
-  {
-    question: "Do I need to come with a team?",
-    answer: "You can register either as a team (typically 3–5 members) or as an individual. We’ll help match individual participants with others to form teams, if needed."
+    question: "Is EDEN an online or offline event?",
+    answer: "EDEN is a 3-day in-person event hosted at Marian Engineering College. The 24-hour hackathon takes place on Day 2, with entrepreneurial and industry interaction sessions, networking, and cultural events on Day 1, followed by judging and winner announcements on Day 3."
   },
   {
     question: "What kind of problems will we be solving?",
@@ -33,19 +37,15 @@ const faqData = [
   },
   {
     question: "Are there any themes or specific domains for the hackathon?",
-    answer: "Yes, problem statements will be aligned with specific domains. More details will be released closer to the event."
-  },
-  {
-    question: "Will there be mentorship during the event?",
-    answer: "Yes! Eden features expert mentors from industry and academia who will guide you throughout the hackathon."
+    answer: "Participants can choose from multiple problem statements provided by partner companies. As an alternative, teams may also choose to work on their own problem statement."
   },
   {
     question: "What should I bring with me?",
-    answer: "Participants should bring their own laptops, chargers, valid ID cards, and any other essential hardware."
+    answer: " Participants should bring their own laptops, chargers, valid ID cards, and any other essential hardware. Additionally, have a soft copy of the registration."
   },
   {
     question: "Are there any registration fees?",
-    answer: "Details about registration fees will be announced soon. Please check our official website or social media for updates."
+    answer: " Yes, a registration fee is required. This fee helps cover the cost of food and accommodation provided during the event. Detailed information about the fee will be provided in the registration form."
   },
   {
     question: "What are the prizes or incentives?",
@@ -56,20 +56,16 @@ const faqData = [
     answer: "Yes, participants will be provided with meals and overnight accommodation at the venue to ensure a comfortable 24-hour hackathon experience."
   },
   {
-    question: "How can I register for Eden?",
-    answer: "Registrations will open on a specified date. Keep an eye on our official website or social media handles for the form and deadlines."
-  },
-  {
-    question: "I’ve never participated in a hackathon before. Can I still join?",
-    answer: "Absolutely! Eden is beginner-friendly, and our mentors are here to support you. All you need is enthusiasm and a willingness to learn!"
-  },
-  {
     question: "Is there a selection process after registration?",
-    answer: "Yes, teams will be shortlisted based on their submitted ideas, focusing on innovation, feasibility, and relevance. Selected teams will be notified via email by a specified date."
+    answer: "Yes, there is a selection process. Participants will be shortlisted based on their GitHub profiles or portfolios to ensure alignment with the event's expectations.Those who are not selected will receive a full refund of their registration fee. Selected teams will be notified via email."
   },
   {
     question: "Are there any pre-event sessions or workshops?",
-    answer: "Yes! Eden begins with entrepreneurship talks, industry interactions, and networking sessions on Day 1 to inspire and prepare participants before the 24-hour hackathon kicks off on Day 2."
+    answer: "Yes! Eden begins with entrepreneurship talks, industry interactions and networking sessions on Day 1 to inspire the participants before the 24-hour hackathon kicks off on Day 2."
+  },
+  {
+    question: "Can I join the hackathon starting from Day 2, skipping the sessions on Day 1?",
+    answer: "Participants are required to attend the hackathon from Day 1 and must be present on campus on the first day. Any participant who skips the pre-event sessions without prior notification and a valid reason will be subject to disqualification."
   }
 ];
 export const FaqSection = () => {
