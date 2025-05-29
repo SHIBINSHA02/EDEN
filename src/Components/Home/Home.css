@@ -398,7 +398,7 @@
   }
 
   .cloud-image1.loaded-final {
-    top: 25%;
+    top: 10%;
     right: 15%;
     z-index: 3;
   }
@@ -410,9 +410,8 @@
   }
 
   .cloud-image3.loaded-final {
-    bottom: 25%;
-    right: 25%;
-    top: auto;
+    top: 45%;
+    right: 3%;
     z-index: 3;
   }
 
