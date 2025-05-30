@@ -133,14 +133,15 @@
 
 @keyframes logoGlow {
   from {
-    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6));
+    filter: drop-shadow(0 0 2px rgba(172, 138, 245, 0.6));
   }
   to {
-    filter: drop-shadow(0 0 25px rgba(192, 132, 252, 0.9));
+    filter: drop-shadow(0 0 2px rgba(174, 117, 231, 0.9));
   }
 }
 
 .logo-tagline {
+  font-family: "minecraft";
   font-size: 1.3rem;
   color: #c084fc;
   font-weight: 600;
