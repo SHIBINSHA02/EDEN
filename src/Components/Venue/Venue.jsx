@@ -66,13 +66,13 @@ export const Venue = () => {
                 <a href="tel:+919496482580" className="link">
                   +91 9496482580
                 </a>{" "}
-                <br/>
+                
                 (Chief Operations Officer)
                 <br />
                 <a href="tel:+918617741675" className="link">
                   +91 8617741675
                 </a>{" "}
-                <br/>
+                
                 (Chief Finance Officer)
               </span>
             </p>
