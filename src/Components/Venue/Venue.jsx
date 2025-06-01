@@ -54,9 +54,10 @@ export const Venue = () => {
         <section className="venue-details">
           <div className="details-grid">
             <p className="detail-item">
-              <span className="detail-label">Address:</span>{" "}
+              <span className="detail-label">Address:</span>
+              <br />
               <span className="detail-content">
-              Marian Engineering College,Kazhakuttom, Thiruvananthapuram - 695582,Kerala,India
+              Marian Engineering College, Kazhakuttom, Thiruvananthapuram - 695582, Kerala, India
               </span>
             </p>
             <p className="detail-item">
@@ -67,13 +68,13 @@ export const Venue = () => {
                   +91 9496482580
                 </a>{" "}
                 
-                (Chief Operations Officer)
+                (COO IEDC MEC)
                 <br />
                 <a href="tel:+918617741675" className="link">
                   +91 8617741675
                 </a>{" "}
                 
-                (Chief Finance Officer)
+                (CFO IEDC MEC)
               </span>
             </p>
             <p className="detail-item">

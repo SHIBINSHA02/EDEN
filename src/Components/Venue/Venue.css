@@ -129,12 +129,12 @@
 .detail-label {
   font-family: 'Minecraftchmc', 'Minecraft', 'VT323', sans-serif;
   font-weight: 600; /* Reduced from 700 to balance with content */
-  font-size: 2rem; /* Reduced from 3rem for better hierarchy */
+  font-size: 2.5rem; /* Reduced from 3rem for better hierarchy */
   color: #ffffff;
 }
 
 .detail-content {
-  font-size: 2rem; /* Reduced from 2rem to match detail-item */
+  font-size: 2.5rem; /* Reduced from 2rem to match detail-item */
   font-weight: 400;
   color: #e5e7eb;
 }
@@ -186,7 +186,7 @@
   list-style-type: disc;
   list-style-position: inside;
   font-family: 'Minecraftchmc', 'Minecraft', 'VT323', sans-serif;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 400;
   display: flex;
   flex-direction: column;
@@ -344,19 +344,22 @@
 
   .details-grid {
     gap: 10px;
+    display: flex;
+    flex-direction: column;
+    
   }
 
   .detail-item {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 0 10px;
   }
 
   .detail-label {
-    font-size:2rem;
+    font-size:1.8rem;
   }
 
   .detail-content {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .map-container {
@@ -419,12 +422,12 @@
   }
 
   .detail-item {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 0 12px;
   }
 
   .detail-label {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 
   .detail-content {
@@ -454,7 +457,7 @@
 
   .cta-button {
     width: 250px;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     padding: 10px 18px;
     margin: 25px auto;
   }
@@ -489,16 +492,16 @@
   }
 
   .detail-item {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 0 15px;
   }
 
   .detail-label {
-    font-size: 2.3rem;
+    font-size: 1.7rem;
   }
 
   .detail-content {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .map-container {
@@ -511,13 +514,13 @@
   }
 
   .logistics-list {
-    font-size: 1.2rem;
+    font-size: 2rem;
     gap: 15px;
     padding: 0 15px;
   }
 
   .cta-text {
-    font-size: 1.2rem;
+    font-size: 2rem;
     padding: 0 15px;
     margin-bottom: 30px;
   }
