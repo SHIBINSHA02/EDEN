@@ -61,7 +61,14 @@
     ) scale(1.9); /* Maintain scale */
   }
 }
-
+.date-image {
+  width: 80%;
+  max-width: 90%;
+}
+.venue-image {
+  width: 90%;
+  max-width: 90%;
+}
 /* Desktop-specific positioning and visibility */
 @media (min-width: 769px) {
   .airship-image {
@@ -118,7 +125,7 @@
     top: 45%; /* Adjust top position to move it upwards */
     left: 30%; /* Adjust left position to move it to the left */
     transform: translate(-50%, -50%) scale(1.9) rotate(30deg); /* Initial rotation */
-    max-width: 20%; /* Adjust size as needed */
+    max-width: 15%; /* Adjust size as needed */
     z-index: 3; /* Ensure it's above the background */
     opacity: 1 !important; /* Override desktop opacity */
     visibility: visible !important; /* Override desktop visibility */
@@ -144,7 +151,7 @@
   }
 
   .venue-image {
-    width: 80%;
+    width: 90%;
     max-width: 90%;
     align-self: flex-start; /* To the left within the right-aligned wrapper */
   }
