@@ -18,7 +18,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="minimal-footer" id="contact">
+    <footer className="minimal-footer" >
       <PixelArtBackground pixelSize={2} density={0.8} fadeDuration={3000} />
 
       {/* Floating Plus Signs */}

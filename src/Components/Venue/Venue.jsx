@@ -18,7 +18,7 @@ export const Venue = () => {
   }, []);
 
   return (
-    <div className="venue-container">
+    <div className="venue-container" id="contact">
       {/* Pixel Art Background with Fallback */}
       <div className="background-wrapper">
         {backgroundError ? (
