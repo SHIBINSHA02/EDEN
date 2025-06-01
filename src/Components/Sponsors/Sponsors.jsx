@@ -58,18 +58,20 @@ export const Sponsors = ({ sponsorsData }) => {
             </div>
 
             {/* Desktop: Second row (2), Mobile: Second row (2) */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-              <div className="col-span-2 grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 w-full lg:w-2/3 mx-auto">
-                {titleSponsors.slice(4, 7).map((sponsor, index) => (
+            <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+                {titleSponsors.slice(3, 7).map((sponsor, index) => (
                   <div
-                    key={index + 3}
+                    key={index + 4}
                     className={`sponsor-box w-full ${
                       sponsor.name === "SEMentor" ? "sementor-box" : ""
                     } ${sponsor.name === "Seqato" ? "seqato-box" : ""} ${
                       sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
                     } ${
                       sponsor.name === "CareStack" ? "carestack-box" : ""
-                    } aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
+                    } ${
+                      sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
+                    }aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
                     onClick={() => {
                       if (sponsor.website && sponsor.website !== "#") {
                         window.open(
@@ -93,7 +95,7 @@ export const Sponsors = ({ sponsorsData }) => {
             </div>
 
             {/* Mobile only: Third row (1) */}
-            <div className="lg:hidden flex justify-center">
+            {/* <div className="lg:hidden flex justify-center">
               <div className="w-1/2">
                 {titleSponsors[2] && (
                   <div
@@ -134,7 +136,7 @@ export const Sponsors = ({ sponsorsData }) => {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
