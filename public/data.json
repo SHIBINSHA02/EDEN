@@ -125,6 +125,12 @@
         "image": "/sponsers/Seqato/Seqato.png",
         "alt": "Seqato",
         "website": "https://www.seqato.com"
+      },
+      {
+        "name": "CareStack",
+        "image": "/sponsers/CareStack/CareStack.svg",
+        "alt": "CareStack",
+        "website": "https://www.carestack.com"
       }
     ],
     "communityPartners": [
