@@ -1,25 +1,12 @@
 {
   "navbar": [
-    {
-      "label": "Home",
-      "link": "#home"
-    },
-    {
-      "label": "About",
-      "link": "#about"
-    },
-    {
-      "label": "Sponsors",
-      "link": "#sponsors"
-    },
-    {
-      "label": "FAQs",
-      "link": "#faq"
-    },
-    {
-      "label": "Contact Us",
-      "link": "#contact"
-    }
+
+    { "label": "Home", "link": "#home" },
+    { "label": "About", "link": "#about" },
+    { "label": "Sponsors", "link": "#sponsors" },
+    { "label": "Contact Us", "link": "#contact" },
+    { "label": "FAQs", "link": "#faq" }
+
   ],
   "hero": {
     "title": "EDEN 4.0",
