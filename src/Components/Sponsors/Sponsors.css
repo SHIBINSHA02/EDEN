@@ -208,16 +208,16 @@ h2 {
   transform: translateY(-4px) scale(1.02);
 }
 
-/* MuLearn specific styling with orange/blue community theme colors */
+/* MuLearn specific styling with purple/blue community theme colors */
 .sponsor-box.mulearn-box {
   background: linear-gradient(
     135deg,
-    rgba(249, 115, 22, 0.95),
-    /* Orange */ rgba(234, 88, 12, 0.9),
-    /* Dark orange */ rgba(194, 65, 12, 0.9) /* Deep orange */
+    rgba(139, 92, 246, 0.95),
+    /* Purple */ rgba(124, 58, 237, 0.9),
+    /* Dark purple */ rgba(109, 40, 217, 0.9) /* Deep purple */
   );
-  border: 2px solid #f97316; /* Orange border */
-  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.4);
+  border: 2px solid #8b5cf6; /* Purple border */
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -225,13 +225,13 @@ h2 {
 .sponsor-box.mulearn-box:hover {
   background: linear-gradient(
     135deg,
-    rgba(249, 115, 22, 1),
-    /* Full opacity orange */ rgba(234, 88, 12, 0.95),
-    /* Slightly more opaque dark orange */ rgba(194, 65, 12, 1)
-      /* Full opacity deep orange */
+    rgba(139, 92, 246, 1),
+    /* Full opacity purple */ rgba(124, 58, 237, 0.95),
+    /* Slightly more opaque dark purple */ rgba(109, 40, 217, 1)
+      /* Full opacity deep purple */
   );
-  border-color: #c2410c; /* Deep orange border on hover */
-  box-shadow: 0 12px 40px rgba(249, 115, 22, 0.6);
+  border-color: #6d28d9; /* Deep purple border on hover */
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.6);
   transform: translateY(-4px) scale(1.02);
 }
 
