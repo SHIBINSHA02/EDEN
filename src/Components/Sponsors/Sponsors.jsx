@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export const Sponsors = ({ sponsorsData }) => {
   const titleSponsors = sponsorsData?.titleSponsors || [];
-  // const communityPartners = sponsorsData?.communityPartners || [];
+  const communityPartners = sponsorsData?.communityPartners || [];
 
   // Helper function to get sponsor-specific CSS class
   const getSponsorClass = (sponsorName) => {
@@ -16,7 +16,8 @@ export const Sponsors = ({ sponsorsData }) => {
       CareStack: "carestack-box",
       SEMentor: "sementor-box",
       Seqato: "seqato-box",
-      MuLearn: "mulearn-box",
+      MuLearn: "mulearn-box", // Community partner
+      RevyrieGlobal: "revyrieglobal-box", // Title sponsor
     };
     return nameMap[sponsorName] || "";
   };
@@ -92,16 +93,18 @@ export const Sponsors = ({ sponsorsData }) => {
         </div>
 
         {/* Community Partner Section */}
-        {/* <div className="mb-12 sm:mb-16 w-full max-w-3xl">
+        <div className="mb-12 sm:mb-16 w-full max-w-3xl">
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 frisky-font tracking-wider">
             COMMUNITY PARTNERS
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center">
-            {communityPartners.map((partner, index) => 
-              renderSponsorBox(partner, index)
-            )}
+          <div className="flex justify-center w-full">
+            <div className="w-full max-w-[calc(50%-0.5rem)] md:w-96 lg:w-[28rem] xl:w-[32rem]">
+              {communityPartners.map((partner, index) =>
+                renderSponsorBox(partner, index)
+              )}
+            </div>
           </div>
-        </div> */}
+        </div>
 
         {/* Energy Partner Section - Red Bull Special */}
         {/* <div className="w-full max-w-2xl relative">

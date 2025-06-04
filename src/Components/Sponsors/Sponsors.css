@@ -208,30 +208,59 @@ h2 {
   transform: translateY(-4px) scale(1.02);
 }
 
-/* MuLearn specific styling with purple/blue community theme colors */
+/* MuLearn specific styling with clean purple gradient */
 .sponsor-box.mulearn-box {
   background: linear-gradient(
     135deg,
-    rgba(139, 92, 246, 0.95),
-    /* Purple */ rgba(124, 58, 237, 0.9),
-    /* Dark purple */ rgba(109, 40, 217, 0.9) /* Deep purple */
+    rgba(168, 85, 247, 0.95),
+    rgba(147, 51, 234, 0.9),
+    rgba(126, 34, 206, 0.95)
   );
-  border: 2px solid #8b5cf6; /* Purple border */
-  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+  border: 2px solid #a855f7;
+  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.4);
   transition: all 0.3s ease;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sponsor-box.mulearn-box:hover {
   background: linear-gradient(
     135deg,
-    rgba(139, 92, 246, 1),
-    /* Full opacity purple */ rgba(124, 58, 237, 0.95),
-    /* Slightly more opaque dark purple */ rgba(109, 40, 217, 1)
-      /* Full opacity deep purple */
+    rgba(168, 85, 247, 1),
+    rgba(147, 51, 234, 0.95),
+    rgba(126, 34, 206, 1)
   );
-  border-color: #6d28d9; /* Deep purple border on hover */
-  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.6);
+  border-color: #7e22ce;
+  box-shadow: 0 12px 40px rgba(168, 85, 247, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* RevyrieGlobal specific styling with clean gradient like others */
+.sponsor-box.revyrieglobal-box {
+  background: linear-gradient(
+    135deg,
+    rgba(177, 31, 36, 0.95),
+    /* Roof Terracotta */ rgba(150, 25, 30, 0.9),
+    /* Darker Terracotta */ rgba(120, 20, 25, 0.9) /* Deep Terracotta */
+  );
+  border: 2px solid #b11f24; /* Terracotta border */
+  box-shadow: 0 8px 32px rgba(177, 31, 36, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.revyrieglobal-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(177, 31, 36, 1),
+    /* Full opacity terracotta */ rgba(150, 25, 30, 0.95),
+    /* Slightly more opaque darker terracotta */ rgba(120, 20, 25, 1)
+      /* Full opacity deep terracotta */
+  );
+  border-color: #781419; /* Deep terracotta border on hover */
+  box-shadow: 0 12px 40px rgba(177, 31, 36, 0.6);
   transform: translateY(-4px) scale(1.02);
 }
 
@@ -492,6 +521,16 @@ h2 {
     min-height: 120px;
   }
 
+  .sponsor-box.mulearn-box {
+    padding: 0.75rem;
+    min-height: 100px;
+  }
+
+  .sponsor-box.mulearn-box .sponsor-logo {
+    max-width: 75%;
+    max-height: 60%;
+  }
+
   .sponsors-section {
     padding: 2rem 0;
   }
@@ -505,6 +544,16 @@ h2 {
   .sponsor-box {
     min-height: 100px;
     padding: 0.5rem;
+  }
+
+  .sponsor-box.mulearn-box {
+    padding: 0.5rem;
+    min-height: 90px;
+  }
+
+  .sponsor-box.mulearn-box .sponsor-logo {
+    max-width: 70%;
+    max-height: 55%;
   }
 
   .grid {
@@ -529,6 +578,11 @@ h2 {
   }
 
   .sponsor-box {
+    min-height: 90px;
+  }
+
+  .sponsor-box.mulearn-box {
+    padding: 0.5rem;
     min-height: 90px;
   }
 

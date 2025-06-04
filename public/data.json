@@ -158,24 +158,18 @@
         "website": "https://www.carestack.com"
       },
       {
-        "name": "MuLearn",
-        "image": "/sponsers/MuLearn/mulearnlogo.svg",
-        "alt": "MuLearn",
-        "website": "https://mulearn.org"
+        "name": "RevyrieGlobal",
+        "image": "/sponsers/RevyrieGlobal/revyrieglobal.png",
+        "alt": "RevyrieGlobal",
+        "website": "https://revyrieglobal.com"
       }
     ],
     "communityPartners": [
       {
-        "name": "CareStack",
-        "image": "/sponsers/CareStack/CareStack.svg",
-        "alt": "CareStack",
-        "website": "https://www.carestack.com"
-      },
-      {
-        "name": "Community Partner 2",
-        "image": "/images/community2.png",
-        "alt": "Community Partner 2",
-        "website": "#"
+        "name": "MuLearn",
+        "image": "/sponsers/MuLearn/mulearnlogo.svg",
+        "alt": "MuLearn",
+        "website": "https://mulearn.org"
       }
     ],
     "energyPartners": [
