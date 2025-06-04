@@ -39,11 +39,11 @@ h2 {
   transform: translateY(-4px) scale(1.02);
 }
 
-.sponsor-box img {
+.sponsor-box .sponsor-logo {
   transition: transform 0.3s ease;
 }
 
-.sponsor-box:hover img {
+.sponsor-box:hover .sponsor-logo {
   transform: scale(1.05);
 }
 
@@ -487,57 +487,13 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  .sponsors-section {
-    padding: 2.5rem 1rem;
-    min-height: 80vh;
-  }
-
   .sponsor-box {
-    min-height: 120px;
     padding: 0.75rem;
+    min-height: 120px;
   }
 
-  .sponsor-box:hover {
-    transform: translateY(-2px) scale(1.01);
-  }
-
-  .redbull-sponsor-box {
-    min-height: 160px;
-  }
-
-  .redbull-sponsor-box .flex {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .redbull-sponsor-box .space-x-4 > * + * {
-    margin-left: 0;
-    margin-top: 0.5rem;
-  }
-
-  /* Smaller can on mobile */
-  .redbull-sponsor-box .flex-shrink-0 {
-    transform: scale(0.6);
-  }
-
-  .minecraft-font {
-    font-size: 1.5rem !important;
-  }
-
-  .wing-left,
-  .wing-right {
-    width: 16px;
-    height: 10px;
-  }
-
-  .energy-dot {
-    width: 5px;
-    height: 5px;
-  }
-
-  /* Adjust grid gaps for better mobile experience */
-  .grid {
-    gap: 0.75rem;
+  .sponsors-section {
+    padding: 2rem 0;
   }
 }
 
@@ -559,6 +515,12 @@ h2 {
     font-size: 2rem !important;
     margin-bottom: 1.5rem !important;
   }
+
+  /* Logo sizing for consistent appearance */
+  .sponsor-logo {
+    max-width: 75%;
+    max-height: 60%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -572,6 +534,12 @@ h2 {
 
   h2 {
     font-size: 1.75rem !important;
+  }
+
+  /* Logo sizing for consistent appearance */
+  .sponsor-logo {
+    max-width: 70%;
+    max-height: 55%;
   }
 }
 

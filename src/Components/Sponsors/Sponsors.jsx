@@ -38,7 +38,7 @@ export const Sponsors = ({ sponsorsData }) => {
       <img
         src={sponsor.image}
         alt={sponsor.alt}
-        className="max-w-full max-h-full object-contain"
+        className="sponsor-logo"
         style={{ filter: "brightness(1.1)" }}
       />
     </div>
