@@ -48,7 +48,7 @@ export const About = ({ description, buttonText }) => {
         setShowAlert(null);
       }, 3000); // Clear alert after 3 seconds
     } else {
-      window.location.href = "https://www.example.com"; // Redirect URL
+      window.location.href = "https://makemypass.com/event/eden-4-0"; // Redirect URL
     }
   };
 
