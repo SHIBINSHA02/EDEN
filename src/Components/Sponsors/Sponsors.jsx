@@ -1,11 +1,11 @@
 import PixelArtBackground from "../Background/PixelArtbg";
-// import RedBullCan from "./RedBullCan"; 
+// import RedBullCan from "./RedBullCan";
 import "./Sponsors.css";
 import PropTypes from "prop-types";
 
 export const Sponsors = ({ sponsorsData }) => {
   const titleSponsors = sponsorsData?.titleSponsors || [];
-  // const communityPartners = sponsorsData?.communityPartners || []; 
+  // const communityPartners = sponsorsData?.communityPartners || [];
 
   // Helper function to get sponsor-specific CSS class
   const getSponsorClass = (sponsorName) => {
@@ -60,10 +60,35 @@ export const Sponsors = ({ sponsorsData }) => {
 
           {/* Responsive grid for all sponsors */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-            {titleSponsors.map((sponsor, index) =>
-              renderSponsorBox(sponsor, index)
-            )}
+            {titleSponsors
+              .slice(0, -1)
+              .map((sponsor, index) => renderSponsorBox(sponsor, index))}
           </div>
+
+          {/* Center the last sponsor (MuLearn) if it's alone in the last row */}
+          {titleSponsors.length > 0 && titleSponsors.length % 3 === 1 && (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12 mt-4 sm:mt-6 md:mt-8 lg:mt-12">
+              <div className="col-span-2 flex justify-center md:col-span-1 md:col-start-2 md:block">
+                <div className="w-full max-w-[calc(50%-0.5rem)] md:max-w-none">
+                  {renderSponsorBox(
+                    titleSponsors[titleSponsors.length - 1],
+                    titleSponsors.length - 1
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* If the last row has 2 sponsors, display them normally in grid */}
+          {titleSponsors.length > 0 && titleSponsors.length % 3 === 2 && (
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 mt-4 sm:mt-6 md:mt-8 lg:mt-12 justify-center max-w-2xl mx-auto">
+              {titleSponsors
+                .slice(-2)
+                .map((sponsor, index) =>
+                  renderSponsorBox(sponsor, titleSponsors.length - 2 + index)
+                )}
+            </div>
+          )}
         </div>
 
         {/* Community Partner Section */}
