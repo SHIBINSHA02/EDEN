@@ -1,12 +1,49 @@
 import PixelArtBackground from "../Background/PixelArtbg";
-// import RedBullCan from "./RedBullCan"; // Commented out as per instructions
+// import RedBullCan from "./RedBullCan";
 import "./Sponsors.css";
 import PropTypes from "prop-types";
 
 export const Sponsors = ({ sponsorsData }) => {
-  // Use data from props - no fallback for title sponsors to ensure data.json is the single source of truth
   const titleSponsors = sponsorsData?.titleSponsors || [];
   const communityPartners = sponsorsData?.communityPartners || [];
+
+  // Helper function to get sponsor-specific CSS class
+  const getSponsorClass = (sponsorName) => {
+    const nameMap = {
+      "DCUBE AI": "dcube-box",
+      iTRAITZ: "itraitz-box",
+      KaiSemi: "kaisemi-box",
+      CareStack: "carestack-box",
+      SEMentor: "sementor-box",
+      Seqato: "seqato-box",
+      MuLearn: "mulearn-box", // Community partner
+      RevyrieGlobal: "revyrieglobal-box", // Title sponsor
+    };
+    return nameMap[sponsorName] || "";
+  };
+
+  // Render sponsor box component
+  const renderSponsorBox = (sponsor, index, additionalClasses = "") => (
+    <div
+      key={`sponsor-${index}`}
+      className={`sponsor-box w-full ${getSponsorClass(
+        sponsor.name
+      )} aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer ${additionalClasses}`}
+      onClick={() => {
+        if (sponsor.website && sponsor.website !== "#") {
+          window.open(sponsor.website, "_blank", "noopener,noreferrer");
+        }
+      }}
+      title={`Visit ${sponsor.name} website`}
+    >
+      <img
+        src={sponsor.image}
+        alt={sponsor.alt}
+        className="sponsor-logo"
+        style={{ filter: "brightness(1.1)" }}
+      />
+    </div>
+  );
 
   return (
     <div
@@ -21,173 +58,62 @@ export const Sponsors = ({ sponsorsData }) => {
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 frisky-font tracking-wider">
             OUR PARTNERS
           </h2>
-          <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-            {/* Desktop: First row (3), Mobile: First row (2) */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-              {titleSponsors.slice(0, 3).map((sponsor, index) => (
-                <div
-                  key={index}
-                  className={`sponsor-box w-full ${
-                    sponsor.name === "DCUBE AI" ? "dcube-box" : ""
-                  } ${sponsor.name === "iTRAITZ" ? "itraitz-box" : ""} ${
-                    sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
-                  } ${
-                    sponsor.name === "CareStack" ? "carestack-box" : ""
-                  } aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer ${
-                    index === 2 ? "hidden lg:flex" : ""
-                  }`}
-                  onClick={() => {
-                    if (sponsor.website && sponsor.website !== "#") {
-                      window.open(
-                        sponsor.website,
-                        "_blank",
-                        "noopener,noreferrer"
-                      );
-                    }
-                  }}
-                  title={`Visit ${sponsor.name} website`}
-                >
-                  <img
-                    src={sponsor.image}
-                    alt={sponsor.alt}
-                    className="max-w-full max-h-full object-contain"
-                    style={{ filter: "brightness(1.1)" }}
-                  />
-                </div>
-              ))}
-            </div>
 
-            {/* Desktop: Second row (2), Mobile: Second row (2) */}
-            <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-                {titleSponsors.slice(3, 7).map((sponsor, index) => (
-                  <div
-                    key={index + 4}
-                    className={`sponsor-box w-full ${
-                      sponsor.name === "SEMentor" ? "sementor-box" : ""
-                    } ${sponsor.name === "Seqato" ? "seqato-box" : ""} ${
-                      sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
-                    } ${
-                      sponsor.name === "CareStack" ? "carestack-box" : ""
-                    } ${
-                      sponsor.name === "KaiSemi" ? "kaisemi-box" : ""
-                    }aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
-                    onClick={() => {
-                      if (sponsor.website && sponsor.website !== "#") {
-                        window.open(
-                          sponsor.website,
-                          "_blank",
-                          "noopener,noreferrer"
-                        );
-                      }
-                    }}
-                    title={`Visit ${sponsor.name} website`}
-                  >
-                    <img
-                      src={sponsor.image}
-                      alt={sponsor.alt}
-                      className="max-w-full max-h-full object-contain"
-                      style={{ filter: "brightness(1.1)" }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile only: Third row (1) */}
-            {/* <div className="lg:hidden flex justify-center">
-              <div className="w-1/2">
-                {titleSponsors[2] && (
-                  <div
-                    key={5}
-                    className={`sponsor-box w-full ${
-                      titleSponsors[2].name === "SEMentor"
-                        ? "sementor-box"
-                        : ""
-                    } ${
-                      titleSponsors[2].name === "Seqato" ? "seqato-box" : ""
-                    } ${
-                      titleSponsors[2].name === "KaiSemi" ? "kaisemi-box" : ""
-                    } ${
-                      titleSponsors[2].name === "CareStack"
-                        ? "carestack-box"
-                        : ""
-                    } aspect-[3/2] rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center p-4 cursor-pointer`}
-                    onClick={() => {
-                      if (
-                        titleSponsors[2].website &&
-                        titleSponsors[2].website !== "#"
-                      ) {
-                        window.open(
-                          titleSponsors[2].website,
-                          "_blank",
-                          "noopener,noreferrer"
-                        );
-                      }
-                    }}
-                    title={`Visit ${titleSponsors[2].name} website`}
-                  >
-                    <img
-                      src={titleSponsors[2].image}
-                      alt={titleSponsors[2].alt}
-                      className="max-w-full max-h-full object-contain"
-                      style={{ filter: "brightness(1.1)" }}
-                    />
-                  </div>
-                )}
-              </div>
-            </div> */}
+          {/* Responsive grid for all sponsors */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+            {titleSponsors
+              .slice(0, -1)
+              .map((sponsor, index) => renderSponsorBox(sponsor, index))}
           </div>
+
+          {/* Center the last sponsor (MuLearn) if it's alone in the last row */}
+          {titleSponsors.length > 0 && titleSponsors.length % 3 === 1 && (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12 mt-4 sm:mt-6 md:mt-8 lg:mt-12">
+              <div className="col-span-2 flex justify-center md:col-span-1 md:col-start-2 md:block">
+                <div className="w-full max-w-[calc(50%-0.5rem)] md:max-w-none">
+                  {renderSponsorBox(
+                    titleSponsors[titleSponsors.length - 1],
+                    titleSponsors.length - 1
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* If the last row has 2 sponsors, display them normally in grid */}
+          {titleSponsors.length > 0 && titleSponsors.length % 3 === 2 && (
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 mt-4 sm:mt-6 md:mt-8 lg:mt-12 justify-center max-w-2xl mx-auto">
+              {titleSponsors
+                .slice(-2)
+                .map((sponsor, index) =>
+                  renderSponsorBox(sponsor, titleSponsors.length - 2 + index)
+                )}
+            </div>
+          )}
         </div>
 
         {/* Community Partner Section */}
-        {/* <div className="mb-12 sm:mb-16 w-full max-w-3xl">
+        <div className="mb-12 sm:mb-16 w-full max-w-3xl">
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 frisky-font tracking-wider">
             COMMUNITY PARTNERS
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-center">
-            {communityPartners.map((partner, index) => (
-              <div
-                key={index}
-                className={`sponsor-box aspect-[3/2] rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300 flex items-center justify-center p-4 cursor-pointer ${
-                  partner.name === "CareStack" ? "carestack-box" : ""
-                } ${partner.name === "iTRAITZ" ? "itraitz-box" : ""} ${
-                  partner.name === "KaiSemi" ? "kaisemi-box" : ""
-                } ${partner.name === "SEMentor" ? "sementor-box" : ""} ${
-                  partner.name === "Seqato" ? "seqato-box" : ""
-                }`}
-                onClick={() => {
-                  if (partner.website && partner.website !== "#") {
-                    window.open(
-                      partner.website,
-                      "_blank",
-                      "noopener,noreferrer"
-                    );
-                  }
-                }}
-                title={`Visit ${partner.name} website`}
-              >
-                <img
-                  src={partner.image}
-                  alt={partner.alt}
-                  className="max-w-full max-h-full object-contain"
-                  style={{ filter: "brightness(1.1)" }}
-                />
-              </div>
-            ))}
+          <div className="flex justify-center w-full">
+            <div className="w-full max-w-[calc(50%-0.5rem)] md:w-96 lg:w-[28rem] xl:w-[32rem]">
+              {communityPartners.map((partner, index) =>
+                renderSponsorBox(partner, index)
+              )}
+            </div>
           </div>
-        </div> */}
+        </div>
 
         {/* Energy Partner Section - Red Bull Special */}
         {/* <div className="w-full max-w-2xl relative">
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 firsky-font tracking-wider">
             ENERGY PARTNER
-          </h2> */}
+          </h2>
 
-          {/* Spacepatti images - desktop only */}
-          {/* <div className="hidden lg:block"> */}
-            {/* Left spacepatti - mirrored */}
-            {/* <img
+          <div className="hidden lg:block">
+            <img
               src="/spacepatti.svg"
               alt="Space Patti Left"
               className="absolute left-[-40%] top-[50%] transform -translate-y-1/2 w-[30%] h-auto opacity-80 z-0 animate-float-left filter drop-shadow-lg"
@@ -202,67 +128,56 @@ export const Sponsors = ({ sponsorsData }) => {
             <div
               className="redbull-sponsor-box aspect-[3/2] w-full max-w-sm relative overflow-hidden rounded-lg cursor-pointer group"
               onClick={() => {
-                // Scroll to the main Red Bull section
-                const redbullSection =
-                  document.querySelector("#redbull-section");
+                const redbullSection = document.querySelector("#redbull-section");
                 if (redbullSection) {
                   redbullSection.scrollIntoView({ behavior: "smooth" });
                 }
               }}
               title="Click to see the full Red Bull experience"
-            > */}
-              {/* Red Bull gradient background */}
-              {/* <div className="absolute inset-0  opacity-90"></div> */}
-
-              {/* Animated energy waves */}
-              {/* <div className="absolute inset-0 opacity-30">
+            >
+              <div className="absolute inset-0 opacity-90"></div>
+              
+              <div className="absolute inset-0 opacity-30">
                 <div className="energy-wave energy-wave-1"></div>
                 <div className="energy-wave energy-wave-2"></div>
                 <div className="energy-wave energy-wave-3"></div>
-              </div> */}
+              </div>
 
-              {/* Pulsing glow effect */}
-              {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-300 to-transparent opacity-20 animate-pulse"></div> */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-300 to-transparent opacity-20 animate-pulse"></div>
 
-              {/* Wing elements */}
-              {/* <div className="absolute top-2 left-2 opacity-60">
+              <div className="absolute top-2 left-2 opacity-60">
                 <div className="wing-left"></div>
               </div>
               <div className="absolute top-2 right-2 opacity-60">
                 <div className="wing-right"></div>
-              </div> */}
+              </div>
 
-              {/* Content overlay with 3D can */}
-              {/* <div className="relative z-10 h-full flex items-center justify-center">
-                <div className="flex items-center space-x-4"> */}
-                  {/* 3D Red Bull Can */}
-                  {/* <div className="flex-shrink-0">
+              <div className="relative z-10 h-full flex items-center justify-center">
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
                     <RedBullCan width={200} height={200} />
-                  </div> */}
+                  </div>
 
-                  {/* Text content */}
-                  {/* <div className="text-center">
+                  <div className="text-center">
                     <div className="text-white font-bold text-xl md:text-2xl minecraft-font mb-1 drop-shadow-lg text-shadow-red">
                       RED BULL
                     </div>
                     <div className="text-yellow-200 text-xs md:text-sm font-semibold tracking-wider animate-pulse">
                       GIVES YOU WINGS
-                    </div> */}
-                    {/* Energy indicator */}
-                    {/* <div className="flex justify-center mt-2 space-x-1">
+                    </div>
+                    <div className="flex justify-center mt-2 space-x-1">
                       <div className="energy-dot energy-dot-1"></div>
                       <div className="energy-dot energy-dot-2"></div>
                       <div className="energy-dot energy-dot-3"></div>
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
 
-              {/* Hover effect overlay */}
-              {/* <div className="absolute inset-0 bg-gradient-to-t from-blue-900 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
             </div>
-          </div> */}
-        {/* </div> */}
+          </div>
+        </div> */}
       </div>
     </div>
   );

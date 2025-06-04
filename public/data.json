@@ -1,14 +1,15 @@
 {
   "navbar": [
+
     { "label": "Home", "link": "#home" },
     { "label": "About", "link": "#about" },
     { "label": "Sponsors", "link": "#sponsors" },
     { "label": "Contact Us", "link": "#contact" },
     { "label": "FAQs", "link": "#faq" }
+
   ],
   "hero": {
     "title": "EDEN 4.0",
-
     "subtitle": "Innovate • Collaborate • Transform",
     "image": {
       "heroImage": {
@@ -32,14 +33,25 @@
         "alt": "Cloud 3"
       }
     },
-
-    "description": "Eden 4.0 is a 3-day state-level hackathon hosted by Marian Engineering College in collaboration with Inspira Marian IEDC and MuLearn MCE. Day 1 features entrepreneurial talks, industry interaction, networking, and cultural events. The 24-hour hackathon takes place on Day 2, followed by judging and award announcements on Day 3. Eden challenges students to solve real-world industry problems through innovative tech solutions in a competitive, high-energy environment.",
+    "description": "Eden 4.0 is a 2-day state-level hackathon hosted by Marian Engineering College in collaboration with Inspira Marian IEDC and MuLearn MCE. The 24-hour hackathon takes place on Day 1, followed by judging and winner announcements on Day 2. Eden challenges students to solve real-world industry problems through innovative tech solutions in a competitive, high-energy environment.",
     "buttonText": "Register Now!"
   },
   "prizePool": [
-    { "title": "1st Prize", "desc": "Details here", "link": "#" },
-    { "title": "2nd Prize", "desc": "Details here", "link": "#" },
-    { "title": "3rd Prize", "desc": "Details here", "link": "#" }
+    {
+      "title": "1st Prize",
+      "desc": "Details here",
+      "link": "#"
+    },
+    {
+      "title": "2nd Prize",
+      "desc": "Details here",
+      "link": "#"
+    },
+    {
+      "title": "3rd Prize",
+      "desc": "Details here",
+      "link": "#"
+    }
   ],
   "schedule": {
     "date": "June 7th",
@@ -100,7 +112,7 @@
         "name": "DCUBE AI",
         "image": "/sponsers/DCUBE Ai/DCUBE Ai.png",
         "alt": "DCUBE AI",
-        "website": "https://www.dcube.ai"
+        "website": "https://dcubeai.com/"
       },
       {
         "name": "iTRAITZ",
@@ -112,7 +124,7 @@
         "name": "KaiSemi",
         "image": "/sponsers/KaiSemi Control Systems/KaiSemi Control Systems.png",
         "alt": "KaiSemi Control Systems",
-        "website": "https://www.kaisemi.com"
+        "website": "https://kaisemicontrolsystems.com/"
       },
       {
         "name": "SEMentor",
@@ -131,20 +143,20 @@
         "image": "/sponsers/CareStack/CareStack.svg",
         "alt": "CareStack",
         "website": "https://www.carestack.com"
+      },
+      {
+        "name": "RevyrieGlobal",
+        "image": "/sponsers/RevyrieGlobal/revyrieglobal.png",
+        "alt": "RevyrieGlobal",
+        "website": "https://revyrieglobal.com"
       }
     ],
     "communityPartners": [
       {
-        "name": "CareStack",
-        "image": "/sponsers/CareStack/CareStack.svg",
-        "alt": "CareStack",
-        "website": "https://www.carestack.com"
-      },
-      {
-        "name": "Community Partner 2",
-        "image": "/images/community2.png",
-        "alt": "Community Partner 2",
-        "website": "#"
+        "name": "MuLearn",
+        "image": "/sponsers/MuLearn/mulearnlogo.svg",
+        "alt": "MuLearn",
+        "website": "https://mulearn.org"
       }
     ],
     "energyPartners": [
