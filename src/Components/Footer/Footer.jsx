@@ -7,10 +7,10 @@ export const Footer = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   const data = {
-    email: "contact@mulearn.org",
-    linkedIn: "https://www.linkedin.com/in/mulearn",
-    instagram: "https://www.instagram.com/mulearn",
-    twitter: "https://twitter.com/mulearn",
+    email: "marianiedc@gmail.com",
+    linkedIn: "https://www.linkedin.com/company/inspira-marian-iedc/",
+    instagram: "https://www.instagram.com/marianiedc",
+    twitter: "https://twitter.com",
   };
 
   useEffect(() => {
