@@ -86,10 +86,10 @@ function App() {
       />
       <DateVenue />
       <Prize />
-      {/* <Schedule /> */}
-      <Venue />
       <EventStats />
+      {/* <Schedule /> */}
       <Sponsors sponsorsData={data.sponsors} />
+      <Venue />
       <FaqSection />
       {/* <Judge/> */}
       {/* <Team /> */}
