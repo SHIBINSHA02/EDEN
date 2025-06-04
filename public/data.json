@@ -100,7 +100,7 @@
         "name": "DCUBE AI",
         "image": "/sponsers/DCUBE Ai/DCUBE Ai.png",
         "alt": "DCUBE AI",
-        "website": "https://www.dcube.ai"
+        "website": "https://dcubeai.com/"
       },
       {
         "name": "iTRAITZ",
@@ -112,7 +112,7 @@
         "name": "KaiSemi",
         "image": "/sponsers/KaiSemi Control Systems/KaiSemi Control Systems.png",
         "alt": "KaiSemi Control Systems",
-        "website": "https://www.kaisemi.com"
+        "website": "https://kaisemicontrolsystems.com/"
       },
       {
         "name": "SEMentor",
@@ -131,6 +131,12 @@
         "image": "/sponsers/CareStack/CareStack.svg",
         "alt": "CareStack",
         "website": "https://www.carestack.com"
+      },
+      {
+        "name": "MuLearn",
+        "image": "/sponsers/MuLearn/mulearn.png",
+        "alt": "MuLearn",
+        "website": "https://mulearn.org"
       }
     ],
     "communityPartners": [

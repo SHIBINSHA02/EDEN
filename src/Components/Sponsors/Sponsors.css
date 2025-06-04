@@ -8,8 +8,43 @@
   padding: 4rem 0;
   box-sizing: border-box;
 }
+
 h2 {
-  font-family: "Frisky", "Minecra";
+  font-family: "Frisky", "Minecraft", sans-serif;
+}
+
+/* Base sponsor box styling */
+.sponsor-box {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(248, 250, 252, 0.9)
+  );
+  border: 2px solid #a855f7;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsor-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1),
+    rgba(248, 250, 252, 0.95)
+  );
+  border-color: #9333ea;
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.5);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.sponsor-box img {
+  transition: transform 0.3s ease;
+}
+
+.sponsor-box:hover img {
+  transform: scale(1.05);
 }
 
 /* CareStack specific styling with brand colors */
@@ -170,6 +205,33 @@ h2 {
   );
   border-color: #0f766e; /* Deep teal border on hover */
   box-shadow: 0 12px 40px rgba(20, 184, 166, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* MuLearn specific styling with orange/blue community theme colors */
+.sponsor-box.mulearn-box {
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.95),
+    /* Orange */ rgba(234, 88, 12, 0.9),
+    /* Dark orange */ rgba(194, 65, 12, 0.9) /* Deep orange */
+  );
+  border: 2px solid #f97316; /* Orange border */
+  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.mulearn-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 1),
+    /* Full opacity orange */ rgba(234, 88, 12, 0.95),
+    /* Slightly more opaque dark orange */ rgba(194, 65, 12, 1)
+      /* Full opacity deep orange */
+  );
+  border-color: #c2410c; /* Deep orange border on hover */
+  box-shadow: 0 12px 40px rgba(249, 115, 22, 0.6);
   transform: translateY(-4px) scale(1.02);
 }
 
@@ -413,15 +475,30 @@ h2 {
   animation-delay: 1s;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Enhanced responsive adjustments */
+@media (max-width: 1024px) {
   .sponsors-section {
     padding: 3rem 1rem;
+  }
+
+  .sponsor-box {
+    min-height: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sponsors-section {
+    padding: 2.5rem 1rem;
     min-height: 80vh;
   }
 
   .sponsor-box {
     min-height: 120px;
+    padding: 0.75rem;
+  }
+
+  .sponsor-box:hover {
+    transform: translateY(-2px) scale(1.01);
   }
 
   .redbull-sponsor-box {
@@ -430,6 +507,7 @@ h2 {
 
   .redbull-sponsor-box .flex {
     flex-direction: column;
+    gap: 0.5rem;
   }
 
   .redbull-sponsor-box .space-x-4 > * + * {
@@ -456,10 +534,61 @@ h2 {
     width: 5px;
     height: 5px;
   }
+
+  /* Adjust grid gaps for better mobile experience */
+  .grid {
+    gap: 0.75rem;
+  }
 }
 
 @media (max-width: 640px) {
+  .sponsors-section {
+    padding: 2rem 0.75rem;
+  }
+
   .sponsor-box {
     min-height: 100px;
+    padding: 0.5rem;
+  }
+
+  .grid {
+    gap: 0.5rem;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsors-section {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .sponsor-box {
+    min-height: 90px;
+  }
+
+  h2 {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-box,
+  .energy-wave,
+  .wing-left,
+  .wing-right,
+  .energy-dot,
+  .animate-float-left,
+  .animate-float-right {
+    animation: none;
+    transition: none;
+  }
+
+  .sponsor-box:hover {
+    transform: none;
   }
 }
