@@ -8,8 +8,43 @@
   padding: 4rem 0;
   box-sizing: border-box;
 }
+
 h2 {
-  font-family: "Frisky", "Minecra";
+  font-family: "Frisky", "Minecraft", sans-serif;
+}
+
+/* Base sponsor box styling */
+.sponsor-box {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(248, 250, 252, 0.9)
+  );
+  border: 2px solid #a855f7;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsor-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1),
+    rgba(248, 250, 252, 0.95)
+  );
+  border-color: #9333ea;
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.5);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.sponsor-box .sponsor-logo {
+  transition: transform 0.3s ease;
+}
+
+.sponsor-box:hover .sponsor-logo {
+  transform: scale(1.05);
 }
 
 /* CareStack specific styling with brand colors */
@@ -170,6 +205,62 @@ h2 {
   );
   border-color: #0f766e; /* Deep teal border on hover */
   box-shadow: 0 12px 40px rgba(20, 184, 166, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* MuLearn specific styling with clean purple gradient */
+.sponsor-box.mulearn-box {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.95),
+    rgba(147, 51, 234, 0.9),
+    rgba(126, 34, 206, 0.95)
+  );
+  border: 2px solid #a855f7;
+  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor-box.mulearn-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 1),
+    rgba(147, 51, 234, 0.95),
+    rgba(126, 34, 206, 1)
+  );
+  border-color: #7e22ce;
+  box-shadow: 0 12px 40px rgba(168, 85, 247, 0.6);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* RevyrieGlobal specific styling with clean gradient like others */
+.sponsor-box.revyrieglobal-box {
+  background: linear-gradient(
+    135deg,
+    rgba(177, 31, 36, 0.95),
+    /* Roof Terracotta */ rgba(150, 25, 30, 0.9),
+    /* Darker Terracotta */ rgba(120, 20, 25, 0.9) /* Deep Terracotta */
+  );
+  border: 2px solid #b11f24; /* Terracotta border */
+  box-shadow: 0 8px 32px rgba(177, 31, 36, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sponsor-box.revyrieglobal-box:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(177, 31, 36, 1),
+    /* Full opacity terracotta */ rgba(150, 25, 30, 0.95),
+    /* Slightly more opaque darker terracotta */ rgba(120, 20, 25, 1)
+      /* Full opacity deep terracotta */
+  );
+  border-color: #781419; /* Deep terracotta border on hover */
+  box-shadow: 0 12px 40px rgba(177, 31, 36, 0.6);
   transform: translateY(-4px) scale(1.02);
 }
 
@@ -413,53 +504,146 @@ h2 {
   animation-delay: 1s;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Enhanced responsive adjustments */
+@media (max-width: 1024px) {
   .sponsors-section {
     padding: 3rem 1rem;
-    min-height: 80vh;
   }
 
   .sponsor-box {
+    min-height: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sponsor-box {
+    padding: 0.75rem;
     min-height: 120px;
   }
 
-  .redbull-sponsor-box {
-    min-height: 160px;
+  .sponsor-box.mulearn-box {
+    padding: 0.75rem;
+    min-height: 100px;
   }
 
-  .redbull-sponsor-box .flex {
-    flex-direction: column;
+  .sponsor-box.mulearn-box .sponsor-logo {
+    max-width: 75%;
+    max-height: 60%;
   }
 
-  .redbull-sponsor-box .space-x-4 > * + * {
-    margin-left: 0;
-    margin-top: 0.5rem;
-  }
-
-  /* Smaller can on mobile */
-  .redbull-sponsor-box .flex-shrink-0 {
-    transform: scale(0.6);
-  }
-
-  .minecraft-font {
-    font-size: 1.5rem !important;
-  }
-
-  .wing-left,
-  .wing-right {
-    width: 16px;
-    height: 10px;
-  }
-
-  .energy-dot {
-    width: 5px;
-    height: 5px;
+  .sponsors-section {
+    padding: 2rem 0;
   }
 }
 
 @media (max-width: 640px) {
+  .sponsors-section {
+    padding: 2rem 0.75rem;
+  }
+
   .sponsor-box {
     min-height: 100px;
+    padding: 0.5rem;
+  }
+
+  .sponsor-box.mulearn-box {
+    padding: 0.5rem;
+    min-height: 90px;
+  }
+
+  .sponsor-box.mulearn-box .sponsor-logo {
+    max-width: 70%;
+    max-height: 55%;
+  }
+
+  .grid {
+    gap: 0.5rem;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Logo sizing for consistent appearance */
+  .sponsor-logo {
+    max-width: 75%;
+    max-height: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsors-section {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .sponsor-box {
+    min-height: 90px;
+  }
+
+  .sponsor-box.mulearn-box {
+    padding: 0.5rem;
+    min-height: 90px;
+  }
+
+  h2 {
+    font-size: 1.75rem !important;
+  }
+
+  /* Logo sizing for consistent appearance */
+  .sponsor-logo {
+    max-width: 70%;
+    max-height: 55%;
+  }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-box,
+  .energy-wave,
+  .wing-left,
+  .wing-right,
+  .energy-dot,
+  .animate-float-left,
+  .animate-float-right {
+    animation: none;
+    transition: none;
+  }
+
+  .sponsor-box:hover {
+    transform: none;
+  }
+}
+
+/* Logo sizing for consistent appearance - Base/Desktop rules */
+.sponsor-logo {
+  max-width: 80%;
+  max-height: 65%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Desktop specific optimizations for larger screens */
+@media (min-width: 1024px) {
+  .sponsor-logo {
+    max-width: 82%;
+    max-height: 68%;
+  }
+
+  .sponsor-box {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sponsor-logo {
+    max-width: 85%;
+    max-height: 70%;
+  }
+
+  .sponsor-box {
+    padding: 1.75rem;
   }
 }
