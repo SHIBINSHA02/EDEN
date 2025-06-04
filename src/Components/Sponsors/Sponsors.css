@@ -560,3 +560,36 @@ h2 {
     transform: none;
   }
 }
+
+/* Logo sizing for consistent appearance - Base/Desktop rules */
+.sponsor-logo {
+  max-width: 80%;
+  max-height: 65%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Desktop specific optimizations for larger screens */
+@media (min-width: 1024px) {
+  .sponsor-logo {
+    max-width: 82%;
+    max-height: 68%;
+  }
+
+  .sponsor-box {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sponsor-logo {
+    max-width: 85%;
+    max-height: 70%;
+  }
+
+  .sponsor-box {
+    padding: 1.75rem;
+  }
+}
