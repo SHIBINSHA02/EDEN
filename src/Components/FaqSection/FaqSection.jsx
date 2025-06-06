@@ -13,7 +13,7 @@ const faqData = [
   },
   {
     question: "How can I register for EDEN?",
-    answer: "Registrations will open on June 4. Keep an eye on our official website or social media handles for the form and deadlines."
+    answer: "Registrations will open on June 6. Keep an eye on our official website or social media handles for the form and deadlines."
   },
   {
     question: "How many members are allowed in a team?",
