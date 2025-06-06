@@ -9,7 +9,7 @@ export const Home = ({ heroData }) => {
   const titleRef = useRef(null);
 
   // Define the target date for the countdown
-  const targetDate = new Date("2025-06-14T18:31:00Z");//time 12pm  15th june
+  const targetDate = new Date("2025-06-15T18:31:00Z");//time 24:00  15th june
 
   // Title animation
   useEffect(() => {
