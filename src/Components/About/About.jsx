@@ -42,8 +42,8 @@ export const About = ({ description, buttonText }) => {
   }
 
   const handleAlertClick = () => {
-    if (currentDate > registrationStartDate) {
-      setShowAlert(<Alert message="Registration closed sorry" />);
+    if (currentDate < registrationStartDate) {
+      setShowAlert(<Alert message="Registration not started" />);
       setTimeout(() => {
         setShowAlert(null);
       }, 3000); // Clear alert after 3 seconds
