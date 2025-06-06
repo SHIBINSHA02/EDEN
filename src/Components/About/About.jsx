@@ -11,7 +11,7 @@ export const About = ({ description, buttonText }) => {
   const [showAlert, setShowAlert] = useState(null);
 
   const currentDate = new Date();
-  const registrationStartDate = new Date("2025-06-16T18:31:00Z");//time 12pm 17th
+  const registrationStartDate = new Date("2025-06-14T18:31:00Z");//time 12pm 17th
   useEffect(() => {
     if (currentIndex < description.length) {
       const timeout = setTimeout(() => {
@@ -42,7 +42,7 @@ export const About = ({ description, buttonText }) => {
   }
 
   const handleAlertClick = () => {
-    if (currentDate < registrationStartDate) {
+    if (currentDate > registrationStartDate) {
       setShowAlert(<Alert message="Registration not started" />);
       setTimeout(() => {
         setShowAlert(null);
