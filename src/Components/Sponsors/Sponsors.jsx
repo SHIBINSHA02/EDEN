@@ -1,5 +1,5 @@
 import PixelArtBackground from "../Background/PixelArtbg";
-// import RedBullCan from "./RedBullCan";
+import RedBullCan from "./RedBullCan";
 import "./Sponsors.css";
 import PropTypes from "prop-types";
 
@@ -53,7 +53,82 @@ export const Sponsors = ({ sponsorsData }) => {
       <PixelArtBackground pixelSize={2} density={1} fadeDuration={3000} />
 
       <div className="relative flex flex-col justify-center items-center z-10 px-4 sm:px-6 md:px-8 py-12 sm:py-16">
-        {/* Title Sponsors Section */}
+        {/* Title Sponsor Section - Faith Infotech Academy */}
+        <div className="mb-12 sm:mb-16 w-full max-w-2xl">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 frisky-font tracking-wider">
+            TITLE SPONSOR
+          </h2>
+
+          <div className="flex justify-center w-full">
+            <div className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105">
+              {/* Animated moving gradient background */}
+              <div
+                className="absolute inset-0 rounded-xl blur-lg opacity-70 group-hover:opacity-90 transition-opacity duration-500"
+                style={{
+                  transform: "scale(1.1)",
+                  background:
+                    "linear-gradient(45deg, #3b82f6, #ef4444, #1d4ed8, #dc2626, #2563eb)",
+                  backgroundSize: "300% 300%",
+                  animation: "gradientMove 4s ease infinite",
+                }}
+              ></div>
+
+              <div
+                className="relative p-4 sm:p-6 rounded-xl shadow-xl border border-blue-400/30 backdrop-blur-sm overflow-hidden"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #1e40af, #dc2626, #3b82f6, #ef4444)",
+                  backgroundSize: "400% 400%",
+                  animation: "gradientShift 6s ease infinite",
+                }}
+              >
+                {/* Animated overlay */}
+                <div
+                  className="absolute inset-0 opacity-20"
+                  style={{
+                    background:
+                      "linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent)",
+                    backgroundSize: "200% 200%",
+                    animation: "shimmer 3s ease-in-out infinite",
+                  }}
+                ></div>
+
+                <div className="relative flex flex-col items-center justify-center space-y-3 z-10">
+                  <div className="w-full max-w-xs aspect-[3/2] flex items-center justify-center p-3">
+                    <img
+                      src="/sponsers/Faith Infotech Academy/Faith Infotech Academy.png"
+                      alt="Faith Infotech Academy - Title Sponsor"
+                      className="max-w-full max-h-full object-contain filter brightness-110 drop-shadow-lg"
+                    />
+                  </div>
+
+                  <div className="text-center">
+                    <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold frisky-font tracking-wide drop-shadow-lg">
+                      FAITH INFOTECH ACADEMY
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Animated corner dots with colors matching the theme */}
+                <div className="absolute top-3 left-3 w-2 h-2 bg-blue-300 rounded-full animate-pulse"></div>
+                <div
+                  className="absolute top-3 right-3 w-1.5 h-1.5 bg-red-300 rounded-full animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                ></div>
+                <div
+                  className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"
+                  style={{ animationDelay: "1s" }}
+                ></div>
+                <div
+                  className="absolute bottom-3 right-3 w-2 h-2 bg-red-400 rounded-full animate-pulse"
+                  style={{ animationDelay: "1.5s" }}
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Partners Section */}
         <div className="mb-12 sm:mb-16 w-full max-w-6xl">
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 frisky-font tracking-wider">
             OUR PARTNERS
@@ -107,7 +182,7 @@ export const Sponsors = ({ sponsorsData }) => {
         </div>
 
         {/* Energy Partner Section - Red Bull Special */}
-        {/* <div className="w-full max-w-2xl relative">
+        <div className="w-full max-w-2xl relative">
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 firsky-font tracking-wider">
             ENERGY PARTNER
           </h2>
@@ -128,7 +203,8 @@ export const Sponsors = ({ sponsorsData }) => {
             <div
               className="redbull-sponsor-box aspect-[3/2] w-full max-w-sm relative overflow-hidden rounded-lg cursor-pointer group"
               onClick={() => {
-                const redbullSection = document.querySelector("#redbull-section");
+                const redbullSection =
+                  document.querySelector("#redbull-section");
                 if (redbullSection) {
                   redbullSection.scrollIntoView({ behavior: "smooth" });
                 }
@@ -136,7 +212,7 @@ export const Sponsors = ({ sponsorsData }) => {
               title="Click to see the full Red Bull experience"
             >
               <div className="absolute inset-0 opacity-90"></div>
-              
+
               <div className="absolute inset-0 opacity-30">
                 <div className="energy-wave energy-wave-1"></div>
                 <div className="energy-wave energy-wave-2"></div>
@@ -177,7 +253,7 @@ export const Sponsors = ({ sponsorsData }) => {
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
