@@ -61,7 +61,7 @@ export const Sponsors = ({ sponsorsData }) => {
 
           <div className="flex justify-center w-full">
             <div
-              className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
+              className="titlesponsor relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
               onClick={() => {
                 window.open(
                   "https://faithinfotechacademy.com/",
@@ -241,7 +241,7 @@ export const Sponsors = ({ sponsorsData }) => {
               </div>
 
               <div className="relative z-10 h-full flex items-center justify-center">
-                <div className="flex items-center space-x-4">
+                <div className="redbull flex items-center space-x-4">
                   <div className="flex-shrink-0">
                     <RedBullCan width={200} height={200} />
                   </div>
