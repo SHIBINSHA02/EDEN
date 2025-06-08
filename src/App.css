@@ -3,3 +3,11 @@
     padding: 0;
     box-sizing: border-box;
   }
+  /* Custom default cursor for the entire body */
+  body {
+    cursor: url('/cursor.png'), auto; /* Points to cursor.png in the public folder */
+  }
+  
+  a, button, [role="button"], input, select, textarea, label, .faq-question, .sponsor-box{
+    cursor: url('/pointer.png'), pointer !important;
+}
