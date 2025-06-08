@@ -60,7 +60,17 @@ export const Sponsors = ({ sponsorsData }) => {
           </h2>
 
           <div className="flex justify-center w-full">
-            <div className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105">
+            <div
+              className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
+              onClick={() => {
+                window.open(
+                  "https://faithinfotechacademy.com/",
+                  "_blank",
+                  "noopener,noreferrer"
+                );
+              }}
+              title="Visit Faith Infotech Academy website"
+            >
               {/* Animated moving gradient background */}
               <div
                 className="absolute inset-0 rounded-xl blur-lg opacity-70 group-hover:opacity-90 transition-opacity duration-500"
@@ -94,12 +104,14 @@ export const Sponsors = ({ sponsorsData }) => {
                 ></div>
 
                 <div className="relative flex flex-col items-center justify-center space-y-3 z-10">
-                  <div className="w-full max-w-xs aspect-[3/2] flex items-center justify-center p-3">
-                    <img
-                      src="/sponsers/Faith Infotech Academy/Faith Infotech Academy.png"
-                      alt="Faith Infotech Academy - Title Sponsor"
-                      className="max-w-full max-h-full object-contain filter brightness-110 drop-shadow-lg"
-                    />
+                  <div className="w-full max-w-xs aspect-[3/2] flex items-center justify-center p-1">
+                    <div className="bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/30 w-full h-full flex items-center justify-center">
+                      <img
+                        src="/sponsers/Faith Infotech Academy/Faith Infotech Academy.png"
+                        alt="Faith Infotech Academy - Title Sponsor"
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
                   </div>
 
                   <div className="text-center">
