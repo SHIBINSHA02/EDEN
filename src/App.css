@@ -9,5 +9,6 @@
 
   
   a, button, [role="button"], input, select, textarea, label, .faq-question ,.titlesponsor,.sponsor-box,.redbull{
+
     cursor: url('/pointer.png'), pointer !important;
 }
