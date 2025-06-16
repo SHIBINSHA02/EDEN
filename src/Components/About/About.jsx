@@ -11,7 +11,7 @@ export const About = ({ description, buttonText }) => {
   const [showAlert, setShowAlert] = useState(null);
 
   const currentDate = new Date();
-  const registrationStartDate = new Date("2025-06-18T18:31:00Z");//time 12pm 17th
+  const registrationStartDate = new Date("2025-06-17T18:31:00Z");//time 12pm 17th
   useEffect(() => {
     if (currentIndex < description.length) {
       const timeout = setTimeout(() => {
