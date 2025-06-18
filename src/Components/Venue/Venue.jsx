@@ -67,19 +67,19 @@ export const Venue = () => {
                 <a href="tel:+919496482580" className="link">
                   +91 9496482580
                 </a>{" "}
-                - Anas (Operations)
+                - Anas ,Operations
                 <br />
                 <a href="tel:+919895329319" className="link">
                   +91 9895329319
                 </a>{" "}
                 
-                - Tomson (Marketing)
+                - Tomson ,Marketing
                 <br />
                 <a href="tel:+918617741675" className="link">
                   +91 8617741675
                 </a>{" "}
                 
-                - Vaishnav (Finance)
+                - Vaishnav ,Finance
               </span>
             </p>
             <p className="detail-item">
